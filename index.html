@@ -1,0 +1,1001 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>京都検定2級 対策クイズ | 深掘り背景解説付き本格学習アプリ</title>
+  <meta name="description" content="難関・京都検定2級の合格を目指す受験者のための、背景知識や文化財の豆知識まで学べる本格4択クイズWebアプリ。">
+  <meta property="og:title" content="京都検定2級 対策クイズ">
+  <meta property="og:description" content="難関・京都検定2級の合格を目指す受験者のための、背景知識や文化財の豆知識まで学べる本格4択クイズWebアプリ。">
+  <meta property="og:type" content="website">
+
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Google Fonts: 日本の伝統美を感じるフォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['"Noto Serif JP"', '"Yu Mincho"', 'serif'],
+            sans: ['"Zen Kaku Gothic New"', 'system-ui', '-apple-system', 'sans-serif'],
+          },
+          colors: {
+            kyoto: {
+              navy: '#0f172a',       // 勝色・濃紺
+              navylight: '#1e293b',  // 藍鼠
+              gold: '#b45309',       // 金茶
+              goldhover: '#92400e',  // 濃金茶
+              goldlight: '#fef3c7',  // 浅黄・金砂
+              vermilion: '#c2410c',  // 朱色・茜
+              vermilionlight: '#ffedd5',
+              paper: '#f8fafc',      // 生成り・和紙色
+              border: '#e2e8f0',
+              text: '#1e293b'
+            }
+          },
+          boxShadow: {
+            'soft': '0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04)',
+            'card': '0 10px 30px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04)',
+            'glow': '0 0 25px rgba(217, 119, 6, 0.25)',
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* 和風の微細テクスチャと滑らかなアニメーション */
+    .bg-pattern {
+      background-color: #f8fafc;
+      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
+      background-size: 24px 24px;
+    }
+    .japanese-title {
+      letter-spacing: 0.08em;
+    }
+    @keyframes fadeInSlide {
+      from {
+        opacity: 0;
+        transform: translateY(12px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    .animate-fadeInSlide {
+      animation: fadeInSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    /* 選択肢ボタンの押し込み感 */
+    .option-card:active {
+      transform: scale(0.985);
+    }
+  </style>
+</head>
+<body class="bg-pattern text-slate-800 font-sans min-h-screen flex flex-col selection:bg-amber-100 selection:text-amber-900">
+
+  <!-- ========================================================= -->
+  <!-- ヘッダーナビゲーション -->
+  <!-- ========================================================= -->
+  <header class="bg-slate-900 text-white border-b border-slate-800 shadow-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
+      <div class="flex items-center space-x-3">
+        <!-- 和風の幾何学家紋風アイコン -->
+        <div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+          </svg>
+        </div>
+        <div>
+          <div class="flex items-center gap-2">
+            <h1 class="font-serif font-bold text-lg sm:text-xl tracking-wide text-amber-50">京都検定2級 対策クイズ</h1>
+            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-amber-600/30 text-amber-300 border border-amber-500/40">合格70%基準</span>
+          </div>
+          <p class="text-xs text-slate-400 hidden sm:block">深掘り背景知識・文化財トリビア・頻出ポイント完全網羅</p>
+        </div>
+      </div>
+
+      <div class="flex items-center space-x-2">
+        <!-- 音声効果トグルボタン -->
+        <button id="sound-toggle-btn" class="p-2 rounded-lg text-slate-300 hover:text-amber-300 hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs border border-slate-700/60" title="効果音オン/オフ">
+          <span id="sound-icon">🔊</span>
+          <span class="hidden md:inline text-[12px]" id="sound-label">効果音 ON</span>
+        </button>
+        <!-- スタンドアロン保存ボタン -->
+        <button id="download-html-btn" class="px-3 py-1.5 rounded-lg text-xs font-medium text-amber-200 bg-amber-900/30 border border-amber-600/40 hover:bg-amber-800/40 transition-all flex items-center gap-1.5 shadow-sm" title="HTMLファイルをダウンロードして完全オフラインで利用">
+          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
+          </svg>
+          <span class="hidden sm:inline">HTML保存</span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <!-- ========================================================= -->
+  <!-- メインコンテンツ領域 -->
+  <!-- ========================================================= -->
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-6 sm:py-8 flex flex-col justify-center">
+
+    <!-- クイズ進行画面 -->
+    <div id="quiz-view" class="w-full">
+      
+      <!-- 進捗・スコアバー -->
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-soft border border-slate-200/80 mb-5">
+        <div class="flex items-center justify-between text-sm mb-2.5">
+          <div class="flex items-center gap-2">
+            <span class="font-serif font-bold text-slate-900 text-base sm:text-lg" id="progress-text">第 1 問 / 全 10 問</span>
+            <span id="question-category" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-slate-100 text-slate-700 border border-slate-200">
+              神社・寺院
+            </span>
+          </div>
+          <div class="flex items-center gap-2 text-xs font-medium">
+            <span class="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/60" id="current-correct-count">正解: 0</span>
+            <span class="text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200" id="current-rate">正答率: --%</span>
+          </div>
+        </div>
+
+        <!-- プログレスバー -->
+        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/50">
+          <div id="progress-bar" class="bg-gradient-to-r from-amber-600 to-amber-500 h-full rounded-full transition-all duration-500 ease-out" style="width: 10%;"></div>
+        </div>
+      </div>
+
+      <!-- 問題カード -->
+      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-slate-200/80 mb-5 relative overflow-hidden">
+        <!-- 和風装飾アクセント（上部金ライン） -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-600"></div>
+
+        <div class="flex items-start gap-3 mb-4">
+          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-amber-300 font-serif font-bold flex items-center justify-center text-sm shadow-sm" id="question-badge">
+            Q1
+          </span>
+          <h2 id="question-text" class="font-serif font-bold text-lg sm:text-xl text-slate-900 leading-relaxed pt-0.5">
+            問題文がここに表示されます
+          </h2>
+        </div>
+
+        <!-- 4者択一ボタンコンテナ -->
+        <div id="options-container" class="space-y-3 pt-2">
+          <!-- 選択肢ボタンが動的に挿入されます -->
+        </div>
+
+        <!-- 正誤判定＆深掘り解説カード（回答後に表示） -->
+        <div id="explanation-box" class="hidden mt-6 pt-6 border-t border-slate-200 animate-fadeInSlide">
+          <!-- 判定バナー -->
+          <div id="judgment-banner" class="flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm">
+            <!-- 判定アイコンとテキスト -->
+          </div>
+
+          <!-- 深掘り背景解説コンテナ -->
+          <div class="bg-slate-50/90 rounded-xl p-4 sm:p-5 border border-slate-200/90 space-y-4 text-slate-800 leading-relaxed text-sm">
+            
+            <div class="flex items-center justify-between border-b border-slate-200/80 pb-2.5">
+              <h3 class="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
+                <span class="text-amber-600 text-lg">⛩️</span> 京都検定専門家による深掘り解説
+              </h3>
+              <span class="text-[11px] font-medium text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300/60">2級頻出トピック</span>
+            </div>
+
+            <!-- 1. 正解の理由 -->
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-1.5 font-bold text-slate-900 text-[13px]">
+                <span class="w-2 h-2 rounded-full bg-emerald-600 inline-block"></span>
+                <span>正解の理由</span>
+              </div>
+              <p id="exp-reason" class="text-slate-700 pl-3.5 text-[13.5px] sm:text-sm">
+                理由テキスト
+              </p>
+            </div>
+
+            <!-- 2. 関連する歴史的背景 -->
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-1.5 font-bold text-slate-900 text-[13px]">
+                <span class="w-2 h-2 rounded-full bg-amber-600 inline-block"></span>
+                <span>関連する歴史的背景</span>
+              </div>
+              <p id="exp-history" class="text-slate-700 pl-3.5 text-[13.5px] sm:text-sm">
+                歴史的背景テキスト
+              </p>
+            </div>
+
+            <!-- 3. 文化財の豆知識 -->
+            <div class="space-y-1.5">
+              <div class="flex items-center gap-1.5 font-bold text-slate-900 text-[13px]">
+                <span class="w-2 h-2 rounded-full bg-indigo-600 inline-block"></span>
+                <span>文化財の豆知識</span>
+              </div>
+              <p id="exp-trivia" class="text-slate-700 pl-3.5 text-[13.5px] sm:text-sm">
+                豆知識テキスト
+              </p>
+            </div>
+
+            <!-- 4. 覚え方のコツ -->
+            <div class="bg-amber-50/90 rounded-lg p-3 border border-amber-200/80 space-y-1">
+              <div class="flex items-center gap-1.5 font-bold text-amber-950 text-[13px]">
+                <span>💡</span>
+                <span>試験攻略・覚え方のコツ</span>
+              </div>
+              <p id="exp-tip" class="text-amber-900 text-[13px] pl-5 font-medium">
+                コツテキスト
+              </p>
+            </div>
+
+          </div>
+
+          <!-- 次の問題へ進むボタン -->
+          <div class="mt-5 flex justify-end">
+            <button id="next-question-btn" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-95 text-amber-300 hover:text-amber-200 font-serif font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-amber-500/30">
+              <span id="next-btn-text">次の問題へ進む</span>
+              <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+              </svg>
+            </button>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 結果画面（リザルトビュー） -->
+    <!-- ========================================================= -->
+    <div id="result-view" class="hidden w-full animate-fadeInSlide">
+      
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-slate-200/80 mb-6 text-center relative overflow-hidden">
+        <!-- 和風上部装飾バー -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600"></div>
+
+        <div class="mb-3">
+          <span class="inline-block text-4xl mb-1" id="result-emoji">🌸</span>
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-slate-900 tracking-wide">演習終了・判定結果</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">京都検定2級（基準：正答率70%以上で合格）</p>
+        </div>
+
+        <!-- スコアサークル・数字カード -->
+        <div class="my-6 max-w-sm mx-auto p-5 rounded-2xl bg-gradient-to-b from-slate-50 to-amber-50/40 border border-amber-200/60 shadow-inner">
+          <div class="text-xs font-bold text-amber-800 tracking-wider mb-1">TOTAL SCORE</div>
+          <div class="flex items-baseline justify-center gap-2">
+            <span class="font-serif font-black text-5xl sm:text-6xl text-slate-900" id="result-score">0</span>
+            <span class="font-serif text-2xl text-slate-500 font-bold">/ 10 問</span>
+          </div>
+          
+          <div class="mt-3 flex items-center justify-center gap-3">
+            <div class="text-xl sm:text-2xl font-black text-amber-600" id="result-percentage">0%</div>
+            <span id="result-badge" class="px-3 py-1 rounded-full text-xs font-bold border">合格基準達成</span>
+          </div>
+        </div>
+
+        <!-- 評価メッセージカード -->
+        <div class="max-w-xl mx-auto bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200 text-left mb-6">
+          <h4 class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-1.5" id="result-eval-title">
+            <span>評定：</span>
+            <span>極意到達！素晴らしい京都通です</span>
+          </h4>
+          <p class="text-xs sm:text-sm text-slate-600 leading-relaxed" id="result-eval-desc">
+            評価メッセージの詳細文
+          </p>
+        </div>
+
+        <!-- アクションボタン群 -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
+          <button id="restart-btn" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-95 text-amber-300 font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 border border-amber-500/30">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+            </svg>
+            <span>もう一度挑戦する</span>
+          </button>
+          
+          <button id="retry-incorrect-btn" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-amber-600 hover:bg-amber-700 active:scale-95 text-white font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span>間違えた問題のみ復習</span>
+          </button>
+        </div>
+
+        <div class="mt-4 pt-4 border-t border-slate-200/70 flex flex-wrap justify-center gap-2">
+          <button id="copy-html-btn" class="px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-300">
+            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+            </svg>
+            <span>単一HTMLコードをコピー</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- 全問振り返り・解説レビューアコーディオン -->
+      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-slate-200/80">
+        <h3 class="font-serif font-bold text-lg text-slate-900 mb-4 flex items-center gap-2 pb-2 border-b border-slate-200">
+          <span class="text-amber-600">📖</span> 全10問の正誤・解説一覧
+        </h3>
+        <div id="review-list" class="space-y-3">
+          <!-- 動的に挿入されます -->
+        </div>
+      </div>
+
+    </div>
+
+  </main>
+
+  <!-- コピートースト通知 -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-amber-300 text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xl border border-amber-500/40 opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-2">
+    <span>✓</span> <span id="toast-message">クリップボードにコピーしました</span>
+  </div>
+
+  <!-- フッター -->
+  <footer class="bg-slate-900 text-slate-400 text-xs py-5 border-t border-slate-800 mt-auto">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-1">
+      <p class="text-slate-300 font-serif">京都商工会議所主催「京都・観光文化検定試験」2級 対策問題集</p>
+      <p class="text-slate-500">本アプリはHTML/CSS/JavaScript単一ファイルで完結し、オフラインでも学習可能です。</p>
+    </div>
+  </footer>
+
+  <!-- ========================================================= -->
+  <!-- JavaScript: 問題データおよびアプリケーションロジック -->
+  <!-- ========================================================= -->
+  <script>
+    /**
+     * 【問題データ構造】
+     * 京都検定2級レベルの厳選良問（全10問）
+     * 各分野（寺社・歴史・年中行事・庭園・琳派・京菓子・幕末・文学）を網羅。
+     * 深掘り解説には「正解の理由」「歴史的背景」「文化財豆知識」「覚え方のコツ」を完備。
+     */
+    const quizData = [
+      {
+        id: 1,
+        category: "神社・寺院",
+        question: "臨済宗相国寺派の大本山であり、足利義満が建立した鹿苑寺（金閣寺）や足利義政が建立した慈照寺（銀閣寺）を山外塔頭として持つ寺院はどこか？",
+        options: ["建仁寺", "東福寺", "相国寺", "妙心寺"],
+        answer: 2, // 相国寺
+        explanation: {
+          reason: "正解は「相国寺（しょうこくじ）」です。室町幕府3代将軍・足利義満が後円融天皇の勅許を得て建立した禅寺で、金閣寺（鹿苑寺）と銀閣寺（慈照寺）はともに相国寺の山外塔頭（山外の境外塔頭寺院）にあたります。",
+          history: "足利将軍家の手厚い庇護を受け、京都五山第2位（第1位は天龍寺、別格は南禅寺）に位置づけられました。応仁の乱をはじめ度重なる火災で荒廃しましたが、豊臣秀頼や徳川家光らによって再建が重ねられました。",
+          trivia: "法堂（重要文化財）の天井には狩野光信筆の『鳴き龍（蟠龍図）』があり、特定の場所で柏手を打つと見事に反響します。また、境内にある承天閣美術館には伊藤若冲の代表作『釈迦三尊像』や動植綵絵ゆかりの名宝が収蔵されています。",
+          tip: "「足利義満の金閣、足利義政の銀閣、その両方の本山は義満創建の相国寺」と一本化して記憶するのが京都検定2級の鉄則です。"
+        }
+      },
+      {
+        id: 2,
+        category: "歴史・平安京",
+        question: "延暦13年（794）に桓武天皇が遷都した平安京において、都の中軸である朱雀大路の北端に位置し、天皇の私的居所である「内裏」や政治儀式の中心「朝堂院」などが配置された宮城区画を何と呼ぶか？",
+        options: ["聚楽第", "大内裏（平安宮）", "院庁", "六波羅館"],
+        answer: 1, // 大内裏
+        explanation: {
+          reason: "正解は「大内裏（だいだいり／平安宮）」です。平安京の中軸線である朱雀大路の最北端に置かれた宮城全体を指します。",
+          history: "唐の長安城を模して造営され、東西約1.2km・南北約1.4kmの広大な区画が築地塀と14の門で囲まれていました。大内裏の正門が「朱雀門」、都の南端の正門が「羅城門」です。",
+          trivia: "大内裏は度重なる火災により鎌倉時代以降は再建されず、現在の京都御所は公家邸宅だった「里内裏（東洞院土御門殿）」が定着したものです。平安神宮の社殿群（大極殿・応天門など）は、この大内裏の朝堂院を8分の5縮尺で復元したものです。",
+          tip: "「外側の宮城全体＝大内裏、その中にある天皇の居住空間＝内裏」という入れ子関係を整理しておきましょう。"
+        }
+      },
+      {
+        id: 3,
+        category: "祭り・行事",
+        question: "祇園祭（八坂神社）の前祭（さきまつり）山鉾巡行において、古来の慣例により「くじ取り式」を行わず、常に巡行の先頭を務める「くじ取らず」の鉾はどれか？",
+        options: ["函谷鉾", "月鉾", "長刀鉾", "船鉾"],
+        answer: 2, // 長刀鉾
+        explanation: {
+          reason: "正解は「長刀鉾（なぎなたほこ）」です。7月17日に行われる前祭（さきまつり）山鉾巡行で、古くからの慣例により常に先頭を進みます。",
+          history: "山鉾巡行の順番争いを防ぐため、室町時代の明応9年（1500）から六角堂で「くじ取り式」が始まりましたが、重要ないくつかの山鉾は順番が固定されており「くじ取らず」と呼ばれます。鉾頭の大長刀は三条小鍛冶宗近作と伝わり、疫病邪気を祓います。",
+          trivia: "現在巡行する全34基の山鉾の中で、人形（稚児人形）ではなく本物の男児が乗る「生稚児（いきちご）」が搭乗するのは長刀鉾ただ1基のみです。四条麩屋町での「注連縄（しめなわ）切り」は巡行最大の見せ場です。",
+          tip: "くじ取らずの代表格：前祭第1番「長刀鉾」、第5番「函谷鉾」、第21番「放下鉾」、第22番「岩戸山」、殿「船鉾」、後祭第1番「橋弁慶山」、殿「大船鉾」をセットで押さえましょう。"
+        }
+      },
+      {
+        id: 4,
+        category: "建築・庭園",
+        question: "室町幕府の管領・細川勝元が創建した禅寺で、白砂に15個の石が巧みに配され、徳川光圀の寄進と伝わる「吾唯知足」の蹲踞（つくばい）がある名高い世界遺産寺院はどこか？",
+        options: ["大徳寺大仙院", "龍安寺", "天龍寺", "妙心寺退蔵院"],
+        answer: 1, // 龍安寺
+        explanation: {
+          reason: "正解は「龍安寺（りょうあんじ）」です。白砂に15個の石が「5・2・3・2・3」または「東から7・5・3」に配された枯山水の方丈庭園（特別名勝・史跡）で世界的に有名です。",
+          history: "室町幕府管領の細川勝元が宝徳2年（1450）に徳大寺家の山荘を譲り受けて創建した臨済宗妙心寺派の禅寺です。石庭の石の裏に「小太郎・彦九郎」と刻まれていることから、河原者（庭師技能集団）の手による作庭と推測されています。",
+          trivia: "茶室「蔵六庵」の前にある蹲踞（つくばい）は、中央の四角い水溜めを漢字の部首「口」に見立て、周りの文字と合わせて「吾・唯・知・足（われただたるをしる）」と読みます。足ることを知る者は心安らかであるという禅の教えを表します。",
+          tip: "「細川勝元 ＋ 15の石庭 ＋ 吾唯知足の蹲踞 ＋ 鏡容池 ＝ 龍安寺」は京都検定の最重要・超鉄板キーワードです。"
+        }
+      },
+      {
+        id: 5,
+        category: "美術・工芸",
+        question: "江戸時代初期に本阿弥光悦とともに琳派の端緒を開き、建仁寺所蔵の国宝『風神雷神図屏風』や養源院の『白象図』杉戸絵などを手掛けた絵師は誰か？",
+        options: ["俵屋宗達", "尾形光琳", "酒井抱一", "狩野探幽"],
+        answer: 0, // 俵屋宗達
+        explanation: {
+          reason: "正解は「俵屋宗達（たわらやそうたつ）」です。金箔地に躍動感あふれる神仏の姿を描いた国宝『風神雷神図屏風』（建仁寺蔵）の生みの親です。",
+          history: "宗達は京都の町衆文化の中で絵屋「俵屋」を率い、本阿弥光悦の書と共作した料紙装飾や、絵具をにじませて濃淡を出す「たらし込み」技法を確立しました。この様式を約100年後に尾形光琳・乾山兄弟が、さらに江戸で酒井抱一が私淑・継承し「琳派」が形成されました。",
+          trivia: "東山区の養源院（血天井で有名）には、浅井長政の菩提を弔うため俵屋宗達が描いた『白象図』『唐獅子図』『麒麟図』などの杉戸絵（重要文化財）が現存しています。",
+          tip: "琳派の時系列：俵屋宗達（祖・風神雷神図初作） → 尾形光琳（模写・紅白梅図・燕子花図） → 酒井抱一（江戸琳派）。風神雷神図は宗達→光琳→抱一と模写が受け継がれた名作です。"
+        }
+      },
+      {
+        id: 6,
+        category: "京料理・菓子",
+        question: "毎年6月30日に京都の各神社で行われる「夏越の祓（なごしのはらえ）」に合わせ、氷をかたどった三角形の白いういろうに小豆を散らし、半年の穢れを祓い無病息災を祈って食される代表的な京菓子は何か？",
+        options: ["水無月", "柏餅", "葛きり", "走井餅"],
+        answer: 0, // 水無月
+        explanation: {
+          reason: "正解は「水無月（みなづき）」です。6月30日の「夏越の祓（なごしのはらえ）」に合わせて京都中で一斉に食される伝統和菓子です。",
+          history: "平安時代の宮中では、旧暦6月1日に氷室から氷を取り寄せて暑気払いをする「氷室の節句」がありました。当時、貴重な天然氷を手に入れられなかった庶民が、氷のかけらを模して三角形に切ったういろうに、魔除け・厄除けの意味を持つ赤い小豆を散らした菓子を考案したのが起源とされます。",
+          trivia: "6月30日には京都の各神社で、無病息災を祈って茅（かや）で編んだ大きな輪を「水無月の 夏越の祓する人は 千歳の命 のぶといふなり」と唱えながら八の字にくぐる「茅の輪（ちのわ）くぐり」が行われます。",
+          tip: "「6月30日 ＋ 夏越の祓 ＋ 茅の輪くぐり ＋ 三角形（氷）と小豆（魔除け）＝ 水無月」。年中行事と和菓子の対応問題は2級必出です。"
+        }
+      },
+      {
+        id: 7,
+        category: "年中行事・信仰",
+        question: "毎年8月16日の夜、お盆に迎えた精霊（先祖の霊）を送るために京都盆地を囲む山々に点火される「京都五山送り火」。その点火順序として正しいものはどれか？",
+        options: [
+          "「大文字」→「妙・法」→「船形」→「左大文字」→「鳥居形」",
+          "「鳥居形」→「左大文字」→「船形」→「妙・法」→「大文字」",
+          "「大文字」→「船形」→「妙・法」→「左大文字」→「鳥居形」",
+          "「妙・法」→「大文字」→「船形」→「左大文字」→「鳥居形」"
+        ],
+        answer: 0,
+        explanation: {
+          reason: "正解は「大文字」→「妙・法」→「船形」→「左大文字」→「鳥居形」です。東の東山から始まり、北、そして西へと5分間隔で点火されます。",
+          history: "点火時刻：20:00 東山如意ヶ嶽「大文字」 → 20:05 松ヶ崎「妙・法」 → 20:10 西賀茂「船形」 → 20:15 大北山「左大文字」 → 20:20 嵯峨「鳥居形」。お盆に迎えた先祖の霊（お精霊さん）を再び冥府へ送る仏教行事です。",
+          trivia: "「妙法」の妙は日蓮宗湧泉寺の日像、法は日良の筆。「船形」は西方寺の開祖・円仁が唐からの帰途に嵐を乗り切った故事に由来。「鳥居形」だけは松明を持って走って火床に点火する「突き松明」の方式がとられます。",
+          tip: "「東から西へ流れる」と地図上で覚えるのが確実です。東山（大）→ 松ヶ崎（妙法）→ 西賀茂（船）→ 金閣寺北（左大）→ 嵯峨（鳥居）。"
+        }
+      },
+      {
+        id: 8,
+        category: "神社・寺院・仏像",
+        question: "後白河上皇の院政庁「法住寺殿」に平清盛が造営寄進し、本堂内陣に湛慶作の本尊・千手観音坐像（国宝）を中心に1001体の木造千手観音立像が並ぶ寺院はどこか？",
+        options: ["三十三間堂（蓮華王院）", "六波羅蜜寺", "東福寺", "泉涌寺"],
+        answer: 0, // 三十三間堂
+        explanation: {
+          reason: "正解は「三十三間堂（さんじゅうさんげんどう）」（正式名：蓮華王院本堂）です。平清盛が後白河上皇のために長寛2年（1164）に造営・寄進しました。",
+          history: "建長元年（1249）の火災で焼失後、文永3年（1266）に再建された現存の本堂は日本最長の木造建築（南北約120m・国宝）です。「三十三」は観音菩薩が人々を救うために変化する33の姿にちなみます。",
+          trivia: "中央の本尊・木造千手観音坐像は、運慶の長男である仏師「湛慶（たんけい）」が82歳の最晩年に完成させた鎌倉彫刻の国宝です。本堂両端の「風神・雷神像」や「二十八部衆立像」も国宝。毎年1月には新成人が弓の腕を競う「通し矢（大的全国大会）」で知られます。",
+          tip: "「後白河上皇 ＋ 平清盛寄進 ＋ 1001体千手観音 ＋ 湛慶作本尊 ＋ 通し矢 ＝ 三十三間堂（蓮華王院）」は歴史・建築・美術の総合頻出事項です。"
+        }
+      },
+      {
+        id: 9,
+        category: "歴史・幕末",
+        question: "文久3年（1863）に結成された新選組が最初に屯所（本拠地）を置き、八木邸や前川邸などの旧家や、近藤勇の胸像・隊士の墓所「壬生塚」がある地域はどこか？",
+        options: ["伏見", "壬生", "祇園", "岡崎"],
+        answer: 1, // 壬生
+        explanation: {
+          reason: "正解は「壬生（みぶ）」です（現在の京都市下京区壬生）。新選組が結成された発祥の地です。",
+          history: "将軍・徳川家茂の上洛警護のため結成された浪士組のうち、近藤勇・土方歳三・芹沢鴨らが京都に残り、京都守護職・松平容保（会津藩主）の庇護下で「壬生浪士組（のちの新選組）」を結成しました。八木邸は局長・芹沢鴨暗殺の現場で、現在も鴨居に刀傷が残ります。",
+          trivia: "律宗大本山「壬生寺」は、隊士たちが境内で剣術や大砲の訓練を行った場所です。現在は「壬生塚」に近藤勇の胸像や隊士の合葬墓があり、多くのファンが参拝します。また、無言劇「壬生狂言」（重要無形民俗文化財）でも名高い古刹です。",
+          tip: "新選組屯所の3段階変遷は試験の超王道：「壬生（八木・前川邸） → 西本願寺 → 不動堂村」。この順序は必ず暗記してください。"
+        }
+      },
+      {
+        id: 10,
+        category: "文学・名所",
+        question: "嵯峨野の小倉山中腹に位置し、鎌倉時代の歌人・藤原定家が『小倉百人一首』を撰集した山荘「小倉山荘（時雨亭）」跡と伝わる石碑が立ち、重要文化財の多宝塔や美しい紅葉で知られる名刹はどこか？",
+        options: ["常寂光寺", "祇王寺", "宝厳院", "清涼寺"],
+        answer: 0, // 常寂光寺
+        explanation: {
+          reason: "正解は「常寂光寺（じょうじゃっこうじ）」です。小倉山の急斜面に佇み、境内には藤原定家の「時雨亭跡」と刻まれた石碑が建っています。",
+          history: "慶長元年（1596）、日蓮宗本圀寺16世の日禎（にっしん）上人が隠棲の地として開山しました。豪商・角倉了以一族の援助を受けて整備され、秋には小倉山全体が深紅に染まる嵯峨野屈指の紅葉の名所です。",
+          trivia: "境内高台にそびえる桧皮葺の「多宝塔」（重要文化財）は、辻子の商人・辻玄六が寄進した桃山〜江戸初期の名建築で、ここからは嵯峨野の町並みや遠く比叡山まで一望できます。また仁王門の仁王像は運慶作と伝わります。",
+          tip: "「小倉山 ＋ 藤原定家 ＋ 時雨亭跡（百人一首） ＋ 多宝塔 ＋ 日禎上人 ＝ 常寂光寺」と結びつけて記憶しましょう。"
+        }
+      }
+    ];
+
+    /**
+     * アプリケーション状態管理
+     */
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let userAnswers = []; // 各問の回答履歴 { questionId, selected, isCorrect }
+    let activeQuestions = [...quizData]; // 通常は全問、復習時は間違えた問題
+    let soundEnabled = true;
+
+    // Web Audio API による効果音合成（外部ファイル不要・即時再生）
+    let audioCtx = null;
+    function getAudioContext() {
+      if (!audioCtx) {
+        const AudioContextClass = window.AudioContext || window.webkitAudioContext;
+        if (AudioContextClass) {
+          audioCtx = new AudioContextClass();
+        }
+      }
+      if (audioCtx && audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+      return audioCtx;
+    }
+
+    function playSound(type) {
+      if (!soundEnabled) return;
+      try {
+        const ctx = getAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+
+        if (type === 'correct') {
+          // 和風の澄んだ鐘・鈴のような心地よい二和音（雅な和音）
+          const osc1 = ctx.createOscillator();
+          const osc2 = ctx.createOscillator();
+          const gainNode = ctx.createGain();
+
+          osc1.type = 'sine';
+          osc2.type = 'triangle';
+          osc1.frequency.setValueAtTime(523.25, now); // C5
+          osc1.frequency.exponentialRampToValueAtTime(1046.50, now + 0.15); // C6
+
+          osc2.frequency.setValueAtTime(659.25, now); // E5
+          osc2.frequency.exponentialRampToValueAtTime(1318.51, now + 0.15); // E6
+
+          gainNode.gain.setValueAtTime(0.18, now);
+          gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+
+          osc1.connect(gainNode);
+          osc2.connect(gainNode);
+          gainNode.connect(ctx.destination);
+
+          osc1.start(now);
+          osc2.start(now);
+          osc1.stop(now + 0.45);
+          osc2.stop(now + 0.45);
+        } else if (type === 'incorrect') {
+          // 落ち着いた低い拍子木のようなトーン
+          const osc = ctx.createOscillator();
+          const gain = ctx.createGain();
+
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(220, now); // A3
+          osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.25); // E3
+
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+
+          osc.connect(gain);
+          gain.connect(ctx.destination);
+
+          osc.start(now);
+          osc.stop(now + 0.25);
+        } else if (type === 'complete') {
+          // ファンファーレ風
+          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
+            const osc = ctx.createOscillator();
+            const gain = ctx.createGain();
+            osc.frequency.setValueAtTime(freq, now + i * 0.1);
+            gain.gain.setValueAtTime(0.15, now + i * 0.1);
+            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.35);
+            osc.connect(gain);
+            gain.connect(ctx.destination);
+            osc.start(now + i * 0.1);
+            osc.stop(now + i * 0.1 + 0.35);
+          });
+        }
+      } catch (e) {
+        console.warn('Audio not supported or interaction blocked:', e);
+      }
+    }
+
+    /**
+     * UIレンダリング
+     */
+    function renderQuestion() {
+      const q = activeQuestions[currentQuestionIndex];
+      const total = activeQuestions.length;
+
+      // 画面切り替え
+      document.getElementById('quiz-view').classList.remove('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+
+      // 進捗テキスト & プログレスバー
+      document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} 問 / 全 ${total} 問`;
+      document.getElementById('question-category').textContent = q.category || '京都の文化';
+      document.getElementById('question-badge').textContent = `Q${q.id}`;
+      
+      const progressPercent = Math.round(((currentQuestionIndex) / total) * 100);
+      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
+
+      document.getElementById('current-correct-count').textContent = `正解: ${score}`;
+      if (currentQuestionIndex > 0) {
+        const rate = Math.round((score / currentQuestionIndex) * 100);
+        document.getElementById('current-rate').textContent = `正答率: ${rate}%`;
+      } else {
+        document.getElementById('current-rate').textContent = '正答率: --%';
+      }
+
+      // 問題文
+      document.getElementById('question-text').textContent = q.question;
+
+      // 解説ボックスを隠す
+      const expBox = document.getElementById('explanation-box');
+      expBox.classList.add('hidden');
+
+      // 選択肢ボタン生成
+      const optionsContainer = document.getElementById('options-container');
+      optionsContainer.innerHTML = '';
+
+      const numberIcons = ['①', '②', '③', '④'];
+
+      q.options.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.id = `option-btn-${idx}`;
+        btn.className = `option-card w-full p-4 sm:p-4.5 rounded-xl border border-slate-200/90 bg-white hover:bg-amber-50/50 hover:border-amber-400/80 text-left font-sans text-slate-800 transition-all duration-200 shadow-sm flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-amber-500/40`;
+        
+        btn.innerHTML = `
+          <div class="flex items-center gap-3.5 flex-1 pr-2">
+            <span class="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-amber-100 text-slate-600 group-hover:text-amber-800 font-serif font-bold text-xs flex items-center justify-center flex-shrink-0 transition-colors border border-slate-200/60">
+              ${numberIcons[idx]}
+            </span>
+            <span class="text-sm sm:text-base font-medium leading-relaxed">${optText}</span>
+          </div>
+          <div class="status-icon w-6 h-6 flex items-center justify-center text-base flex-shrink-0"></div>
+        `;
+
+        btn.onclick = () => selectAnswer(idx);
+        optionsContainer.appendChild(btn);
+      });
+
+      // 次へボタンのラベル設定
+      const nextBtnText = document.getElementById('next-btn-text');
+      if (currentQuestionIndex === total - 1) {
+        nextBtnText.textContent = '結果発表を見る';
+      } else {
+        nextBtnText.textContent = '次の問題へ進む';
+      }
+
+      // スクロールを上部に
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 回答選択時の処理
+     */
+    function selectAnswer(selectedIndex) {
+      const q = activeQuestions[currentQuestionIndex];
+      const isCorrect = (selectedIndex === q.answer);
+
+      // スコア加算
+      if (isCorrect) {
+        score++;
+      }
+      userAnswers.push({
+        questionId: q.id,
+        question: q.question,
+        category: q.category,
+        options: q.options,
+        answer: q.answer,
+        selected: selectedIndex,
+        isCorrect: isCorrect,
+        explanation: q.explanation
+      });
+
+      // 効果音再生
+      playSound(isCorrect ? 'correct' : 'incorrect');
+
+      // 全ボタンの状態更新＆ロック
+      const totalOptions = q.options.length;
+      for (let i = 0; i < totalOptions; i++) {
+        const btn = document.getElementById(`option-btn-${i}`);
+        btn.disabled = true;
+        btn.onclick = null;
+        btn.classList.remove('hover:bg-amber-50/50', 'hover:border-amber-400/80', 'option-card');
+
+        const iconContainer = btn.querySelector('.status-icon');
+
+        if (i === q.answer) {
+          // 正解の選択肢（常に緑色強調）
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 text-left font-sans font-semibold transition-all shadow-sm flex items-center justify-between";
+          iconContainer.innerHTML = `<span class="text-emerald-600 font-bold text-lg">✓ 正解</span>`;
+        } else if (i === selectedIndex && !isCorrect) {
+          // 誤答した選択肢（赤色強調）
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-950 text-left font-sans transition-all shadow-sm flex items-center justify-between";
+          iconContainer.innerHTML = `<span class="text-rose-500 font-bold text-lg">✕ 不正解</span>`;
+        } else {
+          // 未選択の他の選択肢
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 text-left font-sans opacity-60 cursor-not-allowed flex items-center justify-between";
+        }
+      }
+
+      // 判定バナーの描画
+      const banner = document.getElementById('judgment-banner');
+      if (isCorrect) {
+        banner.className = "flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm bg-emerald-100/90 text-emerald-900 border border-emerald-300";
+        banner.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm">〇</div>
+          <div>
+            <div class="text-sm font-black">正解です！見事な知識です。</div>
+            <div class="text-xs font-normal text-emerald-800">京都検定2級合格に直結する重要ポイントです。</div>
+          </div>
+        `;
+      } else {
+        banner.className = "flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm bg-rose-100/90 text-rose-950 border border-rose-300";
+        banner.innerHTML = `
+          <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold shadow-sm">✕</div>
+          <div>
+            <div class="text-sm font-black">惜しい！不正解です。</div>
+            <div class="text-xs font-normal text-rose-800">正解は「${q.options[q.answer]}」でした。下の深掘り解説で復習しましょう。</div>
+          </div>
+        `;
+      }
+
+      // 深掘り解説の注入
+      document.getElementById('exp-reason').textContent = q.explanation.reason;
+      document.getElementById('exp-history').textContent = q.explanation.history;
+      document.getElementById('exp-trivia').textContent = q.explanation.trivia;
+      document.getElementById('exp-tip').textContent = q.explanation.tip;
+
+      // 解説ボックスを表示
+      const expBox = document.getElementById('explanation-box');
+      expBox.classList.remove('hidden');
+
+      // スムーズに解説ボックスへスクロール
+      setTimeout(() => {
+        expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      }, 150);
+    }
+
+    /**
+     * 次の問題へ進む
+     */
+    function nextQuestion() {
+      currentQuestionIndex++;
+      if (currentQuestionIndex < activeQuestions.length) {
+        renderQuestion();
+      } else {
+        showResult();
+      }
+    }
+
+    /**
+     * 結果画面の表示
+     */
+    function showResult() {
+      playSound('complete');
+
+      document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('result-view').classList.remove('hidden');
+
+      const total = activeQuestions.length;
+      const percentage = Math.round((score / total) * 100);
+
+      document.getElementById('result-score').textContent = score;
+      document.getElementById('result-percentage').textContent = `${percentage}%`;
+
+      const badge = document.getElementById('result-badge');
+      const emoji = document.getElementById('result-emoji');
+      const evalTitle = document.getElementById('result-eval-title');
+      const evalDesc = document.getElementById('result-eval-desc');
+
+      if (percentage >= 90) {
+        emoji.textContent = '🏆';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-amber-100 text-amber-900 border-amber-400';
+        badge.textContent = '本試験 合格確実圏内';
+        evalTitle.innerHTML = `<span class="text-amber-600 font-bold">【極意到達】</span> 京都の歴史・文化を深く愛する本物の京都通です！`;
+        evalDesc.textContent = '京都検定2級の難問・頻出問を完璧にマスターしています。単なる語句の暗記を超え、歴史的背景や文化財の由緒まで高い解像度で理解されています。自信を持って本試験に臨んでください！';
+      } else if (percentage >= 70) {
+        emoji.textContent = '🌸';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-emerald-100 text-emerald-900 border-emerald-400';
+        badge.textContent = '合格基準（70%）到達！';
+        evalTitle.innerHTML = `<span class="text-emerald-700 font-bold">【合格ライン突破】</span> 京都検定2級合格レベルに到達しています！`;
+        evalDesc.textContent = '2級合格基準の正答率70%を見事にクリアしました。間違えた問題の解説と「覚え方のコツ」を今一度復習しておけば、盤石の態勢で試験本番を迎えられます。';
+      } else if (percentage >= 50) {
+        emoji.textContent = '⛩️';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-amber-50 text-amber-800 border-amber-300';
+        badge.textContent = '合格まであと少し！';
+        evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【あと一歩で合格ライン】</span> 確固たる基礎知識が身についています！`;
+        evalDesc.textContent = '合格ライン（70%）までもう少しです。京都検定2級は「寺院と開基・塔頭の関係」や「年中行事の期日・順序」など時系列の整理が勝負の分かれ目になります。下の解説一覧で弱点を総ざらいしましょう。';
+      } else {
+        emoji.textContent = '📚';
+        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-slate-100 text-slate-800 border-slate-300';
+        badge.textContent = '反復学習推奨';
+        evalTitle.innerHTML = `<span class="text-slate-800 font-bold">【基礎固めからスタート】</span> 背景ストーリーとともに知識を育てましょう！`;
+        evalDesc.textContent = '2級は3級に比べて細かな由緒や文化財指定の知識が問われる難関です。解説カードに記載した「覚え方のコツ」や歴史的因果関係を声に出して復習し、もう一度挑戦してみましょう。';
+      }
+
+      // 「間違えた問題のみ復習」ボタンの表示制御
+      const retryIncorrectBtn = document.getElementById('retry-incorrect-btn');
+      const incorrectQuestions = userAnswers.filter(a => !a.isCorrect);
+      if (incorrectQuestions.length === 0) {
+        retryIncorrectBtn.classList.add('hidden');
+      } else {
+        retryIncorrectBtn.classList.remove('hidden');
+        retryIncorrectBtn.querySelector('span').textContent = `間違えた ${incorrectQuestions.length} 問のみ復習`;
+      }
+
+      // レビュー一覧の生成
+      renderReviewList();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 全問振り返りアコーディオンの生成
+     */
+    function renderReviewList() {
+      const container = document.getElementById('review-list');
+      container.innerHTML = '';
+
+      userAnswers.forEach((item, idx) => {
+        const card = document.createElement('div');
+        card.className = "border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50 transition-all";
+
+        const isCorrect = item.isCorrect;
+        const statusBadge = isCorrect 
+          ? '<span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300">正解 〇</span>' 
+          : '<span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800 border border-rose-300">不正解 ✕</span>';
+
+        card.innerHTML = `
+          <button class="w-full px-4 py-3.5 flex items-center justify-between text-left hover:bg-slate-100/80 transition-colors focus:outline-none" onclick="toggleAccordion(${idx})">
+            <div class="flex items-center gap-3 pr-2">
+              <span class="font-serif font-bold text-xs text-slate-500 w-6">第${idx + 1}問</span>
+              <span class="text-sm font-medium text-slate-900 line-clamp-1">${item.question}</span>
+            </div>
+            <div class="flex items-center gap-2 flex-shrink-0">
+              ${statusBadge}
+              <svg id="arrow-${idx}" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+              </svg>
+            </div>
+          </button>
+
+          <div id="content-${idx}" class="hidden px-4 pb-4 pt-2 border-t border-slate-200/80 bg-white text-xs sm:text-sm space-y-3">
+            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
+              <p class="font-serif font-bold text-slate-900 mb-1">【問題全文】</p>
+              <p class="text-slate-700">${item.question}</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
+              <div class="p-2 rounded bg-slate-50 border ${isCorrect ? 'border-emerald-200 bg-emerald-50/40' : 'border-rose-200 bg-rose-50/40'}">
+                <span class="text-slate-500 block mb-0.5">あなたの回答：</span>
+                <span class="font-bold ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}">${item.options[item.selected]}</span>
+              </div>
+              <div class="p-2 rounded bg-emerald-50/60 border border-emerald-200">
+                <span class="text-emerald-700 block mb-0.5">正解：</span>
+                <span class="font-bold text-emerald-900">${item.options[item.answer]}</span>
+              </div>
+            </div>
+
+            <div class="bg-amber-50/60 p-3 rounded-lg border border-amber-200/60 space-y-2 text-xs sm:text-[13px] text-slate-800">
+              <div class="font-bold text-amber-950 flex items-center gap-1.5 border-b border-amber-200/60 pb-1">
+                <span>⛩️</span> 専門家解説まとめ
+              </div>
+              <p><strong class="text-slate-900">【理由】</strong>${item.explanation.reason}</p>
+              <p><strong class="text-slate-900">【歴史背景】</strong>${item.explanation.history}</p>
+              <p><strong class="text-slate-900">【文化財】</strong>${item.explanation.trivia}</p>
+              <p class="text-amber-900 font-medium"><strong>【暗記のコツ】</strong>${item.explanation.tip}</p>
+            </div>
+          </div>
+        `;
+
+        container.appendChild(card);
+      });
+    }
+
+    function toggleAccordion(index) {
+      const content = document.getElementById(`content-${index}`);
+      const arrow = document.getElementById(`arrow-${index}`);
+      if (content.classList.contains('hidden')) {
+        content.classList.remove('hidden');
+        arrow.classList.add('rotate-180');
+      } else {
+        content.classList.add('hidden');
+        arrow.classList.remove('rotate-180');
+      }
+    }
+
+    /**
+     * クイズのリスタート
+     */
+    function restartQuiz(questionsToUse = quizData) {
+      activeQuestions = [...questionsToUse];
+      currentQuestionIndex = 0;
+      score = 0;
+      userAnswers = [];
+      renderQuestion();
+    }
+
+    /**
+     * 単一HTMLファイル保存（ダウンロード）
+     */
+    function downloadSingleHtmlFile() {
+      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = 'kyoto_kentei_level2_quiz.html';
+      document.body.appendChild(a);
+      a.click();
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+      showToast('単一HTMLファイルをダウンロードしました！オフラインでも動作します。');
+    }
+
+    /**
+     * クリップボードコピー
+     */
+    function copySingleHtmlCode() {
+      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(htmlContent).then(() => {
+          showToast('HTMLコードをクリップボードにコピーしました！');
+        }).catch(() => {
+          fallbackCopyText(htmlContent);
+        });
+      } else {
+        fallbackCopyText(htmlContent);
+      }
+    }
+
+    function fallbackCopyText(text) {
+      const textArea = document.createElement('textarea');
+      textArea.value = text;
+      textArea.style.position = 'fixed';
+      textArea.style.opacity = '0';
+      document.body.appendChild(textArea);
+      textArea.select();
+      try {
+        document.execCommand('copy');
+        showToast('HTMLコードをクリップボードにコピーしました！');
+      } catch (err) {
+        showToast('コピーに失敗しました');
+      }
+      document.body.removeChild(textArea);
+    }
+
+    function showToast(msg) {
+      const toast = document.getElementById('toast');
+      const toastMsg = document.getElementById('toast-message');
+      toastMsg.textContent = msg;
+      toast.classList.remove('opacity-0', 'pointer-events-none');
+      toast.classList.add('opacity-100');
+      setTimeout(() => {
+        toast.classList.remove('opacity-100');
+        toast.classList.add('opacity-0', 'pointer-events-none');
+      }, 3000);
+    }
+
+    /**
+     * イベントリスナー設定
+     */
+    document.addEventListener('DOMContentLoaded', () => {
+      // 次の問題へ
+      document.getElementById('next-question-btn').addEventListener('click', nextQuestion);
+
+      // もう一度最初から
+      document.getElementById('restart-btn').addEventListener('click', () => restartQuiz(quizData));
+
+      // 間違えた問題だけ復習
+      document.getElementById('retry-incorrect-btn').addEventListener('click', () => {
+        const incorrectQuestions = userAnswers
+          .filter(a => !a.isCorrect)
+          .map(a => quizData.find(q => q.id === a.questionId));
+        if (incorrectQuestions.length > 0) {
+          restartQuiz(incorrectQuestions);
+        }
+      });
+
+      // 単一HTMLダウンロード＆コピー
+      document.getElementById('download-html-btn').addEventListener('click', downloadSingleHtmlFile);
+      document.getElementById('copy-html-btn').addEventListener('click', copySingleHtmlCode);
+
+      // 音声トグル
+      document.getElementById('sound-toggle-btn').addEventListener('click', () => {
+        soundEnabled = !soundEnabled;
+        document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
+        document.getElementById('sound-label').textContent = soundEnabled ? '効果音 ON' : '効果音 OFF';
+        if (soundEnabled) {
+          playSound('correct');
+        }
+      });
+
+      // 初回問題レンダリング
+      renderQuestion();
+    });
+  </script>
+</body>
+</html>

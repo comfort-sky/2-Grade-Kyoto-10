@@ -1,0 +1,6 @@
+{
+  "name": "京都検定2級 対策クイズ",
+  "description": "京都検定2級合格を目指す受験者のための、背景知識や文化財の豆知識まで学べる本格4択クイズWebアプリ。",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
