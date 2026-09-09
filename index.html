@@ -3,19 +3,65 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>京都検定2級 対策クイズ | 深掘り背景解説付き本格学習アプリ</title>
-  <meta name="description" content="難関・京都検定2級の合格を目指す受験者のための、背景知識や文化財の豆知識まで学べる本格4択クイズWebアプリ。">
-  <meta property="og:title" content="京都検定2級 対策クイズ">
-  <meta property="og:description" content="難関・京都検定2級の合格を目指す受験者のための、背景知識や文化財の豆知識まで学べる本格4択クイズWebアプリ。">
+  
+  <!-- 【SEO対策】タイトル・メタタグ・キーワード -->
+  <title>京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す</title>
+  <meta name="description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
+  <meta name="keywords" content="京都検定,京都検定2級,過去問,対策,クイズ,問題,無料,一問一答">
+  <meta name="author" content="京都検定対策室">
+
+  <!-- 【OGP・Twitter Card設定】 -->
+  <meta property="og:title" content="京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す">
+  <meta property="og:description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
   <meta property="og:type" content="website">
+  <meta property="og:url" content="https://kyotocertificationgrade2freetrial.netlify.app">
+  <meta property="og:site_name" content="京都検定2級 対策無料お試しクイズ">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す">
+  <meta name="twitter:description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
+
+  <!-- 【JSON-LD 構造化データ (schema.org)】 -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebApplication",
+        "name": "京都検定2級 対策無料お試しクイズ",
+        "url": "https://kyotocertificationgrade2freetrial.netlify.app",
+        "description": "京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。",
+        "applicationCategory": "EducationalApplication",
+        "operatingSystem": "All",
+        "offers": {
+          "@type": "Offer",
+          "price": "0",
+          "priceCurrency": "JPY"
+        }
+      },
+      {
+        "@type": "Quiz",
+        "name": "京都検定2級 対策無料お試しクイズ",
+        "description": "京都商工会議所主催の京都検定2級対策。神社寺院・歴史・祭り・建築・美術・京菓子・年中行事等の頻出ポイントを一問一答形式で網羅。",
+        "educationalLevel": "Intermediate",
+        "about": {
+          "@type": "Thing",
+          "name": "京都の歴史と文化（京都検定2級）"
+        }
+      }
+    ]
+  }
+  </script>
 
   <!-- Tailwind CSS CDN -->
   <script src="https://cdn.tailwindcss.com"></script>
 
+  <!-- 和風紙吹雪演出用ライブラリ (canvas-confetti) -->
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
   <!-- Google Fonts: 日本の伝統美を感じるフォント -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@500;600;700;900&family=Zen+Kaku+Gothic+New:wght@400;500;700&display=swap" rel="stylesheet">
 
   <script>
     tailwind.config = {
@@ -27,22 +73,25 @@
           },
           colors: {
             kyoto: {
-              navy: '#0f172a',       // 勝色・濃紺
-              navylight: '#1e293b',  // 藍鼠
-              gold: '#b45309',       // 金茶
-              goldhover: '#92400e',  // 濃金茶
-              goldlight: '#fef3c7',  // 浅黄・金砂
-              vermilion: '#c2410c',  // 朱色・茜
-              vermilionlight: '#ffedd5',
-              paper: '#f8fafc',      // 生成り・和紙色
-              border: '#e2e8f0',
-              text: '#1e293b'
+              crimson: '#8F1F3D',       // 上品なエンジ・深紅
+              crimsondark: '#6E162E',   // 濃いエンジ
+              purple: '#5E2A84',        // 京紫
+              purpledark: '#481F66',    // 濃京紫
+              gold: '#C5A059',          // 落ち着いた金箔ゴールド
+              goldlight: '#F4E8D0',     // 浅い金
+              golddark: '#9A7736',      // 陰影用金
+              washi: '#FCFAF2',         // 和紙風の生成り色
+              washidark: '#F4EFE6',     // 陰影和紙
+              charcoal: '#2B2523',      // 墨色・テキスト
+              border: '#E8DFD1',        // 和風境界線
             }
           },
           boxShadow: {
-            'soft': '0 4px 20px -2px rgba(15, 23, 42, 0.08), 0 2px 6px -1px rgba(15, 23, 42, 0.04)',
-            'card': '0 10px 30px -4px rgba(15, 23, 42, 0.08), 0 4px 8px -2px rgba(15, 23, 42, 0.04)',
-            'glow': '0 0 25px rgba(217, 119, 6, 0.25)',
+            'washi': '0 4px 20px -2px rgba(94, 42, 132, 0.06), 0 2px 6px -1px rgba(143, 31, 61, 0.04)',
+            'gold': '0 6px 20px -2px rgba(197, 160, 89, 0.35)',
+            'card': '0 10px 30px -4px rgba(43, 37, 35, 0.08), 0 4px 10px -2px rgba(143, 31, 61, 0.04)',
+            'button': '0 4px 0 rgba(110, 22, 46, 0.9), 0 6px 12px rgba(0,0,0,0.15)',
+            'button-gold': '0 4px 0 rgba(154, 119, 54, 0.9), 0 6px 12px rgba(197, 160, 89, 0.25)',
           }
         }
       }
@@ -50,69 +99,75 @@
   </script>
 
   <style>
-    /* 和風の微細テクスチャと滑らかなアニメーション */
-    .bg-pattern {
-      background-color: #f8fafc;
-      background-image: radial-gradient(#cbd5e1 0.75px, transparent 0.75px);
-      background-size: 24px 24px;
+    /* 和風七宝・紗綾形を思わせる軽量SVG背景パターン */
+    .bg-washi-pattern {
+      background-color: #FCFAF2;
+      background-image: radial-gradient(#d6cbba 0.8px, transparent 0.8px);
+      background-size: 20px 20px;
     }
-    .japanese-title {
-      letter-spacing: 0.08em;
+    /* 和風二重金箔フレーム装飾 */
+    .wa-gold-border {
+      border: 2px solid #C5A059;
+      box-shadow: inset 0 0 0 2px #FCFAF2, inset 0 0 0 3px #C5A059;
     }
-    @keyframes fadeInSlide {
+    .wa-card-header {
+      background: linear-gradient(135deg, #8F1F3D 0%, #5E2A84 100%);
+    }
+    @keyframes fadeInSlideUp {
       from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(14px);
       }
       to {
         opacity: 1;
         transform: translateY(0);
       }
     }
-    .animate-fadeInSlide {
-      animation: fadeInSlide 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    .animate-fadeInSlideUp {
+      animation: fadeInSlideUp 0.35s cubic-bezier(0.16, 1, 0.3, 1) forwards;
     }
-    /* 選択肢ボタンの押し込み感 */
-    .option-card:active {
-      transform: scale(0.985);
+    /* ボタンタップ時の立体的な沈み込み */
+    .btn-press:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(110, 22, 46, 0.9);
+    }
+    .btn-press-gold:active {
+      transform: translateY(2px);
+      box-shadow: 0 2px 0 rgba(154, 119, 54, 0.9);
     }
   </style>
 </head>
-<body class="bg-pattern text-slate-800 font-sans min-h-screen flex flex-col selection:bg-amber-100 selection:text-amber-900">
+<body class="bg-washi-pattern text-kyoto-charcoal font-sans min-h-screen flex flex-col selection:bg-kyoto-goldlight selection:text-kyoto-crimson">
 
   <!-- ========================================================= -->
-  <!-- ヘッダーナビゲーション -->
+  <!-- ヘッダー（京紫〜エンジの上品な和風グラデーション） -->
   <!-- ========================================================= -->
-  <header class="bg-slate-900 text-white border-b border-slate-800 shadow-md sticky top-0 z-40">
-    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3.5 flex items-center justify-between">
-      <div class="flex items-center space-x-3">
-        <!-- 和風の幾何学家紋風アイコン -->
-        <div class="w-9 h-9 rounded-lg bg-amber-500/20 border border-amber-400/40 flex items-center justify-center text-amber-400">
-          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
+  <header class="bg-gradient-to-r from-kyoto-crimson via-kyoto-purple to-kyoto-crimson text-white border-b-2 border-kyoto-gold shadow-md sticky top-0 z-40">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+      <div class="flex items-center space-x-3 cursor-pointer" onclick="showTopView()">
+        <!-- 和風家紋風アイコン -->
+        <div class="w-9 h-9 rounded-xl bg-kyoto-goldlight/20 border border-kyoto-gold flex items-center justify-center text-kyoto-gold shadow-sm flex-shrink-0">
+          <svg class="w-5 h-5 text-amber-200" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
           </svg>
         </div>
         <div>
-          <div class="flex items-center gap-2">
-            <h1 class="font-serif font-bold text-lg sm:text-xl tracking-wide text-amber-50">京都検定2級 対策クイズ</h1>
-            <span class="text-[11px] font-medium px-2 py-0.5 rounded-full bg-amber-600/30 text-amber-300 border border-amber-500/40">合格70%基準</span>
-          </div>
-          <p class="text-xs text-slate-400 hidden sm:block">深掘り背景知識・文化財トリビア・頻出ポイント完全網羅</p>
+          <!-- H1 タグ（SEO対応） -->
+          <h1 class="font-serif font-bold text-base sm:text-lg tracking-wide text-amber-50">京都検定2級 対策無料お試しクイズ</h1>
+          <p class="text-[11px] text-amber-200/80 hidden sm:block">一問一答＆深掘り解説 | 過去問厳選10問</p>
         </div>
       </div>
 
       <div class="flex items-center space-x-2">
         <!-- 音声効果トグルボタン -->
-        <button id="sound-toggle-btn" class="p-2 rounded-lg text-slate-300 hover:text-amber-300 hover:bg-slate-800 transition-colors flex items-center gap-1.5 text-xs border border-slate-700/60" title="効果音オン/オフ">
+        <button id="sound-toggle-btn" class="px-2.5 py-1.5 rounded-lg bg-black/20 hover:bg-black/30 border border-kyoto-gold/40 text-amber-200 text-xs flex items-center gap-1.5 transition-colors" title="効果音オン/オフ">
           <span id="sound-icon">🔊</span>
-          <span class="hidden md:inline text-[12px]" id="sound-label">効果音 ON</span>
+          <span class="hidden md:inline text-[11px]" id="sound-label">効果音 ON</span>
         </button>
-        <!-- スタンドアロン保存ボタン -->
-        <button id="download-html-btn" class="px-3 py-1.5 rounded-lg text-xs font-medium text-amber-200 bg-amber-900/30 border border-amber-600/40 hover:bg-amber-800/40 transition-all flex items-center gap-1.5 shadow-sm" title="HTMLファイルをダウンロードして完全オフラインで利用">
-          <svg class="w-3.5 h-3.5 text-amber-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4" />
-          </svg>
-          <span class="hidden sm:inline">HTML保存</span>
+        <!-- ホームへ戻るボタン -->
+        <button onclick="showTopView()" class="px-2.5 py-1.5 rounded-lg bg-kyoto-gold/20 hover:bg-kyoto-gold/30 border border-kyoto-gold text-amber-100 text-xs flex items-center gap-1 transition-colors">
+          <span>🏠</span>
+          <span class="hidden sm:inline">トップ</span>
         </button>
       </div>
     </div>
@@ -121,39 +176,127 @@
   <!-- ========================================================= -->
   <!-- メインコンテンツ領域 -->
   <!-- ========================================================= -->
-  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-6 sm:py-8 flex flex-col justify-center">
+  <main class="flex-1 max-w-3xl w-full mx-auto px-4 py-5 sm:py-7 flex flex-col justify-start">
 
-    <!-- クイズ進行画面 -->
-    <div id="quiz-view" class="w-full">
+    <!-- ========================================================= -->
+    <!-- 画面1: スタート画面（トップ画面） -->
+    <!-- ========================================================= -->
+    <div id="top-view" class="w-full animate-fadeInSlideUp">
+      
+      <!-- メイン紹介カード -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-kyoto-border mb-6 relative overflow-hidden text-center">
+        <!-- 和風上部装飾バー -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kyoto-goldlight text-kyoto-crimson text-xs font-bold border border-kyoto-gold/60 mb-4">
+          <span>⛩️</span>
+          <span>京都商工会議所主催「京都検定2級」合格基準70%</span>
+        </div>
+
+        <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson tracking-wide mb-3">
+          京都検定2級 対策無料お試しクイズ
+        </h2>
+        
+        <p class="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed mb-6">
+          難関の京都検定2級で頻出の【神社寺院・平安京歴史・祇園祭・庭園・琳派美術・京菓子・五山送り火・新選組】から厳選された良問10問に挑戦！<br class="hidden sm:inline">
+          単なる丸暗記ではなく、「なぜそれが正解か」「歴史的背景」「文化財の豆知識」「覚え方のコツ」まで完全解説します。
+        </p>
+
+        <!-- 特徴3点バッジ -->
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto mb-7 text-xs">
+          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
+            <span class="text-lg">🎯</span>
+            <div>
+              <div class="font-bold text-slate-900">一問一答＆即時判定</div>
+              <div class="text-slate-500 text-[11px]">タップですぐ○✕と解説</div>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
+            <span class="text-lg">💡</span>
+            <div>
+              <div class="font-bold text-slate-900">専門家の深掘り解説</div>
+              <div class="text-slate-500 text-[11px]">試験対策のコツを網羅</div>
+            </div>
+          </div>
+          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
+            <span class="text-lg">🔄</span>
+            <div>
+              <div class="font-bold text-slate-900">弱点復習＆スコア加算</div>
+              <div class="text-slate-500 text-[11px]">間違えた問題のみ再挑戦</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- クイズスタートボタン -->
+        <button onclick="startQuiz(false)" class="w-full sm:w-80 mx-auto py-4 px-6 rounded-2xl bg-gradient-to-r from-kyoto-crimson to-kyoto-crimsondark text-white font-serif font-bold text-lg shadow-button btn-press border border-amber-300/40 flex items-center justify-center gap-3 transition-all">
+          <span>演習を始める（全10問）</span>
+          <svg class="w-5 h-5 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+        </button>
+
+      </div>
+
+      <!-- ======================================================= -->
+      <!-- 【要件1-①】スタート画面（トップ画面）下部の有料版誘導カード -->
+      <!-- 小さめの目立たないが上品なカード枠 -->
+      <!-- ======================================================= -->
+      <div class="bg-white/80 backdrop-blur rounded-xl p-4 sm:p-5 border border-kyoto-gold/40 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
+        <div class="space-y-0.5">
+          <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-kyoto-crimson bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
+            <span>📚</span>
+            <span>本格対策で一発合格を目指す方へ</span>
+          </div>
+          <p class="text-xs sm:text-sm font-medium text-slate-700">
+            まずは無料でお試し！全50問の本格対策版はこちら
+          </p>
+        </div>
+
+        <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all flex-shrink-0">
+          <span>500円版（50問＋ミニテスト）を見る</span>
+          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+          </svg>
+        </a>
+      </div>
+
+    </div>
+
+    <!-- ========================================================= -->
+    <!-- 画面2: クイズ進行画面 -->
+    <!-- ========================================================= -->
+    <div id="quiz-view" class="hidden w-full animate-fadeInSlideUp">
       
       <!-- 進捗・スコアバー -->
-      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-soft border border-slate-200/80 mb-5">
+      <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-washi border border-kyoto-border mb-4">
         <div class="flex items-center justify-between text-sm mb-2.5">
           <div class="flex items-center gap-2">
-            <span class="font-serif font-bold text-slate-900 text-base sm:text-lg" id="progress-text">第 1 問 / 全 10 問</span>
-            <span id="question-category" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-slate-100 text-slate-700 border border-slate-200">
+            <span class="font-serif font-bold text-kyoto-crimson text-base sm:text-lg" id="progress-text">第 1 問 / 全 10 問</span>
+            <span id="question-category" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-kyoto-washi text-kyoto-purple border border-kyoto-purple/30">
               神社・寺院
+            </span>
+            <span id="review-mode-badge" class="hidden text-xs px-2 py-0.5 rounded-full font-bold bg-amber-100 text-amber-900 border border-amber-300">
+              復習モード
             </span>
           </div>
           <div class="flex items-center gap-2 text-xs font-medium">
-            <span class="text-emerald-700 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200/60" id="current-correct-count">正解: 0</span>
-            <span class="text-slate-500 bg-slate-50 px-2.5 py-1 rounded-md border border-slate-200" id="current-rate">正答率: --%</span>
+            <span class="text-emerald-800 bg-emerald-50 px-2.5 py-1 rounded-md border border-emerald-200" id="current-correct-count">正解: 0/10</span>
           </div>
         </div>
 
         <!-- プログレスバー -->
-        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/50">
-          <div id="progress-bar" class="bg-gradient-to-r from-amber-600 to-amber-500 h-full rounded-full transition-all duration-500 ease-out" style="width: 10%;"></div>
+        <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/60">
+          <div id="progress-bar" class="bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
         </div>
       </div>
 
       <!-- 問題カード -->
-      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-slate-200/80 mb-5 relative overflow-hidden">
-        <!-- 和風装飾アクセント（上部金ライン） -->
-        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-amber-700 via-amber-500 to-amber-600"></div>
+      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-kyoto-border mb-4 relative overflow-hidden">
+        <!-- 和風アクセント金帯 -->
+        <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
 
         <div class="flex items-start gap-3 mb-4">
-          <span class="flex-shrink-0 w-8 h-8 rounded-full bg-slate-900 text-amber-300 font-serif font-bold flex items-center justify-center text-sm shadow-sm" id="question-badge">
+          <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-kyoto-crimson text-kyoto-goldlight font-serif font-bold flex items-center justify-center text-sm shadow-sm border border-kyoto-gold" id="question-badge">
             Q1
           </span>
           <h2 id="question-text" class="font-serif font-bold text-lg sm:text-xl text-slate-900 leading-relaxed pt-0.5">
@@ -166,21 +309,21 @@
           <!-- 選択肢ボタンが動的に挿入されます -->
         </div>
 
-        <!-- 正誤判定＆深掘り解説カード（回答後に表示） -->
-        <div id="explanation-box" class="hidden mt-6 pt-6 border-t border-slate-200 animate-fadeInSlide">
+        <!-- 正誤判定＆深掘り解説カード（回答後に滑らかに表示） -->
+        <div id="explanation-box" class="hidden mt-6 pt-6 border-t border-kyoto-border animate-fadeInSlideUp">
           <!-- 判定バナー -->
           <div id="judgment-banner" class="flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm">
             <!-- 判定アイコンとテキスト -->
           </div>
 
           <!-- 深掘り背景解説コンテナ -->
-          <div class="bg-slate-50/90 rounded-xl p-4 sm:p-5 border border-slate-200/90 space-y-4 text-slate-800 leading-relaxed text-sm">
+          <div class="bg-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-border space-y-4 text-slate-800 leading-relaxed text-sm">
             
-            <div class="flex items-center justify-between border-b border-slate-200/80 pb-2.5">
-              <h3 class="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
-                <span class="text-amber-600 text-lg">⛩️</span> 京都検定専門家による深掘り解説
+            <div class="flex items-center justify-between border-b border-kyoto-border pb-2.5">
+              <h3 class="font-serif font-bold text-base text-kyoto-crimson flex items-center gap-2">
+                <span class="text-kyoto-gold text-lg">⛩️</span> 京都検定専門家による深掘り解説
               </h3>
-              <span class="text-[11px] font-medium text-amber-800 bg-amber-100/80 px-2 py-0.5 rounded border border-amber-300/60">2級頻出トピック</span>
+              <span class="text-[11px] font-medium text-kyoto-purple bg-purple-50 px-2 py-0.5 rounded border border-purple-200">2級頻出項目</span>
             </div>
 
             <!-- 1. 正解の理由 -->
@@ -197,7 +340,7 @@
             <!-- 2. 関連する歴史的背景 -->
             <div class="space-y-1.5">
               <div class="flex items-center gap-1.5 font-bold text-slate-900 text-[13px]">
-                <span class="w-2 h-2 rounded-full bg-amber-600 inline-block"></span>
+                <span class="w-2 h-2 rounded-full bg-kyoto-crimson inline-block"></span>
                 <span>関連する歴史的背景</span>
               </div>
               <p id="exp-history" class="text-slate-700 pl-3.5 text-[13.5px] sm:text-sm">
@@ -208,7 +351,7 @@
             <!-- 3. 文化財の豆知識 -->
             <div class="space-y-1.5">
               <div class="flex items-center gap-1.5 font-bold text-slate-900 text-[13px]">
-                <span class="w-2 h-2 rounded-full bg-indigo-600 inline-block"></span>
+                <span class="w-2 h-2 rounded-full bg-kyoto-purple inline-block"></span>
                 <span>文化財の豆知識</span>
               </div>
               <p id="exp-trivia" class="text-slate-700 pl-3.5 text-[13.5px] sm:text-sm">
@@ -217,7 +360,7 @@
             </div>
 
             <!-- 4. 覚え方のコツ -->
-            <div class="bg-amber-50/90 rounded-lg p-3 border border-amber-200/80 space-y-1">
+            <div class="bg-amber-50/90 rounded-lg p-3 border border-kyoto-gold/50 space-y-1">
               <div class="flex items-center gap-1.5 font-bold text-amber-950 text-[13px]">
                 <span>💡</span>
                 <span>試験攻略・覚え方のコツ</span>
@@ -231,9 +374,9 @@
 
           <!-- 次の問題へ進むボタン -->
           <div class="mt-5 flex justify-end">
-            <button id="next-question-btn" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-95 text-amber-300 hover:text-amber-200 font-serif font-bold text-base shadow-md hover:shadow-lg transition-all flex items-center justify-center gap-2 border border-amber-500/30">
+            <button id="next-question-btn" onclick="nextQuestion()" class="w-full sm:w-auto px-7 py-3.5 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark text-amber-100 font-serif font-bold text-base shadow-button btn-press flex items-center justify-center gap-2 border border-kyoto-gold/40 transition-all">
               <span id="next-btn-text">次の問題へ進む</span>
-              <svg class="w-5 h-5 transition-transform group-hover:translate-x-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg class="w-5 h-5 text-amber-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
               </svg>
             </button>
@@ -246,36 +389,40 @@
     </div>
 
     <!-- ========================================================= -->
-    <!-- 結果画面（リザルトビュー） -->
+    <!-- 画面3: 結果画面（リザルトビュー） -->
     <!-- ========================================================= -->
-    <div id="result-view" class="hidden w-full animate-fadeInSlide">
+    <div id="result-view" class="hidden w-full animate-fadeInSlideUp">
       
-      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-slate-200/80 mb-6 text-center relative overflow-hidden">
+      <!-- メイン結果スコアカード -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-kyoto-border mb-6 text-center relative overflow-hidden">
         <!-- 和風上部装飾バー -->
-        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-amber-600 via-amber-400 to-amber-600"></div>
+        <div class="absolute top-0 left-0 right-0 h-2.5 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
 
         <div class="mb-3">
-          <span class="inline-block text-4xl mb-1" id="result-emoji">🌸</span>
-          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-slate-900 tracking-wide">演習終了・判定結果</h2>
-          <p class="text-xs sm:text-sm text-slate-500 mt-1">京都検定2級（基準：正答率70%以上で合格）</p>
+          <span class="inline-block text-5xl mb-1" id="result-emoji">🌸</span>
+          <h2 class="font-serif font-bold text-2xl sm:text-3xl text-slate-900 tracking-wide">演習終了・合否判定結果</h2>
+          <p class="text-xs sm:text-sm text-slate-500 mt-1">京都商工会議所主催 京都検定2級（基準：正答率70%以上で合格）</p>
         </div>
 
-        <!-- スコアサークル・数字カード -->
-        <div class="my-6 max-w-sm mx-auto p-5 rounded-2xl bg-gradient-to-b from-slate-50 to-amber-50/40 border border-amber-200/60 shadow-inner">
-          <div class="text-xs font-bold text-amber-800 tracking-wider mb-1">TOTAL SCORE</div>
+        <!-- スコア・ランク表示ボックス -->
+        <div class="my-6 max-w-sm mx-auto p-5 rounded-2xl bg-gradient-to-b from-kyoto-washi to-amber-50/50 border-2 border-kyoto-gold/60 shadow-inner">
+          <div class="text-xs font-bold text-kyoto-crimson tracking-wider mb-1">SCORE &amp; RANK</div>
+          
           <div class="flex items-baseline justify-center gap-2">
             <span class="font-serif font-black text-5xl sm:text-6xl text-slate-900" id="result-score">0</span>
             <span class="font-serif text-2xl text-slate-500 font-bold">/ 10 問</span>
           </div>
           
           <div class="mt-3 flex items-center justify-center gap-3">
-            <div class="text-xl sm:text-2xl font-black text-amber-600" id="result-percentage">0%</div>
-            <span id="result-badge" class="px-3 py-1 rounded-full text-xs font-bold border">合格基準達成</span>
+            <div class="text-xl sm:text-2xl font-black text-kyoto-crimson" id="result-percentage">0%</div>
+            <span id="result-rank-badge" class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm">
+              Aランク（合格）
+            </span>
           </div>
         </div>
 
         <!-- 評価メッセージカード -->
-        <div class="max-w-xl mx-auto bg-slate-50 rounded-xl p-4 sm:p-5 border border-slate-200 text-left mb-6">
+        <div class="max-w-xl mx-auto bg-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-border text-left mb-6">
           <h4 class="font-bold text-sm text-slate-900 mb-1 flex items-center gap-1.5" id="result-eval-title">
             <span>評定：</span>
             <span>極意到達！素晴らしい京都通です</span>
@@ -285,38 +432,85 @@
           </p>
         </div>
 
-        <!-- アクションボタン群 -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto">
-          <button id="restart-btn" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-slate-900 hover:bg-slate-800 active:scale-95 text-amber-300 font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2 border border-amber-500/30">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+        <!-- ===================================================== -->
+        <!-- 【要件5】X（旧Twitter）シェアボタン -->
+        <!-- ===================================================== -->
+        <div class="mb-7">
+          <button onclick="shareOnX()" class="w-full sm:w-auto px-6 py-3.5 rounded-xl bg-black hover:bg-slate-900 text-white font-bold text-sm shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 border border-slate-700">
+            <!-- XロゴSVG -->
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <span>もう一度挑戦する</span>
-          </button>
-          
-          <button id="retry-incorrect-btn" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-amber-600 hover:bg-amber-700 active:scale-95 text-white font-serif font-bold text-sm shadow-md transition-all flex items-center justify-center gap-2">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
-            </svg>
-            <span>間違えた問題のみ復習</span>
+            <span>X（旧Twitter）で結果をシェアする</span>
           </button>
         </div>
 
-        <div class="mt-4 pt-4 border-t border-slate-200/70 flex flex-wrap justify-center gap-2">
-          <button id="copy-html-btn" class="px-3 py-1.5 text-xs text-slate-600 hover:text-slate-900 hover:bg-slate-100 rounded-lg transition-colors flex items-center gap-1.5 border border-slate-300">
-            <svg class="w-3.5 h-3.5 text-slate-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3" />
+        <!-- アクションボタン群（もう一度解く・復習） -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto mb-2">
+          <button onclick="startQuiz(false)" class="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-kyoto-crimson hover:bg-kyoto-crimsondark text-white font-serif font-bold text-sm shadow-button btn-press transition-all flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            <span>単一HTMLコードをコピー</span>
+            <span>最初から解き直す</span>
+          </button>
+          
+          <button id="retry-incorrect-btn" onclick="startReviewMode()" class="w-full sm:w-1/2 py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 text-white font-serif font-bold text-sm shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-1.5">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
+            </svg>
+            <span id="review-btn-text">間違えた問題を復習する</span>
           </button>
         </div>
 
       </div>
 
-      <!-- 全問振り返り・解説レビューアコーディオン -->
-      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-slate-200/80">
-        <h3 class="font-serif font-bold text-lg text-slate-900 mb-4 flex items-center gap-2 pb-2 border-b border-slate-200">
-          <span class="text-amber-600">📖</span> 全10問の正誤・解説一覧
+      <!-- ======================================================= -->
+      <!-- 【要件1-②】結果画面の有料版（Note）への誘導エリア（一番強調する場所） -->
+      <!-- 目立つ和風ゴールドの枠線付き案内エリア -->
+      <!-- ======================================================= -->
+      <div class="bg-gradient-to-br from-amber-50 via-white to-amber-50 rounded-2xl p-6 sm:p-7 wa-gold-border shadow-gold mb-6 relative overflow-hidden text-center">
+        
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-3">
+          <span>🏆</span>
+          <span>京都検定2級 合格対策Note</span>
+        </div>
+
+        <h3 class="font-serif font-bold text-xl sm:text-2xl text-slate-900 mb-2">
+          本番レベルの50問＆模擬テストが試せる「500円版」はこちら
+        </h3>
+
+        <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed mb-6">
+          お疲れ様でした！お試し版の10問はいかがでしたか？<br class="hidden sm:inline">
+          本試験で確実に合格ライン（70点以上）を突破するために、網羅的な問題演習と本番形式のミニテストで実践力を高めましょう。
+        </p>
+
+        <!-- ボタン2種（主ボタン・副ボタン） -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-lg mx-auto">
+          
+          <!-- 主ボタン: 500円版 -->
+          <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-serif font-bold text-sm sm:text-base shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-2">
+            <span>500円版（50問＋20問テスト）を試す</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+          <!-- 副ボタン: 2,000円版 -->
+          <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 py-3.5 px-5 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark text-amber-100 font-serif font-bold text-sm sm:text-base shadow-button btn-press transition-all flex items-center justify-center gap-2 border border-kyoto-gold/40">
+            <span>【合格確実】500問完全攻略版（2,000円）を見る</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+        </div>
+
+      </div>
+
+      <!-- 全問振り返り・解説レビュー一覧 -->
+      <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-kyoto-border">
+        <h3 class="font-serif font-bold text-lg text-slate-900 mb-4 flex items-center gap-2 pb-2 border-b border-kyoto-border">
+          <span class="text-kyoto-gold">📖</span> 全10問の正誤・解説一覧
         </h3>
         <div id="review-list" class="space-y-3">
           <!-- 動的に挿入されます -->
@@ -325,18 +519,97 @@
 
     </div>
 
+    <!-- ========================================================= -->
+    <!-- 画面4: 【要件1-③】復習完了画面（間違いを全正解した際） -->
+    <!-- ========================================================= -->
+    <div id="review-complete-view" class="hidden w-full animate-fadeInSlideUp">
+      
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border-2 border-kyoto-gold mb-6 text-center relative overflow-hidden">
+        <!-- 和風上部装飾バー -->
+        <div class="absolute top-0 left-0 right-0 h-2.5 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
+
+        <div class="text-5xl mb-2">🎊</div>
+        
+        <div class="inline-flex items-center gap-2 px-3.5 py-1 rounded-full bg-emerald-100 text-emerald-900 text-xs font-bold border border-emerald-300 mb-3">
+          <span>全問復習クリア！</span>
+        </div>
+
+        <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson mb-2">
+          全問復習達成！満点（10/10問）到達
+        </h2>
+
+        <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed mb-6">
+          間違えた問題をすべて見直し、見事に全問正解を達成しました！<br>
+          弱点をその場で克服した学習効果は非常に大きいです。
+        </p>
+
+        <!-- スコア更新結果バナー -->
+        <div class="p-4 rounded-xl bg-amber-50 border border-kyoto-gold max-w-sm mx-auto mb-6 text-center">
+          <div class="text-xs text-amber-800 font-bold">更新後の最終スコア</div>
+          <div class="text-4xl font-serif font-black text-slate-900 my-1">10 / 10問 正解</div>
+          <div class="text-sm font-bold text-emerald-700">正答率 100%（Sランク達成・合格圏内）</div>
+        </div>
+
+        <!-- Xシェアボタン -->
+        <div class="mb-7">
+          <button onclick="shareOnX()" class="px-6 py-3 rounded-xl bg-black hover:bg-slate-900 text-white font-bold text-sm shadow-md transition-all inline-flex items-center gap-2">
+            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+              <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+            </svg>
+            <span>満点（Sランク）をXでシェアする</span>
+          </button>
+        </div>
+
+        <!-- ===================================================== -->
+        <!-- 【要件1-③】達成感を称えるメッセージと共に配置する誘導枠 -->
+        <!-- ===================================================== -->
+        <div class="bg-gradient-to-br from-kyoto-washi to-amber-50 p-6 rounded-2xl wa-gold-border text-center max-w-xl mx-auto mb-6">
+          <h3 class="font-serif font-bold text-lg sm:text-xl text-kyoto-crimson mb-2">
+            全問復習達成！さらに問題数をこなして合格率をアップさせよう
+          </h3>
+          <p class="text-xs sm:text-sm text-slate-600 mb-5 leading-relaxed">
+            2級合格には出題範囲全体の網羅が不可欠です。本番レベルの演習をさらに積んで、合格を盤石なものにしましょう！
+          </p>
+
+          <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center gap-2 py-3.5 px-6 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white font-serif font-bold text-sm sm:text-base shadow-button-gold btn-press-gold transition-all">
+            <span>本格対策版（500円/2,000円）でさらに解く</span>
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
+
+        <!-- トップに戻る / 結果一覧を見る -->
+        <div class="flex flex-col sm:flex-row justify-center gap-3">
+          <button onclick="showTopView()" class="px-5 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs sm:text-sm font-medium transition-colors">
+            トップ画面へ戻る
+          </button>
+          <button onclick="showResult(false)" class="px-5 py-2.5 rounded-xl bg-kyoto-purple text-white text-xs sm:text-sm font-medium transition-colors">
+            結果詳細・全問解説を見る
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
 
-  <!-- コピートースト通知 -->
-  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 text-amber-300 text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xl border border-amber-500/40 opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-2">
-    <span>✓</span> <span id="toast-message">クリップボードにコピーしました</span>
+  <!-- トースト通知 -->
+  <div id="toast" class="fixed bottom-6 left-1/2 -translate-x-1/2 bg-kyoto-charcoal text-amber-200 text-xs sm:text-sm px-4 py-2.5 rounded-xl shadow-xl border border-kyoto-gold opacity-0 pointer-events-none transition-opacity duration-300 z-50 flex items-center gap-2">
+    <span id="toast-icon">✓</span> <span id="toast-message">メッセージ</span>
   </div>
 
   <!-- フッター -->
-  <footer class="bg-slate-900 text-slate-400 text-xs py-5 border-t border-slate-800 mt-auto">
-    <div class="max-w-4xl mx-auto px-4 text-center space-y-1">
-      <p class="text-slate-300 font-serif">京都商工会議所主催「京都・観光文化検定試験」2級 対策問題集</p>
-      <p class="text-slate-500">本アプリはHTML/CSS/JavaScript単一ファイルで完結し、オフラインでも学習可能です。</p>
+  <footer class="bg-gradient-to-r from-kyoto-crimson via-kyoto-purple to-kyoto-crimson text-amber-100 text-xs py-5 border-t-2 border-kyoto-gold mt-auto">
+    <div class="max-w-4xl mx-auto px-4 text-center space-y-1.5">
+      <p class="font-serif font-bold text-amber-50">京都商工会議所主催「京都・観光文化検定試験」2級 対策無料クイズ</p>
+      <p class="text-amber-200/70 text-[11px]">本アプリはHTML/CSS/JavaScript単一ファイルで完結し、ブラウザで快適に動作します。</p>
+      <div class="pt-1">
+        <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="text-amber-300 underline hover:text-white transition-colors">
+          有料本格対策Note（50問・500問）はこちら
+        </a>
+      </div>
     </div>
   </footer>
 
@@ -346,9 +619,7 @@
   <script>
     /**
      * 【問題データ構造】
-     * 京都検定2級レベルの厳選良問（全10問）
-     * 各分野（寺社・歴史・年中行事・庭園・琳派・京菓子・幕末・文学）を網羅。
-     * 深掘り解説には「正解の理由」「歴史的背景」「文化財豆知識」「覚え方のコツ」を完備。
+     * 京都検定2級レベル厳選10問
      */
     const quizData = [
       {
@@ -490,14 +761,22 @@
 
     /**
      * アプリケーション状態管理
+     * 【要件2】復習モードで正解した場合、全体の正解数（例: 8/10 -> 10/10）へ加算し
+     * ランク判定・正答率もリアルタイム更新
      */
+    const TOTAL_QUESTIONS_COUNT = 10;
     let currentQuestionIndex = 0;
-    let score = 0;
-    let userAnswers = []; // 各問の回答履歴 { questionId, selected, isCorrect }
-    let activeQuestions = [...quizData]; // 通常は全問、復習時は間違えた問題
+    let isReviewMode = false;
+    let activeQuestions = [];
+    
+    // ユーザーの全問解答履歴: Map(questionId => { isCorrect: boolean, selectedIndex: number })
+    let questionResults = new Map();
+    // 復習対象の問題ID一覧（間違えた問題）
+    let incorrectQuestionIds = new Set();
+    
     let soundEnabled = true;
 
-    // Web Audio API による効果音合成（外部ファイル不要・即時再生）
+    // Web Audio API による効果音
     let audioCtx = null;
     function getAudioContext() {
       if (!audioCtx) {
@@ -520,97 +799,234 @@
         const now = ctx.currentTime;
 
         if (type === 'correct') {
-          // 和風の澄んだ鐘・鈴のような心地よい二和音（雅な和音）
+          // 和風の澄んだ鐘の和音
           const osc1 = ctx.createOscillator();
           const osc2 = ctx.createOscillator();
-          const gainNode = ctx.createGain();
+          const gain = ctx.createGain();
 
           osc1.type = 'sine';
           osc2.type = 'triangle';
           osc1.frequency.setValueAtTime(523.25, now); // C5
-          osc1.frequency.exponentialRampToValueAtTime(1046.50, now + 0.15); // C6
+          osc1.frequency.exponentialRampToValueAtTime(1046.50, now + 0.12); // C6
 
           osc2.frequency.setValueAtTime(659.25, now); // E5
-          osc2.frequency.exponentialRampToValueAtTime(1318.51, now + 0.15); // E6
+          osc2.frequency.exponentialRampToValueAtTime(1318.51, now + 0.12); // E6
 
-          gainNode.gain.setValueAtTime(0.18, now);
-          gainNode.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.45);
 
-          osc1.connect(gainNode);
-          osc2.connect(gainNode);
-          gainNode.connect(ctx.destination);
+          osc1.connect(gain);
+          osc2.connect(gain);
+          gain.connect(ctx.destination);
 
           osc1.start(now);
           osc2.start(now);
           osc1.stop(now + 0.45);
           osc2.stop(now + 0.45);
         } else if (type === 'incorrect') {
-          // 落ち着いた低い拍子木のようなトーン
+          // 拍子木のような落ち着いた音
           const osc = ctx.createOscillator();
           const gain = ctx.createGain();
 
           osc.type = 'sine';
           osc.frequency.setValueAtTime(220, now); // A3
-          osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.25); // E3
+          osc.frequency.exponentialRampToValueAtTime(164.81, now + 0.22); // E3
 
-          gain.gain.setValueAtTime(0.15, now);
-          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.25);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.exponentialRampToValueAtTime(0.001, now + 0.22);
 
           osc.connect(gain);
           gain.connect(ctx.destination);
 
           osc.start(now);
-          osc.stop(now + 0.25);
-        } else if (type === 'complete') {
-          // ファンファーレ風
-          [523.25, 659.25, 783.99, 1046.50].forEach((freq, i) => {
-            const osc = ctx.createOscillator();
-            const gain = ctx.createGain();
-            osc.frequency.setValueAtTime(freq, now + i * 0.1);
-            gain.gain.setValueAtTime(0.15, now + i * 0.1);
-            gain.gain.exponentialRampToValueAtTime(0.001, now + i * 0.1 + 0.35);
-            osc.connect(gain);
-            gain.connect(ctx.destination);
-            osc.start(now + i * 0.1);
-            osc.stop(now + i * 0.1 + 0.35);
-          });
+          osc.stop(now + 0.22);
         }
       } catch (e) {
-        console.warn('Audio not supported or interaction blocked:', e);
+        console.warn('Audio not available:', e);
       }
     }
 
     /**
-     * UIレンダリング
+     * 【要件3】和風紙吹雪（コンフェッティ）演出
+     * 和風カラー: 金（#D4AF37）、朱色（#E60033）、京紫（#5E2A84）、白（#FFFFFF）
+     */
+    function launchJapaneseConfetti() {
+      if (typeof confetti !== 'function') return;
+
+      const japaneseColors = ['#D4AF37', '#E60033', '#5E2A84', '#FFFFFF'];
+
+      // 左右・中央から舞い散る雅な紙吹雪
+      const duration = 2.5 * 1000;
+      const animationEnd = Date.now() + duration;
+
+      const interval = setInterval(function() {
+        const timeLeft = animationEnd - Date.now();
+        if (timeLeft <= 0) {
+          return clearInterval(interval);
+        }
+
+        const particleCount = 35 * (timeLeft / duration);
+        
+        // 左側からの散華
+        confetti({
+          particleCount: particleCount,
+          angle: 60,
+          spread: 55,
+          origin: { x: 0, y: 0.65 },
+          colors: japaneseColors,
+          shapes: ['square', 'circle'],
+          ticks: 200,
+          gravity: 0.8,
+          scalar: 1.1
+        });
+        
+        // 右側からの散華
+        confetti({
+          particleCount: particleCount,
+          angle: 120,
+          spread: 55,
+          origin: { x: 1, y: 0.65 },
+          colors: japaneseColors,
+          shapes: ['square', 'circle'],
+          ticks: 200,
+          gravity: 0.8,
+          scalar: 1.1
+        });
+      }, 250);
+    }
+
+    /**
+     * スコアおよびランク計算ヘルパー
+     * 70%以上で合格（Aランク/Sランク）
+     */
+    function calculateStats() {
+      let correctCount = 0;
+      quizData.forEach(q => {
+        const res = questionResults.get(q.id);
+        if (res && res.isCorrect) {
+          correctCount++;
+        }
+      });
+
+      const percentage = Math.round((correctCount / TOTAL_QUESTIONS_COUNT) * 100);
+      let rank = 'C';
+      let rankName = 'Cランク（要復習）';
+      let isPassed = false;
+
+      if (percentage >= 90) {
+        rank = 'S';
+        rankName = 'Sランク（極意到達・合格確実）';
+        isPassed = true;
+      } else if (percentage >= 70) {
+        rank = 'A';
+        rankName = 'Aランク（合格基準到達）';
+        isPassed = true;
+      } else if (percentage >= 50) {
+        rank = 'B';
+        rankName = 'Bランク（あと一歩で合格）';
+        isPassed = false;
+      } else {
+        rank = 'C';
+        rankName = 'Cランク（基礎から見直し）';
+        isPassed = false;
+      }
+
+      return {
+        correctCount,
+        total: TOTAL_QUESTIONS_COUNT,
+        percentage,
+        rank,
+        rankName,
+        isPassed
+      };
+    }
+
+    /**
+     * 画面切り替え関数
+     */
+    function showTopView() {
+      document.getElementById('top-view').classList.remove('hidden');
+      document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * クイズ開始（通常モード）
+     */
+    function startQuiz(resetScores = true) {
+      if (resetScores) {
+        questionResults.clear();
+        incorrectQuestionIds.clear();
+      }
+      isReviewMode = false;
+      activeQuestions = [...quizData];
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      document.getElementById('review-mode-badge').classList.add('hidden');
+
+      renderQuestion();
+    }
+
+    /**
+     * 復習モードの開始
+     * 間違えた問題だけを抽出して出題
+     */
+    function startReviewMode() {
+      // 間違えた問題を抽出
+      const reviewQuestions = quizData.filter(q => incorrectQuestionIds.has(q.id));
+      if (reviewQuestions.length === 0) {
+        showToast('復習する間違えた問題はありません！');
+        return;
+      }
+
+      isReviewMode = true;
+      activeQuestions = reviewQuestions;
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      document.getElementById('review-mode-badge').classList.remove('hidden');
+
+      renderQuestion();
+    }
+
+    /**
+     * 1問のレンダリング
      */
     function renderQuestion() {
       const q = activeQuestions[currentQuestionIndex];
-      const total = activeQuestions.length;
+      const totalInRound = activeQuestions.length;
 
-      // 画面切り替え
-      document.getElementById('quiz-view').classList.remove('hidden');
-      document.getElementById('result-view').classList.add('hidden');
+      // 現在の全体正答数を取得してヘッダーに反映
+      const stats = calculateStats();
+      document.getElementById('current-correct-count').textContent = `全体正解: ${stats.correctCount} / 10`;
 
-      // 進捗テキスト & プログレスバー
-      document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} 問 / 全 ${total} 問`;
-      document.getElementById('question-category').textContent = q.category || '京都の文化';
-      document.getElementById('question-badge').textContent = `Q${q.id}`;
-      
-      const progressPercent = Math.round(((currentQuestionIndex) / total) * 100);
-      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
-
-      document.getElementById('current-correct-count').textContent = `正解: ${score}`;
-      if (currentQuestionIndex > 0) {
-        const rate = Math.round((score / currentQuestionIndex) * 100);
-        document.getElementById('current-rate').textContent = `正答率: ${rate}%`;
+      // プログレス
+      if (isReviewMode) {
+        document.getElementById('progress-text').textContent = `復習 第 ${currentQuestionIndex + 1} 問 / 残り ${totalInRound} 問`;
+        document.getElementById('question-badge').textContent = `復習`;
       } else {
-        document.getElementById('current-rate').textContent = '正答率: --%';
+        document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} 問 / 全 ${totalInRound} 問`;
+        document.getElementById('question-badge').textContent = `Q${q.id}`;
       }
+
+      document.getElementById('question-category').textContent = q.category || '京都の文化';
+
+      const progressPercent = Math.round(((currentQuestionIndex) / totalInRound) * 100);
+      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
 
       // 問題文
       document.getElementById('question-text').textContent = q.question;
 
-      // 解説ボックスを隠す
+      // 解説ボックス非表示
       const expBox = document.getElementById('explanation-box');
       expBox.classList.add('hidden');
 
@@ -623,11 +1039,11 @@
       q.options.forEach((optText, idx) => {
         const btn = document.createElement('button');
         btn.id = `option-btn-${idx}`;
-        btn.className = `option-card w-full p-4 sm:p-4.5 rounded-xl border border-slate-200/90 bg-white hover:bg-amber-50/50 hover:border-amber-400/80 text-left font-sans text-slate-800 transition-all duration-200 shadow-sm flex items-center justify-between group focus:outline-none focus:ring-2 focus:ring-amber-500/40`;
+        btn.className = `option-card w-full p-4 sm:p-4.5 rounded-xl border-2 border-kyoto-border bg-white hover:bg-amber-50/60 hover:border-kyoto-gold/70 text-left font-sans text-slate-800 transition-all duration-200 shadow-sm flex items-center justify-between group focus:outline-none`;
         
         btn.innerHTML = `
           <div class="flex items-center gap-3.5 flex-1 pr-2">
-            <span class="w-7 h-7 rounded-full bg-slate-100 group-hover:bg-amber-100 text-slate-600 group-hover:text-amber-800 font-serif font-bold text-xs flex items-center justify-center flex-shrink-0 transition-colors border border-slate-200/60">
+            <span class="w-7 h-7 rounded-full bg-kyoto-washi group-hover:bg-amber-100 text-kyoto-crimson font-serif font-bold text-xs flex items-center justify-center flex-shrink-0 transition-colors border border-kyoto-border">
               ${numberIcons[idx]}
             </span>
             <span class="text-sm sm:text-base font-medium leading-relaxed">${optText}</span>
@@ -639,82 +1055,90 @@
         optionsContainer.appendChild(btn);
       });
 
-      // 次へボタンのラベル設定
+      // 次へ進むボタンのラベル
       const nextBtnText = document.getElementById('next-btn-text');
-      if (currentQuestionIndex === total - 1) {
-        nextBtnText.textContent = '結果発表を見る';
+      if (currentQuestionIndex === totalInRound - 1) {
+        nextBtnText.textContent = isReviewMode ? '復習結果を確認する' : '結果発表を見る';
       } else {
         nextBtnText.textContent = '次の問題へ進む';
       }
 
-      // スクロールを上部に
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     /**
-     * 回答選択時の処理
+     * 解答選択
+     * 【要件2】復習モードで正解した場合、全体の正解数へ加算してスコア更新。
+     * 再び間違えた場合はスコア加算せず、復習対象に残す。
      */
     function selectAnswer(selectedIndex) {
       const q = activeQuestions[currentQuestionIndex];
       const isCorrect = (selectedIndex === q.answer);
 
-      // スコア加算
-      if (isCorrect) {
-        score++;
-      }
-      userAnswers.push({
-        questionId: q.id,
-        question: q.question,
-        category: q.category,
-        options: q.options,
-        answer: q.answer,
-        selected: selectedIndex,
-        isCorrect: isCorrect,
-        explanation: q.explanation
-      });
-
-      // 効果音再生
+      // 効果音
       playSound(isCorrect ? 'correct' : 'incorrect');
 
-      // 全ボタンの状態更新＆ロック
-      const totalOptions = q.options.length;
-      for (let i = 0; i < totalOptions; i++) {
-        const btn = document.getElementById(`option-btn-${i}`);
-        btn.disabled = true;
-        btn.onclick = null;
-        btn.classList.remove('hover:bg-amber-50/50', 'hover:border-amber-400/80', 'option-card');
-
-        const iconContainer = btn.querySelector('.status-icon');
-
-        if (i === q.answer) {
-          // 正解の選択肢（常に緑色強調）
-          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 text-left font-sans font-semibold transition-all shadow-sm flex items-center justify-between";
-          iconContainer.innerHTML = `<span class="text-emerald-600 font-bold text-lg">✓ 正解</span>`;
-        } else if (i === selectedIndex && !isCorrect) {
-          // 誤答した選択肢（赤色強調）
-          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-950 text-left font-sans transition-all shadow-sm flex items-center justify-between";
-          iconContainer.innerHTML = `<span class="text-rose-500 font-bold text-lg">✕ 不正解</span>`;
+      if (isReviewMode) {
+        if (isCorrect) {
+          // 復習で正解！スコア加算＆復習対象から除外
+          questionResults.set(q.id, { isCorrect: true, selectedIndex });
+          incorrectQuestionIds.delete(q.id);
+          showToast(`【スコア加算！】正解により全体スコアが更新されました！ (計 ${calculateStats().correctCount}/10問)`);
         } else {
-          // 未選択の他の選択肢
-          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 text-left font-sans opacity-60 cursor-not-allowed flex items-center justify-between";
+          // 復習でも不正解：スコア加算せず復習対象に残る
+          questionResults.set(q.id, { isCorrect: false, selectedIndex });
+          incorrectQuestionIds.add(q.id);
+          showToast('不正解です。復習リストに保持されます。');
+        }
+      } else {
+        // 通常モードの記録
+        questionResults.set(q.id, { isCorrect, selectedIndex });
+        if (!isCorrect) {
+          incorrectQuestionIds.add(q.id);
+        } else {
+          incorrectQuestionIds.delete(q.id);
         }
       }
 
-      // 判定バナーの描画
+      // ヘッダーの正解数をリアルタイム更新
+      const updatedStats = calculateStats();
+      document.getElementById('current-correct-count').textContent = `全体正解: ${updatedStats.correctCount} / 10`;
+
+      // ボタンのロック＆ハイライト
+      q.options.forEach((_, idx) => {
+        const btn = document.getElementById(`option-btn-${idx}`);
+        btn.disabled = true;
+        btn.onclick = null;
+        btn.classList.remove('hover:bg-amber-50/60', 'hover:border-kyoto-gold/70');
+
+        const iconContainer = btn.querySelector('.status-icon');
+
+        if (idx === q.answer) {
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 text-left font-sans font-semibold transition-all shadow-sm flex items-center justify-between";
+          iconContainer.innerHTML = `<span class="text-emerald-700 font-bold text-sm">✓ 正解</span>`;
+        } else if (idx === selectedIndex && !isCorrect) {
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-950 text-left font-sans transition-all shadow-sm flex items-center justify-between";
+          iconContainer.innerHTML = `<span class="text-rose-600 font-bold text-sm">✕ 不正解</span>`;
+        } else {
+          btn.className = "w-full p-4 sm:p-4.5 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 text-left font-sans opacity-60 cursor-not-allowed flex items-center justify-between";
+        }
+      });
+
+      // 判定バナー
       const banner = document.getElementById('judgment-banner');
       if (isCorrect) {
         banner.className = "flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm bg-emerald-100/90 text-emerald-900 border border-emerald-300";
         banner.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm">〇</div>
+          <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">〇</div>
           <div>
-            <div class="text-sm font-black">正解です！見事な知識です。</div>
+            <div class="text-sm font-black">${isReviewMode ? '復習成功！見事に正解です' : '正解です！見事な知識です'}</div>
             <div class="text-xs font-normal text-emerald-800">京都検定2級合格に直結する重要ポイントです。</div>
           </div>
         `;
       } else {
         banner.className = "flex items-center gap-3 p-3.5 rounded-xl mb-4 text-base font-bold shadow-sm bg-rose-100/90 text-rose-950 border border-rose-300";
         banner.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold shadow-sm">✕</div>
+          <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">✕</div>
           <div>
             <div class="text-sm font-black">惜しい！不正解です。</div>
             <div class="text-xs font-normal text-rose-800">正解は「${q.options[q.answer]}」でした。下の深掘り解説で復習しましょう。</div>
@@ -732,7 +1156,6 @@
       const expBox = document.getElementById('explanation-box');
       expBox.classList.remove('hidden');
 
-      // スムーズに解説ボックスへスクロール
       setTimeout(() => {
         expBox.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
       }, 150);
@@ -746,255 +1169,211 @@
       if (currentQuestionIndex < activeQuestions.length) {
         renderQuestion();
       } else {
-        showResult();
+        // ラウンド終了
+        if (isReviewMode && incorrectQuestionIds.size === 0) {
+          // 【要件1-③】復習で全問正解達成！
+          showReviewCompleteView();
+        } else {
+          showResult(true);
+        }
       }
     }
 
     /**
-     * 結果画面の表示
+     * 【要件3】結果画面の表示（合格時に紙吹雪演出）
      */
-    function showResult() {
-      playSound('complete');
-
+    function showResult(triggerConfettiIfPassed = true) {
       document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
       document.getElementById('result-view').classList.remove('hidden');
 
-      const total = activeQuestions.length;
-      const percentage = Math.round((score / total) * 100);
+      const stats = calculateStats();
 
-      document.getElementById('result-score').textContent = score;
-      document.getElementById('result-percentage').textContent = `${percentage}%`;
+      document.getElementById('result-score').textContent = stats.correctCount;
+      document.getElementById('result-percentage').textContent = `${stats.percentage}%`;
 
-      const badge = document.getElementById('result-badge');
+      const rankBadge = document.getElementById('result-rank-badge');
       const emoji = document.getElementById('result-emoji');
       const evalTitle = document.getElementById('result-eval-title');
       const evalDesc = document.getElementById('result-eval-desc');
 
-      if (percentage >= 90) {
+      if (stats.percentage >= 90) {
         emoji.textContent = '🏆';
-        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-amber-100 text-amber-900 border-amber-400';
-        badge.textContent = '本試験 合格確実圏内';
-        evalTitle.innerHTML = `<span class="text-amber-600 font-bold">【極意到達】</span> 京都の歴史・文化を深く愛する本物の京都通です！`;
-        evalDesc.textContent = '京都検定2級の難問・頻出問を完璧にマスターしています。単なる語句の暗記を超え、歴史的背景や文化財の由緒まで高い解像度で理解されています。自信を持って本試験に臨んでください！';
-      } else if (percentage >= 70) {
+        rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-amber-100 text-amber-900 border-amber-400';
+        rankBadge.textContent = 'Sランク（合格確実・極意到達）';
+        evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【極意到達】</span> 京都の歴史・文化を深く愛する本物の京都通です！`;
+        evalDesc.textContent = '京都検定2級の難問・頻出問を完璧にマスターしています。単なる暗記を超え、歴史的背景や文化財の由緒まで高い解像度で理解されています。自信を持って本試験に臨んでください！';
+      } else if (stats.percentage >= 70) {
         emoji.textContent = '🌸';
-        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-emerald-100 text-emerald-900 border-emerald-400';
-        badge.textContent = '合格基準（70%）到達！';
+        rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-emerald-100 text-emerald-900 border-emerald-400';
+        rankBadge.textContent = 'Aランク（合格基準70%クリア）';
         evalTitle.innerHTML = `<span class="text-emerald-700 font-bold">【合格ライン突破】</span> 京都検定2級合格レベルに到達しています！`;
-        evalDesc.textContent = '2級合格基準の正答率70%を見事にクリアしました。間違えた問題の解説と「覚え方のコツ」を今一度復習しておけば、盤石の態勢で試験本番を迎えられます。';
-      } else if (percentage >= 50) {
+        evalDesc.textContent = '2級合格基準の正答率70%を見事にクリアしました。間違えた問題の解説と「覚え方のコツ」を復習しておけば、盤石の態勢で本番を迎えられます。';
+      } else if (stats.percentage >= 50) {
         emoji.textContent = '⛩️';
-        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-amber-50 text-amber-800 border-amber-300';
-        badge.textContent = '合格まであと少し！';
-        evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【あと一歩で合格ライン】</span> 確固たる基礎知識が身についています！`;
-        evalDesc.textContent = '合格ライン（70%）までもう少しです。京都検定2級は「寺院と開基・塔頭の関係」や「年中行事の期日・順序」など時系列の整理が勝負の分かれ目になります。下の解説一覧で弱点を総ざらいしましょう。';
+        rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-amber-50 text-amber-800 border-amber-300';
+        rankBadge.textContent = 'Bランク（合格まであと少し）';
+        evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【あと一歩で合格圏内】</span> 確固たる基礎知識が身についています！`;
+        evalDesc.textContent = '合格ライン（70%）まであと少しです。寺社と開基・塔頭の関係や年中行事の順序などを整理しておけば、合格点がぐっと近づきます。下の解説と復習機能を活用してください。';
       } else {
         emoji.textContent = '📚';
-        badge.className = 'px-3 py-1 rounded-full text-xs font-bold border bg-slate-100 text-slate-800 border-slate-300';
-        badge.textContent = '反復学習推奨';
-        evalTitle.innerHTML = `<span class="text-slate-800 font-bold">【基礎固めからスタート】</span> 背景ストーリーとともに知識を育てましょう！`;
-        evalDesc.textContent = '2級は3級に比べて細かな由緒や文化財指定の知識が問われる難関です。解説カードに記載した「覚え方のコツ」や歴史的因果関係を声に出して復習し、もう一度挑戦してみましょう。';
+        rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-slate-100 text-slate-700 border-slate-300';
+        rankBadge.textContent = 'Cランク（基礎から復習）';
+        evalTitle.innerHTML = `<span class="text-slate-700 font-bold">【伸び代たっぷり】</span> 知識の種まきから始めましょう！`;
+        evalDesc.textContent = '京都検定2級は範囲が広く深い知識が問われます。まずは各問題の「深掘り解説」を丁寧に読み込み、歴史の大きな流れや文化財の豆知識を楽しみながらインプットしていきましょう。';
       }
 
-      // 「間違えた問題のみ復習」ボタンの表示制御
-      const retryIncorrectBtn = document.getElementById('retry-incorrect-btn');
-      const incorrectQuestions = userAnswers.filter(a => !a.isCorrect);
-      if (incorrectQuestions.length === 0) {
-        retryIncorrectBtn.classList.add('hidden');
+      // 【要件3】合格ライン（70%以上 / A・Sランク）到達時に和風紙吹雪を発生
+      if (triggerConfettiIfPassed && stats.isPassed) {
+        launchJapaneseConfetti();
+      }
+
+      // 復習ボタンの状態更新
+      const retryBtn = document.getElementById('retry-incorrect-btn');
+      const reviewBtnText = document.getElementById('review-btn-text');
+      if (incorrectQuestionIds.size > 0) {
+        retryBtn.classList.remove('opacity-50', 'cursor-not-allowed');
+        retryBtn.disabled = false;
+        reviewBtnText.textContent = `間違えた問題を復習（残り${incorrectQuestionIds.size}問）`;
       } else {
-        retryIncorrectBtn.classList.remove('hidden');
-        retryIncorrectBtn.querySelector('span').textContent = `間違えた ${incorrectQuestions.length} 問のみ復習`;
+        retryBtn.classList.add('opacity-50', 'cursor-not-allowed');
+        retryBtn.disabled = true;
+        reviewBtnText.textContent = `全問正解達成済み！`;
       }
 
-      // レビュー一覧の生成
+      // 全問振り返りリスト描画
       renderReviewList();
 
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     /**
-     * 全問振り返りアコーディオンの生成
+     * 【要件1-③】復習完了画面（全問正解達成）
+     */
+    function showReviewCompleteView() {
+      document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.remove('hidden');
+
+      // 紙吹雪発動
+      launchJapaneseConfetti();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 全問振り返りアコーディオン描画
      */
     function renderReviewList() {
-      const container = document.getElementById('review-list');
-      container.innerHTML = '';
+      const reviewList = document.getElementById('review-list');
+      reviewList.innerHTML = '';
 
-      userAnswers.forEach((item, idx) => {
-        const card = document.createElement('div');
-        card.className = "border border-slate-200 rounded-xl overflow-hidden bg-slate-50/50 transition-all";
+      quizData.forEach((q, idx) => {
+        const res = questionResults.get(q.id);
+        const isAnswered = !!res;
+        const isCorrect = isAnswered ? res.isCorrect : false;
+        const userSelected = isAnswered ? res.selectedIndex : -1;
 
-        const isCorrect = item.isCorrect;
-        const statusBadge = isCorrect 
-          ? '<span class="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 text-emerald-800 border border-emerald-300">正解 〇</span>' 
-          : '<span class="text-xs font-bold px-2 py-0.5 rounded bg-rose-100 text-rose-800 border border-rose-300">不正解 ✕</span>';
+        const item = document.createElement('div');
+        item.className = 'border border-kyoto-border rounded-xl overflow-hidden bg-white shadow-sm';
 
-        card.innerHTML = `
-          <button class="w-full px-4 py-3.5 flex items-center justify-between text-left hover:bg-slate-100/80 transition-colors focus:outline-none" onclick="toggleAccordion(${idx})">
+        const statusBadge = !isAnswered 
+          ? '<span class="text-xs px-2 py-0.5 rounded bg-slate-100 text-slate-500 font-bold">未回答</span>'
+          : isCorrect
+            ? '<span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">〇 正解</span>'
+            : '<span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold border border-rose-300">✕ 不正解</span>';
+
+        item.innerHTML = `
+          <button class="w-full p-3.5 sm:p-4 text-left flex items-center justify-between hover:bg-slate-50/80 transition-colors focus:outline-none" onclick="toggleAccordion('review-body-${idx}', 'review-arrow-${idx}')">
             <div class="flex items-center gap-3 pr-2">
-              <span class="font-serif font-bold text-xs text-slate-500 w-6">第${idx + 1}問</span>
-              <span class="text-sm font-medium text-slate-900 line-clamp-1">${item.question}</span>
+              <span class="w-6 h-6 rounded-md bg-kyoto-washi text-kyoto-crimson text-xs font-bold flex items-center justify-center border border-kyoto-border flex-shrink-0">
+                Q${q.id}
+              </span>
+              <span class="text-xs sm:text-sm font-medium text-slate-800 line-clamp-1">${q.question}</span>
             </div>
             <div class="flex items-center gap-2 flex-shrink-0">
               ${statusBadge}
-              <svg id="arrow-${idx}" class="w-4 h-4 text-slate-400 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg id="review-arrow-${idx}" class="w-4 h-4 text-slate-400 transition-transform duration-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
               </svg>
             </div>
           </button>
-
-          <div id="content-${idx}" class="hidden px-4 pb-4 pt-2 border-t border-slate-200/80 bg-white text-xs sm:text-sm space-y-3">
-            <div class="p-2.5 rounded-lg bg-slate-50 border border-slate-200">
-              <p class="font-serif font-bold text-slate-900 mb-1">【問題全文】</p>
-              <p class="text-slate-700">${item.question}</p>
-            </div>
-
+          
+          <div id="review-body-${idx}" class="hidden p-4 bg-kyoto-washi border-t border-kyoto-border text-xs sm:text-sm space-y-3">
+            <div class="font-bold text-slate-900 leading-relaxed">${q.question}</div>
+            
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-              <div class="p-2 rounded bg-slate-50 border ${isCorrect ? 'border-emerald-200 bg-emerald-50/40' : 'border-rose-200 bg-rose-50/40'}">
-                <span class="text-slate-500 block mb-0.5">あなたの回答：</span>
-                <span class="font-bold ${isCorrect ? 'text-emerald-800' : 'text-rose-800'}">${item.options[item.selected]}</span>
+              <div class="p-2 rounded-lg ${isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-rose-50 border border-rose-200'}">
+                <span class="font-bold text-slate-600">あなたの回答：</span>
+                <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
+                  ${userSelected >= 0 ? q.options[userSelected] : '未回答'}
+                </span>
               </div>
-              <div class="p-2 rounded bg-emerald-50/60 border border-emerald-200">
-                <span class="text-emerald-700 block mb-0.5">正解：</span>
-                <span class="font-bold text-emerald-900">${item.options[item.answer]}</span>
+              <div class="p-2 rounded-lg bg-emerald-50 border border-emerald-200">
+                <span class="font-bold text-slate-600">正解：</span>
+                <span class="font-bold text-emerald-800">${q.options[q.answer]}</span>
               </div>
             </div>
 
-            <div class="bg-amber-50/60 p-3 rounded-lg border border-amber-200/60 space-y-2 text-xs sm:text-[13px] text-slate-800">
-              <div class="font-bold text-amber-950 flex items-center gap-1.5 border-b border-amber-200/60 pb-1">
-                <span>⛩️</span> 専門家解説まとめ
-              </div>
-              <p><strong class="text-slate-900">【理由】</strong>${item.explanation.reason}</p>
-              <p><strong class="text-slate-900">【歴史背景】</strong>${item.explanation.history}</p>
-              <p><strong class="text-slate-900">【文化財】</strong>${item.explanation.trivia}</p>
-              <p class="text-amber-900 font-medium"><strong>【暗記のコツ】</strong>${item.explanation.tip}</p>
+            <div class="bg-white p-3 rounded-lg border border-kyoto-border space-y-2 text-xs text-slate-700">
+              <p><strong class="text-slate-900">【解説】</strong> ${q.explanation.reason}</p>
+              <p><strong class="text-slate-900">【背景】</strong> ${q.explanation.history}</p>
+              <p><strong class="text-amber-900">【覚え方のコツ】</strong> ${q.explanation.tip}</p>
             </div>
           </div>
         `;
-
-        container.appendChild(card);
+        reviewList.appendChild(item);
       });
     }
 
-    function toggleAccordion(index) {
-      const content = document.getElementById(`content-${index}`);
-      const arrow = document.getElementById(`arrow-${index}`);
-      if (content.classList.contains('hidden')) {
-        content.classList.remove('hidden');
+    function toggleAccordion(bodyId, arrowId) {
+      const body = document.getElementById(bodyId);
+      const arrow = document.getElementById(arrowId);
+      if (body.classList.contains('hidden')) {
+        body.classList.remove('hidden');
         arrow.classList.add('rotate-180');
       } else {
-        content.classList.add('hidden');
+        body.classList.add('hidden');
         arrow.classList.remove('rotate-180');
       }
     }
 
     /**
-     * クイズのリスタート
+     * 【要件5】X（旧Twitter）シェア機能
+     * スコア更新時も最新データを反映
      */
-    function restartQuiz(questionsToUse = quizData) {
-      activeQuestions = [...questionsToUse];
-      currentQuestionIndex = 0;
-      score = 0;
-      userAnswers = [];
-      renderQuestion();
+    function shareOnX() {
+      const stats = calculateStats();
+      const text = `京都検定2級お試しクイズで【${stats.correctCount}/10問正解（${stats.rank}ランク）】でした！あなたも挑戦してみよう！ #京都検定 #京都検定2級 https://kyotocertificationgrade2freetrial.netlify.app`;
+      const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
     }
 
     /**
-     * 単一HTMLファイル保存（ダウンロード）
+     * トースト通知
      */
-    function downloadSingleHtmlFile() {
-      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      const blob = new Blob([htmlContent], { type: 'text/html;charset=utf-8' });
-      const url = URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = 'kyoto_kentei_level2_quiz.html';
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      URL.revokeObjectURL(url);
-      showToast('単一HTMLファイルをダウンロードしました！オフラインでも動作します。');
-    }
-
-    /**
-     * クリップボードコピー
-     */
-    function copySingleHtmlCode() {
-      const htmlContent = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
-      if (navigator.clipboard && navigator.clipboard.writeText) {
-        navigator.clipboard.writeText(htmlContent).then(() => {
-          showToast('HTMLコードをクリップボードにコピーしました！');
-        }).catch(() => {
-          fallbackCopyText(htmlContent);
-        });
-      } else {
-        fallbackCopyText(htmlContent);
-      }
-    }
-
-    function fallbackCopyText(text) {
-      const textArea = document.createElement('textarea');
-      textArea.value = text;
-      textArea.style.position = 'fixed';
-      textArea.style.opacity = '0';
-      document.body.appendChild(textArea);
-      textArea.select();
-      try {
-        document.execCommand('copy');
-        showToast('HTMLコードをクリップボードにコピーしました！');
-      } catch (err) {
-        showToast('コピーに失敗しました');
-      }
-      document.body.removeChild(textArea);
-    }
-
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toast-message');
       toastMsg.textContent = msg;
       toast.classList.remove('opacity-0', 'pointer-events-none');
-      toast.classList.add('opacity-100');
       setTimeout(() => {
-        toast.classList.remove('opacity-100');
         toast.classList.add('opacity-0', 'pointer-events-none');
-      }, 3000);
+      }, 2500);
     }
 
-    /**
-     * イベントリスナー設定
-     */
-    document.addEventListener('DOMContentLoaded', () => {
-      // 次の問題へ
-      document.getElementById('next-question-btn').addEventListener('click', nextQuestion);
+    // 音声トグル
+    document.getElementById('sound-toggle-btn').onclick = function() {
+      soundEnabled = !soundEnabled;
+      document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
+      document.getElementById('sound-label').textContent = soundEnabled ? '効果音 ON' : '効果音 OFF';
+      showToast(soundEnabled ? '効果音をONにしました' : '効果音をOFFにしました');
+    };
 
-      // もう一度最初から
-      document.getElementById('restart-btn').addEventListener('click', () => restartQuiz(quizData));
-
-      // 間違えた問題だけ復習
-      document.getElementById('retry-incorrect-btn').addEventListener('click', () => {
-        const incorrectQuestions = userAnswers
-          .filter(a => !a.isCorrect)
-          .map(a => quizData.find(q => q.id === a.questionId));
-        if (incorrectQuestions.length > 0) {
-          restartQuiz(incorrectQuestions);
-        }
-      });
-
-      // 単一HTMLダウンロード＆コピー
-      document.getElementById('download-html-btn').addEventListener('click', downloadSingleHtmlFile);
-      document.getElementById('copy-html-btn').addEventListener('click', copySingleHtmlCode);
-
-      // 音声トグル
-      document.getElementById('sound-toggle-btn').addEventListener('click', () => {
-        soundEnabled = !soundEnabled;
-        document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
-        document.getElementById('sound-label').textContent = soundEnabled ? '効果音 ON' : '効果音 OFF';
-        if (soundEnabled) {
-          playSound('correct');
-        }
-      });
-
-      // 初回問題レンダリング
-      renderQuestion();
+    // 初期表示：トップ画面を表示
+    window.addEventListener('DOMContentLoaded', () => {
+      showTopView();
     });
   </script>
 </body>
