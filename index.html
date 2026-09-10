@@ -184,80 +184,121 @@
     <div id="top-view" class="w-full animate-fadeInSlideUp">
       
       <!-- メイン紹介カード -->
-      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-kyoto-border mb-6 relative overflow-hidden text-center">
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-kyoto-border mb-6 relative overflow-hidden">
         <!-- 和風上部装飾バー -->
         <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
 
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kyoto-goldlight text-kyoto-crimson text-xs font-bold border border-kyoto-gold/60 mb-4">
-          <span>⛩️</span>
-          <span>京都商工会議所主催「京都検定2級」合格基準70%</span>
+        <!-- ヘッダー（バッジ・大見出し） -->
+        <div class="text-center mb-6">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kyoto-goldlight text-kyoto-crimson text-xs font-bold border border-kyoto-gold/60 mb-3">
+            <span>⛩️</span>
+            <span>京都商工会議所主催「京都検定2級」合格基準70%</span>
+          </div>
+
+          <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson tracking-wide">
+            京都検定2級 対策無料お試しクイズ
+          </h2>
+        </div>
+        
+        <!-- 説明文・解説の特徴（左揃えで整然と配置して可読性・バランスを向上） -->
+        <div class="bg-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-border mb-6 text-left">
+          <p class="text-sm sm:text-[15px] text-slate-800 leading-relaxed font-medium mb-3">
+            難関の京都検定2級で頻出の重要分野から、過去問レベルの良問10問を厳選。一問一答ですぐに解答と詳細な解説を確認できます。
+          </p>
+          
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-kyoto-border/70 text-xs sm:text-[13px] text-slate-700">
+            <div class="space-y-1.5">
+              <div class="font-bold text-kyoto-crimson flex items-center gap-1.5">
+                <span>📍</span> 厳選収録分野（全10問）
+              </div>
+              <p class="text-slate-600 leading-normal pl-4">
+                神社寺院・平安京歴史・祇園祭・庭園・琳派美術・京菓子・五山送り火・新選組 ほか
+              </p>
+            </div>
+            <div class="space-y-1.5">
+              <div class="font-bold text-kyoto-purple flex items-center gap-1.5">
+                <span>📖</span> 4段階の深掘り解説付き
+              </div>
+              <p class="text-slate-600 leading-normal pl-4">
+                「正解の理由」「歴史的背景」「文化財の豆知識」「試験攻略・覚え方のコツ」
+              </p>
+            </div>
+          </div>
         </div>
 
-        <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson tracking-wide mb-3">
-          京都検定2級 対策無料お試しクイズ
-        </h2>
-        
-        <p class="text-sm text-slate-600 max-w-xl mx-auto leading-relaxed mb-6">
-          難関の京都検定2級で頻出の【神社寺院・平安京歴史・祇園祭・庭園・琳派美術・京菓子・五山送り火・新選組】から厳選された良問10問に挑戦！<br class="hidden sm:inline">
-          単なる丸暗記ではなく、「なぜそれが正解か」「歴史的背景」「文化財の豆知識」「覚え方のコツ」まで完全解説します。
-        </p>
-
         <!-- 特徴3点バッジ -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 max-w-xl mx-auto mb-7 text-xs">
-          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
-            <span class="text-lg">🎯</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-7 text-xs">
+          <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
+            <span class="text-xl">🎯</span>
             <div>
               <div class="font-bold text-slate-900">一問一答＆即時判定</div>
               <div class="text-slate-500 text-[11px]">タップですぐ○✕と解説</div>
             </div>
           </div>
-          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
-            <span class="text-lg">💡</span>
+          <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
+            <span class="text-xl">💡</span>
             <div>
               <div class="font-bold text-slate-900">専門家の深掘り解説</div>
-              <div class="text-slate-500 text-[11px]">試験対策のコツを網羅</div>
+              <div class="text-slate-500 text-[11px]">背景や豆知識まで網羅</div>
             </div>
           </div>
-          <div class="p-3 rounded-xl bg-kyoto-washi border border-kyoto-border flex items-center gap-2 text-left">
-            <span class="text-lg">🔄</span>
+          <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
+            <span class="text-xl">🔄</span>
             <div>
               <div class="font-bold text-slate-900">弱点復習＆スコア加算</div>
-              <div class="text-slate-500 text-[11px]">間違えた問題のみ再挑戦</div>
+              <div class="text-slate-500 text-[11px]">間違いのみ再挑戦＆満点可能</div>
             </div>
           </div>
         </div>
 
         <!-- クイズスタートボタン -->
-        <button onclick="startQuiz(false)" class="w-full sm:w-80 mx-auto py-4 px-6 rounded-2xl bg-gradient-to-r from-kyoto-crimson to-kyoto-crimsondark text-white font-serif font-bold text-lg shadow-button btn-press border border-amber-300/40 flex items-center justify-center gap-3 transition-all">
-          <span>演習を始める（全10問）</span>
-          <svg class="w-5 h-5 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
-        </button>
+        <div class="text-center">
+          <button onclick="startQuiz(false)" class="w-full sm:w-80 mx-auto py-4 px-6 rounded-2xl bg-gradient-to-r from-kyoto-crimson to-kyoto-crimsondark text-white font-serif font-bold text-lg shadow-button btn-press border border-amber-300/40 flex items-center justify-center gap-3 transition-all">
+            <span>演習を始める（全10問）</span>
+            <svg class="w-5 h-5 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+            </svg>
+          </button>
+        </div>
 
       </div>
 
       <!-- ======================================================= -->
       <!-- 【要件1-①】スタート画面（トップ画面）下部の有料版誘導カード -->
-      <!-- 小さめの目立たないが上品なカード枠 -->
+      <!-- 500円版・2,000円版の両方を掲載 -->
       <!-- ======================================================= -->
-      <div class="bg-white/80 backdrop-blur rounded-xl p-4 sm:p-5 border border-kyoto-gold/40 shadow-sm flex flex-col sm:flex-row items-center justify-between gap-3 text-center sm:text-left">
-        <div class="space-y-0.5">
+      <div class="bg-white/90 backdrop-blur rounded-xl p-4 sm:p-5 border border-kyoto-gold/40 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-4 text-center sm:text-left">
+        <div class="space-y-1">
           <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-kyoto-crimson bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
             <span>📚</span>
             <span>本格対策で一発合格を目指す方へ</span>
           </div>
-          <p class="text-xs sm:text-sm font-medium text-slate-700">
-            まずは無料でお試し！全50問の本格対策版はこちら
+          <p class="text-xs sm:text-sm font-bold text-slate-800">
+            全50問・500問の本格対策版はこちら
+          </p>
+          <p class="text-[11px] sm:text-xs text-slate-500">
+            過去問頻出テーマの網羅演習や模擬テストで合格力を盤石に
           </p>
         </div>
 
-        <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all flex-shrink-0">
-          <span>500円版（50問＋ミニテスト）を見る</span>
-          <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-          </svg>
-        </a>
+        <!-- 500円版・2,000円版の2つのボタンを並列配置 -->
+        <div class="flex flex-col sm:flex-row items-center gap-2 w-full lg:w-auto flex-shrink-0">
+          <!-- 500円版ボタン -->
+          <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all">
+            <span>500円版（50問＋テスト）</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+
+          <!-- 2,000円版ボタン -->
+          <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark text-amber-100 text-xs sm:text-sm font-bold shadow-sm border border-kyoto-gold/40 flex items-center justify-center gap-1.5 transition-all">
+            <span>2,000円版（500問完全攻略）</span>
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+            </svg>
+          </a>
+        </div>
       </div>
 
     </div>
