@@ -5,20 +5,20 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   <!-- 【SEO対策】タイトル・メタタグ・キーワード -->
-  <title>京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す</title>
-  <meta name="description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
-  <meta name="keywords" content="京都検定,京都検定2級,過去問,対策,クイズ,問題,無料,一問一答">
+  <title>京都検定2級 対策無料クイズ | 一問一答＆即時判定+ミニテスト付</title>
+  <meta name="description" content="京都検定2級の合格を目指すWebクイズアプリ。特徴：一問一答＆即時判定+ミニテスト付。過去問レベルの重要問題を無料で解くことができます。わかりやすい解説・復習機能付き。">
+  <meta name="keywords" content="京都検定,京都検定2級,過去問,対策,クイズ,問題,無料,一問一答,ミニテスト">
   <meta name="author" content="京都検定対策室">
 
   <!-- 【OGP・Twitter Card設定】 -->
-  <meta property="og:title" content="京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す">
-  <meta property="og:description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
+  <meta property="og:title" content="京都検定2級 対策無料クイズ | 一問一答＆即時判定+ミニテスト付">
+  <meta property="og:description" content="京都検定2級の合格を目指すWebクイズアプリ。特徴：一問一答＆即時判定+ミニテスト付。過去問レベルの重要問題を無料で解くことができます。わかりやすい解説・復習機能付き。">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://kyotocertificationgrade2freetrial.netlify.app">
   <meta property="og:site_name" content="京都検定2級 対策無料お試しクイズ">
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="京都検定2級 対策無料クイズ | 過去問・一問一答で一発合格を目指す">
-  <meta name="twitter:description" content="京都検定2級の合格を目指すWebクイズアプリ。過去問レベルの重要問題を無料で一問一答形式で解くことができます。わかりやすい解説・復習機能付き。">
+  <meta name="twitter:title" content="京都検定2級 対策無料クイズ | 一問一答＆即時判定+ミニテスト付">
+  <meta name="twitter:description" content="京都検定2級の合格を目指すWebクイズアプリ。特徴：一問一答＆即時判定+ミニテスト付。過去問レベルの重要問題を無料で解くことができます。わかりやすい解説・復習機能付き。">
 
   <!-- 【JSON-LD 構造化データ (schema.org)】 -->
   <script type="application/ld+json">
@@ -57,6 +57,9 @@
 
   <!-- 和風紙吹雪演出用ライブラリ (canvas-confetti) -->
   <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+
+  <!-- 問題・解答・解説外部データ (questions.js) -->
+  <script src="questions.js"></script>
 
   <!-- Google Fonts: 日本の伝統美を感じるフォント -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -153,12 +156,25 @@
         </div>
         <div>
           <!-- H1 タグ（SEO対応） -->
-          <h1 class="font-serif font-bold text-base sm:text-lg tracking-wide text-amber-50">京都検定2級 対策無料お試しクイズ</h1>
+          <h1 class="font-serif font-bold text-base sm:text-lg tracking-wide text-amber-50">
+            <span class="inline-block">京都検定2級</span> <span class="inline-block">対策無料お試しクイズ</span>
+          </h1>
           <p class="text-[11px] text-amber-200/80 hidden sm:block">一問一答＆深掘り解説 | 過去問厳選10問</p>
         </div>
       </div>
 
-      <div class="flex items-center space-x-2">
+      <div class="flex items-center space-x-2 flex-shrink-0">
+        <!-- 本格対策500問版Noteへのリンクボタン -->
+        <a href="https://note.com/fair_tiger775/n/n6609ef4edb13?app_launch=false" target="_blank" rel="noopener noreferrer" class="px-2.5 sm:px-3 py-1.5 rounded-lg bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark text-amber-100 font-bold text-xs flex items-center gap-1.5 shadow-sm border border-kyoto-gold/40 transition-all whitespace-nowrap" title="京都検定2級 本格対策500問版Noteを見る">
+          <span>📚</span>
+          <span class="hidden md:inline whitespace-nowrap">本格対策Note</span>
+          <span class="md:hidden text-[11px] whitespace-nowrap">500問版</span>
+        </a>
+        <!-- マイページ（学習記録・成績グラフ）ボタン -->
+        <button onclick="showMyPageView()" class="px-2.5 py-1.5 rounded-lg bg-amber-400/20 hover:bg-amber-400/30 border border-kyoto-gold text-amber-100 text-xs flex items-center gap-1 transition-colors font-bold" title="学習履歴・成績推移グラフ">
+          <span>📊</span>
+          <span class="hidden sm:inline">マイページ</span>
+        </button>
         <!-- 音声効果トグルボタン -->
         <button id="sound-toggle-btn" class="px-2.5 py-1.5 rounded-lg bg-black/20 hover:bg-black/30 border border-kyoto-gold/40 text-amber-200 text-xs flex items-center gap-1.5 transition-colors" title="効果音オン/オフ">
           <span id="sound-icon">🔊</span>
@@ -190,20 +206,26 @@
 
         <!-- ヘッダー（バッジ・大見出し） -->
         <div class="text-center mb-6">
-          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kyoto-goldlight text-kyoto-crimson text-xs font-bold border border-kyoto-gold/60 mb-3">
+          <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-kyoto-goldlight text-kyoto-crimson text-xs font-bold border border-kyoto-gold/60 mb-2.5">
             <span>⛩️</span>
-            <span>京都商工会議所主催「京都検定2級」合格基準70%</span>
+            <span class="inline-block">京都商工会議所主催</span>
+            <span class="inline-block">「京都検定2級」合格基準70%</span>
+          </div>
+          <div class="mb-3">
+            <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-emerald-50 text-emerald-800 text-xs sm:text-sm font-black border border-emerald-300 shadow-2xs">
+              <span>✨</span> 特徴：一問一答＆即時判定＋ミニテスト付
+            </span>
           </div>
 
           <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson tracking-wide">
-            京都検定2級 対策無料お試しクイズ
+            <span class="inline-block">京都検定2級</span> <span class="inline-block">対策無料お試しクイズ</span>
           </h2>
         </div>
         
         <!-- 説明文・解説の特徴（左揃えで整然と配置して可読性・バランスを向上） -->
         <div class="bg-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-border mb-6 text-left">
           <p class="text-sm sm:text-[15px] text-slate-800 leading-relaxed font-medium mb-3">
-            難関の京都検定2級で頻出の重要分野から、過去問レベルの良問10問を厳選。一問一答ですぐに解答と詳細な解説を確認できます。
+            難関の京都検定2級で頻出の重要分野から、過去問レベルの良問10問を厳選。一問一答ですぐに判定と全選択肢の詳しい解説を確認できます。すきま時間用の5問ミニテストも搭載！
           </p>
           
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 pt-2 border-t border-kyoto-border/70 text-xs sm:text-[13px] text-slate-700">
@@ -227,77 +249,227 @@
         </div>
 
         <!-- 特徴3点バッジ -->
-        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-7 text-xs">
-          <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
-            <span class="text-xl">🎯</span>
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 mb-6 text-xs">
+          <div class="p-3.5 rounded-xl bg-amber-50/70 border border-amber-300 shadow-xs flex items-center gap-2.5 text-left">
+            <span class="text-2xl">🎯</span>
             <div>
-              <div class="font-bold text-slate-900">一問一答＆即時判定</div>
-              <div class="text-slate-500 text-[11px]">タップですぐ○✕と解説</div>
+              <div class="font-bold text-slate-900 text-sm">一問一答＆即時判定</div>
+              <div class="text-slate-600 text-[11px] font-medium">タップで即○✕判定＆詳細解説</div>
+            </div>
+          </div>
+          <div class="p-3.5 rounded-xl bg-emerald-50/70 border border-emerald-300 shadow-xs flex items-center gap-2.5 text-left">
+            <span class="text-2xl">🌱</span>
+            <div>
+              <div class="font-bold text-slate-900 text-sm">ミニテスト付（5問演習）</div>
+              <div class="text-slate-600 text-[11px] font-medium">すきま時間で手軽に腕試し</div>
             </div>
           </div>
           <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
-            <span class="text-xl">💡</span>
+            <span class="text-2xl">🎲</span>
             <div>
-              <div class="font-bold text-slate-900">専門家の深掘り解説</div>
-              <div class="text-slate-500 text-[11px]">背景や豆知識まで網羅</div>
-            </div>
-          </div>
-          <div class="p-3.5 rounded-xl bg-white border border-kyoto-border shadow-xs flex items-center gap-2.5 text-left">
-            <span class="text-xl">🔄</span>
-            <div>
-              <div class="font-bold text-slate-900">弱点復習＆スコア加算</div>
-              <div class="text-slate-500 text-[11px]">間違いのみ再挑戦＆満点可能</div>
+              <div class="font-bold text-slate-900 text-sm">全10問＆ランダム出題</div>
+              <div class="text-slate-600 text-[11px] font-medium">分野別特訓や全問演習に対応</div>
             </div>
           </div>
         </div>
 
-        <!-- クイズスタートボタン -->
+        <!-- ======================================================= -->
+        <!-- 【新機能】出題設定パネル（問題数設定・ランダム出題・選択肢シャッフル） -->
+        <!-- ======================================================= -->
+        <div class="bg-gradient-to-br from-amber-50/70 via-white to-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-gold/70 shadow-sm mb-6 text-left">
+          <div class="flex items-center justify-between pb-3 border-b border-kyoto-border/80 mb-3.5">
+            <div class="flex items-center gap-2">
+              <span class="text-base sm:text-lg">⚙️</span>
+              <h3 class="font-serif font-bold text-sm sm:text-base text-kyoto-crimson">演習モード・出題設定</h3>
+            </div>
+            <span id="registered-questions-badge" class="text-[11px] font-bold text-kyoto-purple bg-purple-50 px-2.5 py-0.5 rounded-full border border-purple-200">
+              問題プール: 計 10 問収録
+            </span>
+          </div>
+
+          <!-- 設定項目1: 出題ジャンル（分野別演習 / 全分野） -->
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                <span>出題ジャンル（分野）：</span>
+                <span class="text-[11px] font-normal text-slate-500">（特定分野を集中特訓可能）</span>
+              </label>
+              <span id="selected-genre-label" class="text-xs font-bold text-kyoto-crimson">🌸 全分野（すべて）</span>
+            </div>
+            <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-xs" id="genre-selector-container">
+              <button type="button" id="genre-all-btn" onclick="setGenreMode('all')" class="p-2 sm:p-2.5 rounded-xl font-bold border-2 transition-all flex items-center justify-between bg-kyoto-crimson text-white border-kyoto-crimson shadow-xs">
+                <span class="flex items-center gap-1.5"><span>🌸</span> <span>全分野</span></span>
+                <span id="genre-badge-all" class="text-[10px] bg-white/25 px-1.5 py-0.5 rounded">10問</span>
+              </button>
+              <button type="button" id="genre-shrine_temple-btn" onclick="setGenreMode('shrine_temple')" class="p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50">
+                <span class="flex items-center gap-1.5"><span>⛩️</span> <span>神社・寺院</span></span>
+                <span id="genre-badge-shrine_temple" class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">2問</span>
+              </button>
+              <button type="button" id="genre-history-btn" onclick="setGenreMode('history')" class="p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50">
+                <span class="flex items-center gap-1.5"><span>📜</span> <span>歴史・人物</span></span>
+                <span id="genre-badge-history" class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">2問</span>
+              </button>
+              <button type="button" id="genre-festival-btn" onclick="setGenreMode('festival')" class="p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50">
+                <span class="flex items-center gap-1.5"><span>🏮</span> <span>祭り・行事</span></span>
+                <span id="genre-badge-festival" class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">2問</span>
+              </button>
+              <button type="button" id="genre-architecture_art-btn" onclick="setGenreMode('architecture_art')" class="p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50">
+                <span class="flex items-center gap-1.5"><span>🏯</span> <span>建築・美術</span></span>
+                <span id="genre-badge-architecture_art" class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">2問</span>
+              </button>
+              <button type="button" id="genre-food_culture-btn" onclick="setGenreMode('food_culture')" class="p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50">
+                <span class="flex items-center gap-1.5"><span>🍵</span> <span>菓子・文学</span></span>
+                <span id="genre-badge-food_culture" class="text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded">2問</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 設定項目2: 出題順（ランダム / 登録順） -->
+          <div class="mb-4">
+            <label class="block text-xs font-bold text-slate-700 mb-1.5 flex items-center gap-1.5">
+              <span>出題順序：</span>
+              <span class="text-[11px] font-normal text-slate-500">（ランダム出題で毎回異なる問題を演習）</span>
+            </label>
+            <div class="grid grid-cols-2 gap-2 text-xs sm:text-sm">
+              <button type="button" id="mode-random-btn" onclick="setOrderMode('random')" class="py-2.5 px-3 rounded-lg font-bold border-2 transition-all flex items-center justify-center gap-1.5 bg-kyoto-crimson text-white border-kyoto-crimson shadow-xs whitespace-nowrap">
+                <span>🎲 ランダム出題</span>
+                <span class="text-[10px] opacity-80 hidden sm:inline">(推奨)</span>
+              </button>
+              <button type="button" id="mode-sequential-btn" onclick="setOrderMode('sequential')" class="py-2.5 px-3 rounded-lg font-medium border-2 transition-all flex items-center justify-center gap-1.5 bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap">
+                <span>🔢 登録順（固定）</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 設定項目3: 出題問題数（ミニテスト5問 / 該当全問演習） -->
+          <div class="mb-4">
+            <div class="flex items-center justify-between mb-1.5">
+              <label class="text-xs font-bold text-slate-700 flex items-center gap-1.5">
+                <span>出題問題数：</span>
+                <span id="count-mode-desc" class="text-[11px] font-normal text-slate-500">10問からランダム5問抽出</span>
+              </label>
+              <span id="effective-count-label" class="text-xs font-bold text-kyoto-crimson">5問演習</span>
+            </div>
+            <div class="grid grid-cols-2 gap-2.5 text-xs">
+              <button type="button" id="count-5-btn" onclick="setQuestionCount(5)" class="py-2.5 px-3 rounded-xl font-bold border-2 transition-all flex items-center justify-between bg-kyoto-purple text-white border-kyoto-purple shadow-xs whitespace-nowrap">
+                <div class="flex items-center gap-2">
+                  <span class="text-base flex-shrink-0">🌱</span>
+                  <div class="text-left">
+                    <div class="text-xs sm:text-sm font-bold whitespace-nowrap">ミニテスト</div>
+                    <div class="text-[10px] opacity-85 whitespace-nowrap" id="count-5-sublabel">すきま時間の5問</div>
+                  </div>
+                </div>
+                <span class="text-xs font-black bg-white/20 px-2 py-0.5 rounded-md flex-shrink-0">5問</span>
+              </button>
+
+              <button type="button" id="count-all-btn" onclick="setQuestionCount('all')" class="py-2.5 px-3 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap">
+                <div class="flex items-center gap-2">
+                  <span class="text-base flex-shrink-0">🌸</span>
+                  <div class="text-left">
+                    <div class="text-xs sm:text-sm font-bold whitespace-nowrap">全問演習</div>
+                    <div class="text-[10px] text-slate-500 whitespace-nowrap" id="all-count-sublabel">対象の全10問</div>
+                  </div>
+                </div>
+                <span class="text-xs font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md flex-shrink-0" id="all-count-badge">10問</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- 設定項目4: 選択肢シャッフル＆制限時間タイマー＆データ追加案内 -->
+          <div class="pt-2.5 border-t border-kyoto-border/60 space-y-2 text-xs text-slate-600">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+              <label class="flex items-center gap-2 cursor-pointer select-none">
+                <input type="checkbox" id="shuffle-options-checkbox" checked class="w-4 h-4 rounded text-kyoto-crimson focus:ring-kyoto-crimson border-slate-300">
+                <span class="font-medium">選択肢の並び順をシャッフル（位置暗記防止）</span>
+              </label>
+
+              <label class="flex items-center gap-2 cursor-pointer select-none text-kyoto-crimson font-bold">
+                <input type="checkbox" id="timer-mode-checkbox" onchange="toggleTimerSetting(this.checked)" class="w-4 h-4 rounded text-kyoto-crimson focus:ring-kyoto-crimson border-slate-300">
+                <span>⏱️ 制限時間タイマー（1問60秒）</span>
+              </label>
+            </div>
+
+            <div class="pt-1 flex justify-end">
+              <!-- questions.js 連携案内リンク -->
+              <button type="button" onclick="toggleDataGuideModal()" class="text-kyoto-purple hover:text-kyoto-purpledark underline flex items-center gap-1 font-medium">
+                <span>📁 questions.js での問題追加方法</span>
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <!-- クイズスタートボタン（見栄えの良い2段構成・単語途中での不自然な改行を防止） -->
         <div class="text-center">
-          <button onclick="startQuiz(false)" class="w-full sm:w-80 mx-auto py-4 px-6 rounded-2xl bg-gradient-to-r from-kyoto-crimson to-kyoto-crimsondark text-white font-serif font-bold text-lg shadow-button btn-press border border-amber-300/40 flex items-center justify-center gap-3 transition-all">
-            <span>演習を始める（全10問）</span>
-            <svg class="w-5 h-5 text-amber-200" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button id="main-start-btn" onclick="startQuiz(true)" class="w-full sm:w-96 max-w-md mx-auto py-3.5 px-6 rounded-2xl bg-gradient-to-r from-kyoto-crimson to-kyoto-crimsondark hover:from-kyoto-crimsondark hover:to-kyoto-crimson active:scale-[0.98] text-white font-serif shadow-button btn-press border border-amber-300/40 flex items-center justify-center gap-3.5 transition-all">
+            <div class="flex flex-col items-center justify-center text-center">
+              <span id="start-btn-title" class="font-bold text-lg sm:text-xl tracking-wide text-white whitespace-nowrap">演習を始める</span>
+              <span id="start-btn-subtitle" class="text-xs sm:text-sm font-sans font-medium text-amber-200 mt-0.5 whitespace-nowrap">（全分野・ランダム5問）</span>
+            </div>
+            <svg class="w-5 h-5 sm:w-6 sm:h-6 text-amber-200 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M13 7l5 5m0 0l-5 5m5-5H6" />
             </svg>
           </button>
+
+          <!-- マイページ・学習成果推移＆本番カウントダウン＆ブックマークショートカット -->
+          <div class="mt-4 pt-3.5 border-t border-kyoto-border flex flex-wrap items-center justify-center gap-2.5 text-xs">
+            <button onclick="showMyPageView()" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 font-bold transition-all shadow-2xs">
+              <span class="text-base">📊</span>
+              <span>マイページ（合格推移グラフ・分野別分析）</span>
+            </button>
+            
+            <button id="top-bookmark-btn" onclick="startBookmarkQuiz()" class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-yellow-50 hover:bg-yellow-100 text-amber-900 border border-amber-300 font-bold transition-all shadow-2xs">
+              <span class="text-base">⭐</span>
+              <span>付箋・ブックマーク (<span id="top-bookmark-count">0</span>)</span>
+            </button>
+
+            <div id="top-countdown-badge" class="inline-flex items-center gap-1 text-[11px] text-slate-600 bg-slate-100 px-3 py-1.5 rounded-xl border border-slate-200">
+              <span>⛩️</span>
+              <span id="top-countdown-text">第27回京都検定（12月）まで 計算中...</span>
+            </div>
+          </div>
         </div>
 
       </div>
 
-      <!-- ======================================================= -->
-      <!-- 【要件1-①】スタート画面（トップ画面）下部の有料版誘導カード -->
-      <!-- 500円版・2,000円版の両方を掲載 -->
-      <!-- ======================================================= -->
-      <div class="bg-white/90 backdrop-blur rounded-xl p-4 sm:p-5 border border-kyoto-gold/40 shadow-sm flex flex-col lg:flex-row items-center justify-between gap-4 text-center sm:text-left">
-        <div class="space-y-1">
-          <div class="inline-flex items-center gap-1.5 text-[11px] font-bold text-kyoto-crimson bg-rose-50 px-2 py-0.5 rounded border border-rose-200">
-            <span>📚</span>
-            <span>本格対策で一発合格を目指す方へ</span>
+      <!-- questions.js データ追加ガイドモーダル -->
+      <div id="data-guide-modal" class="hidden fixed inset-0 bg-black/50 backdrop-blur-xs z-50 flex items-center justify-center p-4">
+        <div class="bg-white rounded-2xl p-6 max-w-xl w-full max-h-[85vh] overflow-y-auto shadow-2xl border-2 border-kyoto-gold text-left space-y-4">
+          <div class="flex items-center justify-between border-b border-kyoto-border pb-3">
+            <h3 class="font-serif font-bold text-base sm:text-lg text-kyoto-crimson flex items-center gap-2">
+              <span>📁</span> 問題データの切り分けと追加方法（questions.js）
+            </h3>
+            <button onclick="toggleDataGuideModal()" class="w-8 h-8 rounded-full bg-slate-100 hover:bg-slate-200 text-slate-600 flex items-center justify-center text-sm font-bold">
+              ✕
+            </button>
           </div>
-          <p class="text-xs sm:text-sm font-bold text-slate-800">
-            全50問・500問の本格対策版はこちら
-          </p>
-          <p class="text-[11px] sm:text-xs text-slate-500">
-            過去問頻出テーマの網羅演習や模擬テストで合格力を盤石に
-          </p>
-        </div>
 
-        <!-- 500円版・2,000円版の2つのボタンを並列配置 -->
-        <div class="flex flex-col sm:flex-row items-center gap-2 w-full lg:w-auto flex-shrink-0">
-          <!-- 500円版ボタン -->
-          <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 text-white text-xs sm:text-sm font-bold shadow-sm flex items-center justify-center gap-1.5 transition-all">
-            <span>500円版（50問＋テスト）</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
+          <div class="text-xs sm:text-[13.5px] text-slate-700 leading-relaxed space-y-3">
+            <p class="font-medium text-slate-800">
+              問題・解答・解説データは、単体の <code class="px-1.5 py-0.5 rounded bg-amber-50 border border-amber-200 font-mono text-kyoto-crimson font-bold">questions.js</code> に完全に切り分けています。
+            </p>
+            <div class="bg-kyoto-washi p-3.5 rounded-xl border border-kyoto-border space-y-2">
+              <div class="font-bold text-slate-900 flex items-center gap-1.5">
+                <span>✨</span> 50問・500問と追加しても自動対応！
+              </div>
+              <p class="text-slate-600">
+                <code class="font-mono text-kyoto-purple font-bold">quizQuestionsData</code> 配列に問題オブジェクトを追加すると総問題数を自動認識し、
+                「ミニテスト（5問）」や「全問演習」などから毎回ランダムにシャッフル出題されます。
+              </p>
+            </div>
+            
+            <div class="space-y-1.5">
+              <div class="font-bold text-slate-900">【各選択肢の解説機能】</div>
+              <p class="text-slate-600">
+                各問題には正解以外の選択肢（誤答肢）の解説を記述する <code class="font-mono text-emerald-800 font-bold">choiceExplanations</code> が備わっており、なぜその選択肢が誤りなのか・関連知識まで学習できます。
+              </p>
+            </div>
 
-          <!-- 2,000円版ボタン -->
-          <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-auto px-4 py-2.5 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark text-amber-100 text-xs sm:text-sm font-bold shadow-sm border border-kyoto-gold/40 flex items-center justify-center gap-1.5 transition-all">
-            <span>2,000円版（500問完全攻略）</span>
-            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
-          </a>
+            <div class="pt-2 text-right">
+              <button onclick="toggleDataGuideModal()" class="px-4 py-2 rounded-xl bg-kyoto-crimson text-white text-xs font-bold shadow-sm">
+                閉じる
+              </button>
+            </div>
+          </div>
         </div>
       </div>
 
@@ -311,7 +483,7 @@
       <!-- 進捗・スコアバー -->
       <div class="bg-white rounded-2xl p-4 sm:p-5 shadow-washi border border-kyoto-border mb-4">
         <div class="flex items-center justify-between text-sm mb-2.5">
-          <div class="flex items-center gap-2">
+          <div class="flex items-center gap-2 flex-wrap">
             <span class="font-serif font-bold text-kyoto-crimson text-base sm:text-lg" id="progress-text">第 1 問 / 全 10 問</span>
             <span id="question-category" class="text-xs px-2.5 py-0.5 rounded-full font-medium bg-kyoto-washi text-kyoto-purple border border-kyoto-purple/30">
               神社・寺院
@@ -329,6 +501,18 @@
         <div class="w-full bg-slate-100 rounded-full h-2.5 overflow-hidden border border-slate-200/60">
           <div id="progress-bar" class="bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple h-full rounded-full transition-all duration-300" style="width: 10%;"></div>
         </div>
+
+        <!-- 制限時間タイマーバー（タイマー有効時のみ表示） -->
+        <div id="quiz-timer-container" class="hidden mt-2.5 pt-2 border-t border-slate-100 flex items-center justify-between text-xs">
+          <div class="flex items-center gap-1.5 font-bold text-slate-700">
+            <span>⏱️ 残り時間：</span>
+            <span id="quiz-timer-text" class="font-mono text-sm sm:text-base font-black text-kyoto-crimson">60</span>
+            <span class="text-slate-500">秒</span>
+          </div>
+          <div class="w-32 sm:w-48 bg-slate-100 rounded-full h-2 overflow-hidden border border-slate-200">
+            <div id="quiz-timer-bar" class="bg-kyoto-crimson h-full rounded-full transition-all duration-1000" style="width: 100%;"></div>
+          </div>
+        </div>
       </div>
 
       <!-- 問題カード -->
@@ -336,13 +520,21 @@
         <!-- 和風アクセント金帯 -->
         <div class="absolute top-0 left-0 right-0 h-1.5 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
 
-        <div class="flex items-start gap-3 mb-4">
-          <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-kyoto-crimson text-kyoto-goldlight font-serif font-bold flex items-center justify-center text-sm shadow-sm border border-kyoto-gold" id="question-badge">
-            Q1
-          </span>
-          <h2 id="question-text" class="font-serif font-bold text-lg sm:text-xl text-slate-900 leading-relaxed pt-0.5">
-            問題文がここに表示されます
-          </h2>
+        <div class="flex items-start justify-between gap-3 mb-4">
+          <div class="flex items-start gap-3 flex-1">
+            <span class="flex-shrink-0 w-8 h-8 rounded-xl bg-kyoto-crimson text-kyoto-goldlight font-serif font-bold flex items-center justify-center text-sm shadow-sm border border-kyoto-gold" id="question-badge">
+              Q1
+            </span>
+            <h2 id="question-text" class="font-serif font-bold text-lg sm:text-xl text-slate-900 leading-relaxed pt-0.5">
+              問題文がここに表示されます
+            </h2>
+          </div>
+
+          <!-- ブックマーク・付箋ボタン（ワンタップで保存） -->
+          <button id="bookmark-toggle-btn" onclick="toggleCurrentBookmark()" type="button" class="flex-shrink-0 px-3 py-1.5 rounded-xl border border-kyoto-border bg-kyoto-washi hover:bg-amber-100/80 text-slate-700 hover:text-amber-800 text-xs font-bold transition-all flex items-center gap-1.5 shadow-2xs group" title="この問題をブックマーク（付箋）">
+            <span id="bookmark-icon" class="text-base group-hover:scale-110 transition-transform">☆</span>
+            <span id="bookmark-label" class="hidden sm:inline">付箋</span>
+          </button>
         </div>
 
         <!-- 4者択一ボタンコンテナ -->
@@ -376,6 +568,25 @@
               <p id="exp-reason" class="text-slate-700 pl-4 text-[15px] sm:text-base leading-relaxed">
                 理由テキスト
               </p>
+            </div>
+
+            <!-- 【新設】各選択肢の解説（正解および正解以外の誤答選択肢の詳しい解説） -->
+            <div class="space-y-2.5 pt-2 border-t border-kyoto-border/70">
+              <div class="flex items-center justify-between">
+                <div class="flex items-center gap-2 font-bold text-slate-900 text-sm sm:text-[15px]">
+                  <span class="w-2.5 h-2.5 rounded-full bg-kyoto-crimson inline-block flex-shrink-0"></span>
+                  <span>全選択肢の徹底解説（正解・誤答の理由）</span>
+                </div>
+                <span class="text-[11px] font-bold text-kyoto-purple bg-purple-50 px-2 py-0.5 rounded border border-purple-200">
+                  選択肢別・知識整理
+                </span>
+              </div>
+              <p class="text-xs text-slate-500 pl-4">
+                正解だけでなく、他の選択肢がなぜ誤りなのか・何の寺院や人物を指しているのかまで理解することで合格力が定着します。
+              </p>
+              <div id="exp-choices-list" class="space-y-2.5 pl-1 sm:pl-3">
+                <!-- 動的に各選択肢（正解・誤答）の解説カードが挿入されます -->
+              </div>
             </div>
 
             <!-- 2. 関連する歴史的背景 -->
@@ -447,17 +658,24 @@
 
         <!-- スコア・ランク表示ボックス -->
         <div class="my-6 max-w-sm mx-auto p-5 rounded-2xl bg-gradient-to-b from-kyoto-washi to-amber-50/50 border-2 border-kyoto-gold/60 shadow-inner">
-          <div class="text-xs font-bold text-kyoto-crimson tracking-wider mb-1">SCORE &amp; RANK</div>
+          <div class="text-xs font-bold text-kyoto-crimson tracking-wider mb-1.5">SCORE &amp; RANK</div>
           
+          <!-- 合否判定バナー（一目で合否がわかるバッジ） -->
+          <div class="mb-2.5 flex justify-center">
+            <span id="result-pass-badge" class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-xs">
+              合否判定
+            </span>
+          </div>
+
           <div class="flex items-baseline justify-center gap-2">
             <span class="font-serif font-black text-5xl sm:text-6xl text-slate-900" id="result-score">0</span>
-            <span class="font-serif text-2xl text-slate-500 font-bold">/ 10 問</span>
+            <span class="font-serif text-2xl text-slate-500 font-bold">/ <span id="result-total">5</span> 問</span>
           </div>
           
           <div class="mt-3 flex items-center justify-center gap-3">
             <div class="text-xl sm:text-2xl font-black text-kyoto-crimson" id="result-percentage">0%</div>
             <span id="result-rank-badge" class="px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm">
-              Aランク（合格）
+              ランク
             </span>
           </div>
         </div>
@@ -466,7 +684,7 @@
         <div class="max-w-xl mx-auto bg-kyoto-washi rounded-xl p-4 sm:p-5 border border-kyoto-border text-left mb-6">
           <h4 class="font-bold text-sm sm:text-base text-slate-900 mb-1 flex items-center gap-1.5" id="result-eval-title">
             <span>評定：</span>
-            <span>極意到達！素晴らしい京都通です</span>
+            <span>合否判定</span>
           </h4>
           <p class="text-[13.5px] sm:text-[14.5px] text-slate-600 leading-relaxed" id="result-eval-desc">
             評価メッセージの詳細文
@@ -477,29 +695,37 @@
         <!-- 【要件5】X（旧Twitter）シェアボタン -->
         <!-- ===================================================== -->
         <div class="mb-7">
-          <button onclick="shareOnX()" class="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-black hover:bg-slate-900 active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 border border-slate-700">
+          <button onclick="shareOnX()" class="w-full sm:w-auto min-h-[48px] px-7 py-3 rounded-xl bg-black hover:bg-slate-900 active:scale-[0.98] text-white font-bold text-sm shadow-md hover:shadow-lg transition-all inline-flex items-center justify-center gap-2 border border-slate-700 whitespace-nowrap">
             <!-- XロゴSVG -->
-            <svg class="w-4 h-4 fill-current" viewBox="0 0 24 24">
+            <svg class="w-4 h-4 fill-current flex-shrink-0" viewBox="0 0 24 24">
               <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
             </svg>
-            <span>X（旧Twitter）で結果をシェアする</span>
+            <span class="whitespace-nowrap">X（旧Twitter）で結果をシェアする</span>
           </button>
         </div>
 
-        <!-- アクションボタン群（もう一度解く・復習） -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto mb-2">
-          <button onclick="startQuiz(false)" class="w-full sm:w-1/2 min-h-[48px] py-3 px-4 rounded-xl bg-kyoto-crimson hover:bg-kyoto-crimsondark active:scale-[0.98] text-white font-serif font-bold text-sm shadow-button btn-press transition-all flex items-center justify-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <!-- アクションボタン群（もう一度解く・復習・マイページ） -->
+        <div class="flex flex-col sm:flex-row items-center justify-center gap-3 max-w-md mx-auto mb-3">
+          <button onclick="startQuiz(false)" class="w-full sm:w-1/2 min-h-[48px] py-3 px-4 rounded-xl bg-kyoto-crimson hover:bg-kyoto-crimsondark active:scale-[0.98] text-white font-serif font-bold text-sm shadow-button btn-press transition-all flex items-center justify-center gap-1.5 whitespace-nowrap">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
             </svg>
-            <span>最初から解き直す</span>
+            <span class="whitespace-nowrap">最初から解き直す</span>
           </button>
           
-          <button id="retry-incorrect-btn" onclick="startReviewMode()" class="w-full sm:w-1/2 min-h-[48px] py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 active:scale-[0.98] text-white font-serif font-bold text-sm shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-1.5">
-            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <button id="retry-incorrect-btn" onclick="startReviewMode()" class="w-full sm:w-1/2 min-h-[48px] py-3 px-4 rounded-xl bg-amber-600 hover:bg-amber-700 active:scale-[0.98] text-white font-serif font-bold text-sm shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-1.5 whitespace-nowrap">
+            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" />
             </svg>
-            <span id="review-btn-text">間違えた問題を復習する</span>
+            <span id="review-btn-text" class="whitespace-nowrap">間違えた問題を復習する</span>
+          </button>
+        </div>
+
+        <!-- マイページへの導線 -->
+        <div class="flex items-center justify-center gap-2 max-w-md mx-auto pt-2 border-t border-slate-100">
+          <button onclick="showMyPageView()" class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-amber-50 hover:bg-amber-100 text-amber-950 border border-amber-300 font-bold text-xs transition-all shadow-2xs">
+            <span>📊</span>
+            <span>成績推移グラフ・学習記録を見る（マイページへ）</span>
           </button>
         </div>
 
@@ -509,39 +735,81 @@
       <!-- 【要件1-②】結果画面の有料版（Note）への誘導エリア（一番強調する場所） -->
       <!-- 目立つ和風ゴールドの枠線付き案内エリア -->
       <!-- ======================================================= -->
-      <div class="bg-gradient-to-br from-amber-50 via-white to-amber-50 rounded-2xl p-6 sm:p-7 wa-gold-border shadow-gold mb-6 relative overflow-hidden text-center">
+      <div class="bg-gradient-to-br from-amber-50/80 via-white to-amber-50/80 rounded-2xl p-5 sm:p-7 wa-gold-border shadow-gold mb-6 relative overflow-hidden text-center">
         
-        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-3">
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-2.5">
           <span>🏆</span>
           <span>京都検定2級 合格対策Note</span>
         </div>
 
-        <h3 class="font-serif font-bold text-xl sm:text-2xl text-slate-900 mb-2">
-          本格対策Note（50問・500問版）はこちら
+        <h3 class="font-serif font-bold text-lg sm:text-2xl text-slate-900 mb-2">
+          本格対策Note（500問版・50問版）はこちら
         </h3>
 
-        <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed mb-6">
+        <p class="text-xs sm:text-sm text-slate-600 max-w-lg mx-auto leading-relaxed mb-5">
           お試し版の演習はいかがでしたか？<br class="hidden sm:inline">
           本試験で確実に合格ライン（70点以上）を突破するために、網羅的な問題演習と本番形式の模擬テストで合格力を盤石に高めましょう。
         </p>
 
-        <!-- ボタン2種（主ボタン・副ボタン / 安全な別タブ開きを徹底） -->
-        <div class="flex flex-col sm:flex-row items-center justify-center gap-3.5 max-w-xl mx-auto">
+        <!-- 2種カード配置（崩れを防ぎ、左右の高さとレイアウトを統一） -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-xl mx-auto text-left">
           
-          <!-- 主ボタン: 500円版 -->
-          <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 min-h-[48px] py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 active:scale-[0.98] text-white font-serif font-bold text-xs sm:text-sm shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-1.5">
-            <span>500円版（50問＋テスト）を試す</span>
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+          <!-- メイン: 500問版（一番おすすめ・最優先強調） -->
+          <a href="https://note.com/fair_tiger775/n/n6609ef4edb13?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-kyoto-crimson via-amber-800 to-kyoto-purple text-amber-100 border-2 border-kyoto-gold shadow-button-gold btn-press-gold transition-all hover:brightness-105">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-300 text-amber-950 text-[11px] font-black tracking-wide shadow-xs whitespace-nowrap">一番おすすめ</span>
+                <span class="text-[11px] text-amber-200 font-medium whitespace-nowrap">本番100問模擬試験付</span>
+              </div>
+              <div class="font-serif font-black text-base sm:text-lg text-amber-50 flex items-center gap-1.5 mb-1">
+                <span>🏆 本格対策 500問版</span>
+              </div>
+              <p class="text-xs text-amber-200/90 leading-snug">
+                出題全範囲を完全網羅。過去問頻出テーマ＋本番形式テストで確実な合格を目指す決定版。
+              </p>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-amber-400/30 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-amber-300/80 block">販売価格</span>
+                <span class="text-lg sm:text-xl font-serif font-black text-amber-200">2,000円</span>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-amber-100 bg-black/25 px-3 py-1.5 rounded-lg border border-amber-400/40 group-hover:bg-black/35 transition-all">
+                Noteで見る
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
           </a>
 
-          <!-- 副ボタン: 2,000円版 -->
-          <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 min-h-[48px] py-3.5 px-4 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark active:scale-[0.98] text-amber-100 font-serif font-bold text-xs sm:text-sm shadow-button btn-press transition-all flex items-center justify-center gap-1.5 border border-kyoto-gold/40">
-            <span>【完全攻略】500問版（2,000円）を見る</span>
-            <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-            </svg>
+          <!-- サブ: 50問版（上品な淡い和風アンバー色で色味を付けつつ500問より控えめに） -->
+          <a href="https://note.com/fair_tiger775/n/n3d97822700fa?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 sm:p-5 rounded-2xl bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-50/60 text-slate-800 border-2 border-amber-300/80 hover:border-amber-400 shadow-xs hover:shadow-md active:scale-[0.98] transition-all">
+            <div>
+              <div class="flex items-center justify-between gap-2 mb-2">
+                <span class="px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[11px] font-bold shadow-xs whitespace-nowrap">手軽に演習</span>
+                <span class="text-[11px] text-amber-800/80 font-medium whitespace-nowrap">ミニテスト20問付</span>
+              </div>
+              <div class="font-serif font-bold text-base sm:text-lg text-slate-900 flex items-center gap-1.5 mb-1">
+                <span>📖 実践演習 50問版</span>
+              </div>
+              <p class="text-xs text-slate-600 leading-snug">
+                頻出ポイントを厳選収録。ミニテスト20問付きで基礎をスピーディーに固めたい方に。
+              </p>
+            </div>
+            
+            <div class="mt-4 pt-3 border-t border-amber-300/60 flex items-center justify-between">
+              <div>
+                <span class="text-[11px] text-slate-500 block">販売価格</span>
+                <span class="text-lg sm:text-xl font-serif font-bold text-amber-900">500円</span>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs sm:text-sm font-bold text-slate-800 bg-white/80 px-3 py-1.5 rounded-lg border border-amber-300/70 shadow-2xs group-hover:bg-white transition-all">
+                Noteで見る
+                <svg class="w-3.5 h-3.5 text-amber-700 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
           </a>
 
         </div>
@@ -551,7 +819,7 @@
       <!-- 全問振り返り・解説レビュー一覧 -->
       <div class="bg-white rounded-2xl p-5 sm:p-7 shadow-card border border-kyoto-border">
         <h3 class="font-serif font-bold text-lg text-slate-900 mb-4 flex items-center gap-2 pb-2 border-b border-kyoto-border">
-          <span class="text-kyoto-gold">📖</span> 全10問の正誤・解説一覧
+          <span class="text-kyoto-gold">📖</span> <span id="review-list-title">全問の正誤・解説一覧</span>
         </h3>
         <div id="review-list" class="space-y-3">
           <!-- 動的に挿入されます -->
@@ -575,8 +843,8 @@
           <span>全問復習クリア！</span>
         </div>
 
-        <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson mb-2">
-          全問復習達成！満点（10/10問）到達
+        <h2 id="review-complete-title" class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson mb-2">
+          全問復習達成！満点到達
         </h2>
 
         <p class="text-sm text-slate-600 max-w-md mx-auto leading-relaxed mb-6">
@@ -587,8 +855,8 @@
         <!-- スコア更新結果バナー -->
         <div class="p-4 rounded-xl bg-amber-50 border border-kyoto-gold max-w-sm mx-auto mb-6 text-center">
           <div class="text-xs text-amber-800 font-bold">更新後の最終スコア</div>
-          <div class="text-4xl font-serif font-black text-slate-900 my-1">10 / 10問 正解</div>
-          <div class="text-sm font-bold text-emerald-700">正答率 100%（Sランク達成・合格圏内）</div>
+          <div id="review-complete-score" class="text-4xl font-serif font-black text-slate-900 my-1">0 / 0問 正解</div>
+          <div class="text-sm font-bold text-emerald-700">正答率 100%（Sランク達成・合格圏内到達）</div>
         </div>
 
         <!-- Xシェアボタン -->
@@ -612,20 +880,52 @@
             2級合格には出題範囲全体の網羅が不可欠です。本番レベルの演習をさらに積んで、合格を盤石なものにしましょう！
           </p>
 
-          <!-- 500円版・2,000円版ボタンの並列配置（安全な別タブ開きを徹底） -->
-          <div class="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 min-h-[48px] py-3.5 px-4 rounded-xl bg-gradient-to-r from-amber-600 to-amber-700 hover:from-amber-700 hover:to-amber-800 active:scale-[0.98] text-white font-serif font-bold text-xs sm:text-sm shadow-button-gold btn-press-gold transition-all flex items-center justify-center gap-1.5">
-              <span>500円版（50問＋テスト）</span>
-              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+          <!-- 500問版（メイン）および50問版カード（崩れを防ぎ左右均等配置） -->
+          <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-xl mx-auto text-left mb-2">
+            <!-- メイン: 500問版 -->
+            <a href="https://note.com/fair_tiger775/n/n6609ef4edb13?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-br from-kyoto-crimson via-amber-800 to-kyoto-purple text-amber-100 border-2 border-kyoto-gold shadow-button-gold btn-press-gold transition-all hover:brightness-105">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-amber-300 text-amber-950 text-[10px] font-black tracking-wide shadow-xs whitespace-nowrap">一番おすすめ</span>
+                  <span class="text-[10.5px] text-amber-200 font-medium whitespace-nowrap">本番100問模擬試験付</span>
+                </div>
+                <div class="font-serif font-black text-base text-amber-50 flex items-center gap-1.5 mb-1">
+                  <span>🏆 本格対策 500問版</span>
+                </div>
+                <p class="text-xs text-amber-200/90 leading-snug">
+                  出題全範囲を完全網羅。過去問頻出テーマ＋本番テストで盤石の合格力を構築。
+                </p>
+              </div>
+              <div class="mt-3.5 pt-2.5 border-t border-amber-400/30 flex items-center justify-between">
+                <span class="text-lg font-serif font-black text-amber-200">2,000円</span>
+                <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-100 bg-black/25 px-2.5 py-1 rounded-lg border border-amber-400/40">
+                  Noteで見る
+                  <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </span>
+              </div>
             </a>
-            
-            <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="w-full sm:w-1/2 min-h-[48px] py-3.5 px-4 rounded-xl bg-gradient-to-r from-kyoto-crimson to-kyoto-purple hover:from-kyoto-crimsondark hover:to-kyoto-purpledark active:scale-[0.98] text-amber-100 font-serif font-bold text-xs sm:text-sm shadow-button btn-press transition-all flex items-center justify-center gap-1.5 border border-kyoto-gold/40">
-              <span>2,000円版（500問完全攻略）</span>
-              <svg class="w-4 h-4 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
-              </svg>
+
+            <!-- サブ: 50問版（淡い和風アンバーで色付け） -->
+            <a href="https://note.com/fair_tiger775/n/n3d97822700fa?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 rounded-2xl bg-gradient-to-br from-amber-50 via-amber-100/50 to-orange-50/60 text-slate-800 border-2 border-amber-300/80 hover:border-amber-400 shadow-xs hover:shadow-md active:scale-[0.98] transition-all">
+              <div>
+                <div class="flex items-center justify-between gap-2 mb-2">
+                  <span class="px-2.5 py-0.5 rounded-full bg-amber-200 text-amber-900 text-[10px] font-bold shadow-xs whitespace-nowrap">手軽に演習</span>
+                  <span class="text-[10.5px] text-amber-800/80 font-medium whitespace-nowrap">ミニテスト20問付</span>
+                </div>
+                <div class="font-serif font-bold text-base text-slate-900 flex items-center gap-1.5 mb-1">
+                  <span>📖 実践演習 50問版</span>
+                </div>
+                <p class="text-xs text-slate-600 leading-snug">
+                  重要テーマを厳選。ミニテスト20問付きで基礎をスピーディーに固めたい方に。
+                </p>
+              </div>
+              <div class="mt-3.5 pt-2.5 border-t border-amber-300/60 flex items-center justify-between">
+                <span class="text-lg font-serif font-bold text-amber-900">500円</span>
+                <span class="inline-flex items-center gap-1 text-xs font-bold text-slate-800 bg-white/80 px-2.5 py-1 rounded-lg border border-amber-300/70">
+                  Noteで見る
+                  <svg class="w-3.5 h-3.5 text-amber-700" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" /></svg>
+                </span>
+              </div>
             </a>
           </div>
         </div>
@@ -644,6 +944,215 @@
 
     </div>
 
+    <!-- ========================================================= -->
+    <!-- 画面5: マイページ（学習記録・合否推移グラフ・弱点克服） -->
+    <!-- ========================================================= -->
+    <div id="mypage-view" class="hidden w-full animate-fadeInSlideUp">
+      
+      <!-- マイページヘッダーカード -->
+      <div class="bg-white rounded-2xl p-6 sm:p-8 shadow-card border border-kyoto-border mb-6 relative overflow-hidden text-center">
+        <!-- 和風上部装飾バー -->
+        <div class="absolute top-0 left-0 right-0 h-2 bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple"></div>
+
+        <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-amber-100 text-amber-900 text-xs font-bold border border-amber-300 mb-2.5">
+          <span>📊</span>
+          <span>京都検定2級 学習進捗・合格分析</span>
+        </div>
+
+        <h2 class="font-serif font-black text-2xl sm:text-3xl text-kyoto-crimson mb-2 tracking-wide">
+          マイページ＆学習成績
+        </h2>
+
+        <p class="text-xs sm:text-sm text-slate-600 max-w-md mx-auto leading-relaxed mb-5">
+          これまでの演習履歴、合格基準（70%）に対する達成推移、克服すべき弱点問題を可視化しています。
+        </p>
+
+        <!-- 試験本番カウントダウン＆合格目標バナー -->
+        <div class="bg-gradient-to-r from-amber-50 via-white to-amber-50 p-4 rounded-xl border border-kyoto-gold/70 max-w-lg mx-auto mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-xl bg-kyoto-crimson text-white flex items-center justify-center text-lg flex-shrink-0 shadow-xs">
+              ⛩️
+            </div>
+            <div>
+              <div class="text-[11px] font-bold text-slate-500">次回 京都・観光文化検定試験（12月）</div>
+              <div class="font-serif font-black text-sm sm:text-base text-kyoto-crimson">
+                本番試験まで あと <span id="mypage-countdown-days" class="text-xl sm:text-2xl text-amber-600">--</span> 日
+              </div>
+            </div>
+          </div>
+          <button onclick="startQuiz(false)" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-kyoto-crimson hover:bg-kyoto-crimsondark text-white font-serif font-bold text-xs shadow-button transition-all whitespace-nowrap">
+            今すぐ演習する
+          </button>
+        </div>
+
+        <!-- 4大統計カード（総演習数、合格率、最高正答率、弱点未復習数） -->
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl mx-auto mb-6 text-left">
+          <div class="p-3.5 rounded-xl bg-kyoto-washi border border-kyoto-border">
+            <div class="text-[11px] text-slate-500 font-bold mb-1">総演習回数</div>
+            <div id="stat-total-attempts" class="text-2xl sm:text-3xl font-serif font-black text-slate-900">0 <span class="text-xs font-normal text-slate-600">回</span></div>
+            <div id="stat-total-answered" class="text-[10px] text-slate-500 mt-0.5">計 0 問解答</div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-emerald-50 border border-emerald-200">
+            <div class="text-[11px] text-emerald-800 font-bold mb-1">合格回数 / 合格率</div>
+            <div id="stat-pass-rate" class="text-2xl sm:text-3xl font-serif font-black text-emerald-700">0%</div>
+            <div id="stat-pass-count" class="text-[10px] text-emerald-800/80 mt-0.5">0回合格 (基準70%超)</div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-amber-50 border border-amber-200">
+            <div class="text-[11px] text-amber-900 font-bold mb-1">最高正答率</div>
+            <div id="stat-best-score" class="text-2xl sm:text-3xl font-serif font-black text-amber-700">0%</div>
+            <div id="stat-best-rank" class="text-[10px] text-amber-800 mt-0.5">最高ランク: -</div>
+          </div>
+
+          <div class="p-3.5 rounded-xl bg-rose-50 border border-rose-200">
+            <div class="text-[11px] text-rose-900 font-bold mb-1">要復習の弱点</div>
+            <div id="stat-weak-count" class="text-2xl sm:text-3xl font-serif font-black text-rose-700">0 <span class="text-xs font-normal text-rose-900">問</span></div>
+            <div class="text-[10px] text-rose-800 mt-0.5">過去の間違いストック</div>
+          </div>
+        </div>
+
+        <!-- ======================================================= -->
+        <!-- 成績推移グラフエリア（合格基準70%ライン対比SVGチャート） -->
+        <!-- ======================================================= -->
+        <div class="bg-white rounded-xl p-4 sm:p-5 border border-kyoto-border mb-6 text-left">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-2 mb-3 pb-2 border-b border-kyoto-border">
+            <div>
+              <h3 class="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
+                <span>📈</span>
+                <span>正答率の推移と合格基準ライン（70%）</span>
+              </h3>
+              <p class="text-[11px] text-slate-500">直近のテスト正答率の推移です。70%以上の合格圏を目指しましょう。</p>
+            </div>
+            <div class="flex items-center gap-3 text-xs">
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-rose-600">
+                <span class="inline-block w-3 h-0.5 bg-rose-500 border-b border-dashed border-rose-500"></span>
+                <span>合格ライン (70%)</span>
+              </span>
+              <span class="inline-flex items-center gap-1.5 text-[11px] font-bold text-amber-700">
+                <span class="inline-block w-2.5 h-2.5 rounded-full bg-amber-500"></span>
+                <span>あなたの正答率</span>
+              </span>
+            </div>
+          </div>
+
+          <!-- SVGグラフコンテナ -->
+          <div id="chart-container" class="w-full overflow-x-auto py-2">
+            <!-- 動的にSVGグラフがレンダリングされます -->
+            <div id="chart-empty-state" class="py-12 text-center text-slate-400 text-xs">
+              <span class="text-2xl block mb-2">📊</span>
+              テストを解くと、ここに合格ライン対比の成績推移グラフが自動生成されます。
+            </div>
+            <svg id="score-trend-svg" class="w-full h-48 sm:h-56 hidden" viewBox="0 0 600 220" preserveAspectRatio="none">
+              <!-- SVG要素はJSで描画 -->
+            </svg>
+          </div>
+        </div>
+
+        <!-- ブックマーク演習バナー（付箋問題がある場合に有効化） -->
+        <div id="bookmark-quiz-card" class="p-4 rounded-xl bg-gradient-to-r from-yellow-50 via-amber-50 to-yellow-50 border border-amber-300 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-amber-500 text-white flex items-center justify-center text-base font-bold flex-shrink-0 shadow-xs">
+              ⭐
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-900 flex items-center gap-2">
+                <span>付箋・ブックマーク問題の特訓</span>
+                <span id="bookmark-count-badge" class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-amber-200 text-amber-900 border border-amber-300">0問</span>
+              </div>
+              <div id="bookmark-quiz-desc" class="text-xs text-slate-600">演習中に気になって保存した問題（0問）だけを集中的に復習します。</div>
+            </div>
+          </div>
+          <div class="flex items-center gap-2 w-full sm:w-auto">
+            <button id="bookmark-quiz-btn" onclick="startBookmarkQuiz()" class="flex-1 sm:flex-initial px-4 py-2 rounded-xl bg-amber-600 hover:bg-amber-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-serif font-bold text-xs shadow-sm transition-all whitespace-nowrap">
+              付箋問題を解く
+            </button>
+            <button id="bookmark-clear-all-btn" onclick="confirmClearAllBookmarks()" class="px-3 py-2 rounded-xl border border-amber-300 text-amber-900 hover:bg-amber-100/70 disabled:opacity-40 disabled:cursor-not-allowed text-xs font-bold transition-all whitespace-nowrap" title="付箋をすべて解除">
+              全て解除
+            </button>
+          </div>
+        </div>
+
+        <!-- 弱点集中演習バナー（要復習問題がある場合に有効化） -->
+        <div id="weak-quiz-card" class="p-4 rounded-xl bg-gradient-to-r from-rose-50 via-amber-50 to-rose-50 border border-rose-200 mb-6 flex flex-col sm:flex-row items-center justify-between gap-3 text-left">
+          <div class="flex items-center gap-3">
+            <div class="w-9 h-9 rounded-xl bg-rose-600 text-white flex items-center justify-center text-base font-bold flex-shrink-0 shadow-xs">
+              🔥
+            </div>
+            <div>
+              <div class="font-bold text-sm text-slate-900 flex items-center gap-2">
+                <span>間違えた問題（弱点）の集中演習</span>
+                <span id="weak-count-badge" class="text-[10px] px-2 py-0.5 rounded-full font-bold bg-rose-100 text-rose-800 border border-rose-200">0問</span>
+              </div>
+              <div id="weak-quiz-desc" class="text-xs text-slate-600">過去に間違えた問題（0問）を反復演習して弱点をゼロにしましょう。</div>
+            </div>
+          </div>
+          <button id="weak-quiz-btn" onclick="startWeakQuestionsQuiz()" class="w-full sm:w-auto px-4 py-2 rounded-xl bg-rose-600 hover:bg-rose-700 disabled:opacity-40 disabled:cursor-not-allowed text-white font-serif font-bold text-xs shadow-sm transition-all whitespace-nowrap">
+            弱点克服テストを解く
+          </button>
+        </div>
+
+        <!-- 分野・ジャンル別 得意・不得意分析カード -->
+        <div class="bg-white rounded-xl p-4 sm:p-5 border border-kyoto-border mb-6 text-left">
+          <div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-1 mb-3 pb-2 border-b border-kyoto-border">
+            <div>
+              <h3 class="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
+                <span>🎯</span>
+                <span>分野・ジャンル別 得意・不得意分析</span>
+              </h3>
+              <p class="text-[11px] text-slate-500">分野ごとの正答率です。70%未満の分野は「この分野を特訓」で集中対策できます。</p>
+            </div>
+            <div class="text-[11px] text-slate-500 font-medium">
+              合格基準：各70%以上
+            </div>
+          </div>
+
+          <div id="category-analysis-container" class="space-y-3 pt-1">
+            <!-- 各分野の進捗バーと特訓ボタンがJSで動的生成されます -->
+          </div>
+        </div>
+
+        <!-- 学習履歴一覧テーブル -->
+        <div class="text-left mb-6">
+          <div class="flex items-center justify-between mb-3 pb-2 border-b border-kyoto-border">
+            <h3 class="font-serif font-bold text-base text-slate-900 flex items-center gap-2">
+              <span>📋</span>
+              <span>これまでの演習履歴一覧</span>
+            </h3>
+            <button onclick="confirmClearHistory()" class="text-xs text-slate-400 hover:text-rose-600 underline transition-colors">
+              履歴をリセット
+            </button>
+          </div>
+
+          <div class="overflow-x-auto border border-kyoto-border rounded-xl bg-white shadow-2xs max-h-72 overflow-y-auto">
+            <table class="w-full text-xs text-left border-collapse">
+              <thead class="bg-kyoto-washi text-slate-700 font-bold border-b border-kyoto-border sticky top-0">
+                <tr>
+                  <th class="p-2.5 sm:p-3">日時</th>
+                  <th class="p-2.5 sm:p-3">モード</th>
+                  <th class="p-2.5 sm:p-3 text-center">得点</th>
+                  <th class="p-2.5 sm:p-3 text-center">正答率</th>
+                  <th class="p-2.5 sm:p-3 text-center">合否判定</th>
+                </tr>
+              </thead>
+              <tbody id="history-table-body" class="divide-y divide-slate-100">
+                <!-- 動的に履歴行が挿入されます -->
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- トップに戻るボタン -->
+        <div class="mt-6 text-center">
+          <button onclick="showTopView()" class="min-h-[44px] px-8 py-2.5 rounded-xl border border-slate-300 text-slate-700 hover:bg-slate-50 text-xs sm:text-sm font-medium transition-colors inline-flex items-center gap-1.5">
+            <span>🏠</span> トップ画面へ戻る
+          </button>
+        </div>
+
+      </div>
+
+    </div>
+
   </main>
 
   <!-- トースト通知 -->
@@ -651,21 +1160,91 @@
     <span id="toast-icon">✓</span> <span id="toast-message">メッセージ</span>
   </div>
 
-  <!-- フッター（500円版・2,000円版の安全な外部リンクを整理） -->
-  <footer class="bg-gradient-to-r from-kyoto-crimson via-kyoto-purple to-kyoto-crimson text-amber-100 text-xs py-5 border-t-2 border-kyoto-gold mt-auto">
-    <div class="max-w-4xl mx-auto px-4 text-center space-y-2">
-      <p class="font-serif font-bold text-amber-50">京都商工会議所主催「京都・観光文化検定試験」2級 対策無料クイズ</p>
-      <p class="text-amber-200/70 text-[11px]">本アプリはHTML/CSS/JavaScript単一ファイルで完結し、スマートフォン・PC両対応です。</p>
-      <div class="pt-1 flex flex-wrap items-center justify-center gap-x-4 gap-y-1 text-xs">
-        <span class="text-amber-200/80">本格対策Note：</span>
-        <a href="https://note.com/your_note_500" target="_blank" rel="noopener noreferrer" class="text-amber-300 underline hover:text-white transition-colors">
-          500円版（50問＋テスト）
-        </a>
-        <span class="text-amber-300/40">|</span>
-        <a href="https://note.com/your_note_2000" target="_blank" rel="noopener noreferrer" class="text-amber-300 underline hover:text-white transition-colors">
-          2,000円版（500問完全攻略）
-        </a>
+  <!-- フッター（トップ画面の本格対策案内を集約し、500問版を最も目立たせる構成） -->
+  <footer class="bg-gradient-to-b from-kyoto-charcoal via-slate-900 to-slate-950 text-amber-100 text-xs py-8 border-t-2 border-kyoto-gold mt-auto">
+    <div class="max-w-3xl mx-auto px-4 text-center">
+      
+      <!-- 本格対策Note案内ブロック（トップ画面より統合） -->
+      <div class="mb-6">
+        <div class="inline-flex items-center gap-1.5 text-xs font-bold text-amber-300 bg-amber-950/70 px-3 py-1 rounded-full border border-kyoto-gold/50 shadow-xs mb-2.5">
+          <span>📚</span>
+          <span>本格対策で一発合格を目指す方へ</span>
+        </div>
+        <h3 class="font-serif font-bold text-base sm:text-lg text-white mb-1.5">
+          全50問・500問の本格対策版はこちら
+        </h3>
+        <p class="text-xs text-slate-300 max-w-md mx-auto leading-relaxed mb-5">
+          過去問頻出テーマの網羅演習や模擬テストで合格力を盤石に高めましょう。
+        </p>
+
+        <!-- 2種カード配置（表記崩れを完全解消し、本番100問・ミニテスト20問を明確化） -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-3.5 max-w-xl mx-auto text-left">
+          
+          <!-- メイン強調カード: 500問版（一番おすすめ・最優先強調） -->
+          <a href="https://note.com/fair_tiger775/n/n6609ef4edb13?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-xl bg-gradient-to-br from-kyoto-crimson via-amber-800 to-kyoto-purple text-amber-100 border-2 border-kyoto-gold shadow-button-gold btn-press-gold transition-all hover:brightness-110">
+            <div>
+              <div class="flex items-center justify-between gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded-full bg-amber-300 text-amber-950 text-[10px] font-black tracking-wide shadow-xs whitespace-nowrap">一番人気・おすすめ</span>
+                <span class="text-[11px] text-amber-200 font-semibold whitespace-nowrap">本番100問模擬試験付</span>
+              </div>
+              <div class="font-serif font-black text-sm sm:text-base text-amber-50 flex items-center gap-1.5 mb-1">
+                <span>🏆 本格対策 500問版</span>
+              </div>
+              <p class="text-[11.5px] text-amber-200/90 leading-snug">
+                出題全範囲を完全網羅。本番形式100問テスト付きで一発合格を狙う決定版。
+              </p>
+            </div>
+            <div class="mt-3.5 pt-2.5 border-t border-amber-400/30 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-amber-300/80 block">販売価格</span>
+                <span class="text-base sm:text-lg font-serif font-black text-amber-200">2,000円</span>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-100 bg-black/30 px-3 py-1.5 rounded-lg border border-amber-400/40 group-hover:bg-black/40 transition-all">
+                Noteで見る
+                <svg class="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+          <!-- サブカード: 50問版（20問ミニテスト付を明示＆上品な和風アンバーの彩り） -->
+          <a href="https://note.com/fair_tiger775/n/n3d97822700fa?app_launch=false" target="_blank" rel="noopener noreferrer" class="group relative flex flex-col justify-between p-4 sm:p-4.5 rounded-xl bg-gradient-to-br from-amber-950/60 via-slate-900 to-amber-950/40 text-amber-100 border border-amber-600/60 hover:border-amber-400 shadow-md transition-all hover:bg-amber-950/80">
+            <div>
+              <div class="flex items-center justify-between gap-1.5 mb-2">
+                <span class="px-2 py-0.5 rounded-full bg-amber-900/90 text-amber-200 text-[10px] font-bold border border-amber-500/50 whitespace-nowrap">手軽に基礎固め</span>
+                <span class="text-[11px] text-amber-300 font-semibold whitespace-nowrap">ミニテスト20問付</span>
+              </div>
+              <div class="font-serif font-bold text-sm sm:text-base text-amber-100 flex items-center gap-1.5 mb-1">
+                <span>📖 実践演習 50問版</span>
+              </div>
+              <p class="text-[11.5px] text-slate-300 leading-snug">
+                頻出テーマ50問＋ミニテスト20問を収録。短期間で頻出ポイントを攻略。
+              </p>
+            </div>
+            <div class="mt-3.5 pt-2.5 border-t border-amber-700/40 flex items-center justify-between">
+              <div>
+                <span class="text-[10px] text-slate-400 block">販売価格</span>
+                <span class="text-base sm:text-lg font-serif font-bold text-amber-300">500円</span>
+              </div>
+              <span class="inline-flex items-center gap-1 text-xs font-bold text-amber-200 bg-white/10 px-3 py-1.5 rounded-lg border border-amber-500/40 group-hover:bg-white/15 transition-all">
+                Noteで見る
+                <svg class="w-3.5 h-3.5 text-amber-400 group-hover:translate-x-0.5 transition-transform" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                </svg>
+              </span>
+            </div>
+          </a>
+
+        </div>
       </div>
+
+      <!-- コピーライトおよび補足情報 -->
+      <div class="pt-5 border-t border-slate-800 space-y-1 text-slate-400 text-[11px]">
+        <p class="font-serif text-slate-300">京都商工会議所主催「京都・観光文化検定試験」2級 対策無料クイズ</p>
+        <p class="text-slate-500">本アプリはHTML/CSS/JavaScript単一ファイルで完結し、スマートフォン・PC両対応です。</p>
+      </div>
+
     </div>
   </footer>
 
@@ -674,158 +1253,429 @@
   <!-- ========================================================= -->
   <script>
     /**
-     * 【問題データ構造】
-     * 京都検定2級レベル厳選10問
+     * 【問題データ取得】
+     * questions.js に定義された quizQuestionsData を動的取得
      */
-    const quizData = [
-      {
-        id: 1,
-        category: "神社・寺院",
-        question: "臨済宗相国寺派の大本山であり、足利義満が建立した鹿苑寺（金閣寺）や足利義政が建立した慈照寺（銀閣寺）を山外塔頭として持つ寺院はどこか？",
-        options: ["建仁寺", "東福寺", "相国寺", "妙心寺"],
-        answer: 2, // 相国寺
-        explanation: {
-          reason: "正解は「相国寺（しょうこくじ）」です。室町幕府3代将軍・足利義満が後円融天皇の勅許を得て建立した禅寺で、金閣寺（鹿苑寺）と銀閣寺（慈照寺）はともに相国寺の山外塔頭（山外の境外塔頭寺院）にあたります。",
-          history: "足利将軍家の手厚い庇護を受け、京都五山第2位（第1位は天龍寺、別格は南禅寺）に位置づけられました。応仁の乱をはじめ度重なる火災で荒廃しましたが、豊臣秀頼や徳川家光らによって再建が重ねられました。",
-          trivia: "法堂（重要文化財）の天井には狩野光信筆の『鳴き龍（蟠龍図）』があり、特定の場所で柏手を打つと見事に反響します。また、境内にある承天閣美術館には伊藤若冲の代表作『釈迦三尊像』や動植綵絵ゆかりの名宝が収蔵されています。",
-          tip: "「足利義満の金閣、足利義政の銀閣、その両方の本山は義満創建の相国寺」と一本化して記憶するのが京都検定2級の鉄則です。"
+    function getQuestionPool() {
+      if (typeof window !== 'undefined' && Array.isArray(window.quizQuestionsData) && window.quizQuestionsData.length > 0) {
+        return window.quizQuestionsData;
+      }
+      if (typeof quizQuestionsData !== 'undefined' && Array.isArray(quizQuestionsData) && quizQuestionsData.length > 0) {
+        return quizQuestionsData;
+      }
+      return [];
+    }
+
+    // 後方互換・参照用
+    const quizData = getQuestionPool();
+
+    /**
+     * ジャンル（分野）定義
+     * 問題の category プロパティに基づいてグルーピング・判定
+     */
+    const GENRE_DEFINITIONS = [
+      { id: 'all', label: '全分野（すべて）', shortLabel: '全分野', icon: '🌸', match: () => true },
+      { id: 'shrine_temple', label: '神社・寺院・仏像', shortLabel: '神社・寺院', icon: '⛩️', match: (c) => c && (c.includes('神社') || c.includes('寺院') || c.includes('仏像')) },
+      { id: 'history', label: '歴史・人物・幕末', shortLabel: '歴史・人物', icon: '📜', match: (c) => c && (c.includes('歴史') || c.includes('平安京') || c.includes('幕末') || c.includes('人物')) },
+      { id: 'festival', label: '祭り・年中行事・信仰', shortLabel: '祭り・行事', icon: '🏮', match: (c) => c && (c.includes('祭り') || c.includes('行事') || c.includes('信仰')) },
+      { id: 'architecture_art', label: '建築・庭園・美術', shortLabel: '建築・美術', icon: '🏯', match: (c) => c && (c.includes('建築') || c.includes('庭園') || c.includes('美術') || c.includes('工芸')) },
+      { id: 'food_culture', label: '京菓子・食文化・名所', shortLabel: '菓子・文学', icon: '🍵', match: (c) => c && (c.includes('菓子') || c.includes('料理') || c.includes('食') || c.includes('文学') || c.includes('名所')) }
+    ];
+
+    /**
+     * ジャンルの短いラベルを取得
+     */
+    function getGenreShortLabel(genreId) {
+      const def = GENRE_DEFINITIONS.find(g => g.id === genreId);
+      return def ? def.shortLabel : '全分野';
+    }
+
+    /**
+     * 出題設定ステート（デフォルト：ミニテスト5問・ランダム出題・全分野）
+     */
+    let selectedGenreMode = 'all';          // 'all' | 'shrine_temple' | 'history' | 'festival' | 'architecture_art' | 'food_culture'
+    let selectedOrderMode = 'random';       // 'random' (ランダム出題) | 'sequential' (登録順)
+    let selectedCountMode = 5;              // 5 (ミニテスト5問) | 'all' (全問演習)
+    let shuffleOptionsEnabled = true;       // 選択肢の並び順もシャッフル
+
+    // 制限時間タイマー（1問60秒）
+    let timerEnabled = false;
+    let quizTimerInterval = null;
+    let quizRemainingSeconds = 60;
+    const QUIZ_TIME_LIMIT = 60;
+
+    // LocalStorage キー定義
+    const STORAGE_KEY_HISTORY = 'kyoto_kentei_history_v2';
+    const STORAGE_KEY_WEAK = 'kyoto_kentei_weak_ids_v2';
+    const STORAGE_KEY_SOUND = 'kyoto_kentei_sound_enabled_v2';
+    const STORAGE_KEY_BOOKMARKS = 'kyoto_kentei_bookmarks_v2';
+    const STORAGE_KEY_TIMER = 'kyoto_kentei_timer_enabled_v2';
+
+    /**
+     * ブックマーク（付箋）管理関数群
+     */
+    function getBookmarkedIds() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_BOOKMARKS);
+        return raw ? JSON.parse(raw) : [];
+      } catch(e) {
+        return [];
+      }
+    }
+
+    function isQuestionBookmarked(qId) {
+      const ids = getBookmarkedIds();
+      return ids.includes(qId);
+    }
+
+    function toggleBookmark(qId) {
+      try {
+        let ids = getBookmarkedIds();
+        let added = false;
+        if (ids.includes(qId)) {
+          ids = ids.filter(id => id !== qId);
+        } else {
+          ids.push(qId);
+          added = true;
         }
-      },
-      {
-        id: 2,
-        category: "歴史・平安京",
-        question: "延暦13年（794）に桓武天皇が遷都した平安京において、都の中軸である朱雀大路の北端に位置し、天皇の私的居所である「内裏」や政治儀式の中心「朝堂院」などが配置された宮城区画を何と呼ぶか？",
-        options: ["聚楽第", "大内裏（平安宮）", "院庁", "六波羅館"],
-        answer: 1, // 大内裏
-        explanation: {
-          reason: "正解は「大内裏（だいだいり／平安宮）」です。平安京の中軸線である朱雀大路の最北端に置かれた宮城全体を指します。",
-          history: "唐の長安城を模して造営され、東西約1.2km・南北約1.4kmの広大な区画が築地塀と14の門で囲まれていました。大内裏の正門が「朱雀門」、都の南端の正門が「羅城門」です。",
-          trivia: "大内裏は度重なる火災により鎌倉時代以降は再建されず、現在の京都御所は公家邸宅だった「里内裏（東洞院土御門殿）」が定着したものです。平安神宮の社殿群（大極殿・応天門など）は、この大内裏の朝堂院を8分の5縮尺で復元したものです。",
-          tip: "「外側の宮城全体＝大内裏、その中にある天皇の居住空間＝内裏」という入れ子関係を整理しておきましょう。"
-        }
-      },
-      {
-        id: 3,
-        category: "祭り・行事",
-        question: "祇園祭（八坂神社）の前祭（さきまつり）山鉾巡行において、古来の慣例により「くじ取り式」を行わず、常に巡行の先頭を務める「くじ取らず」の鉾はどれか？",
-        options: ["函谷鉾", "月鉾", "長刀鉾", "船鉾"],
-        answer: 2, // 長刀鉾
-        explanation: {
-          reason: "正解は「長刀鉾（なぎなたほこ）」です。7月17日に行われる前祭（さきまつり）山鉾巡行で、古くからの慣例により常に先頭を進みます。",
-          history: "山鉾巡行の順番争いを防ぐため、室町時代の明応9年（1500）から六角堂で「くじ取り式」が始まりましたが、重要ないくつかの山鉾は順番が固定されており「くじ取らず」と呼ばれます。鉾頭の大長刀は三条小鍛冶宗近作と伝わり、疫病邪気を祓います。",
-          trivia: "現在巡行する全34基の山鉾の中で、人形（稚児人形）ではなく本物の男児が乗る「生稚児（いきちご）」が搭乗するのは長刀鉾ただ1基のみです。四条麩屋町での「注連縄（しめなわ）切り」は巡行最大の見せ場です。",
-          tip: "くじ取らずの代表格：前祭第1番「長刀鉾」、第5番「函谷鉾」、第21番「放下鉾」、第22番「岩戸山」、殿「船鉾」、後祭第1番「橋弁慶山」、殿「大船鉾」をセットで押さえましょう。"
-        }
-      },
-      {
-        id: 4,
-        category: "建築・庭園",
-        question: "室町幕府の管領・細川勝元が創建した禅寺で、白砂に15個の石が巧みに配され、徳川光圀の寄進と伝わる「吾唯知足」の蹲踞（つくばい）がある名高い世界遺産寺院はどこか？",
-        options: ["大徳寺大仙院", "龍安寺", "天龍寺", "妙心寺退蔵院"],
-        answer: 1, // 龍安寺
-        explanation: {
-          reason: "正解は「龍安寺（りょうあんじ）」です。白砂に15個の石が「5・2・3・2・3」または「東から7・5・3」に配された枯山水の方丈庭園（特別名勝・史跡）で世界的に有名です。",
-          history: "室町幕府管領の細川勝元が宝徳2年（1450）に徳大寺家の山荘を譲り受けて創建した臨済宗妙心寺派の禅寺です。石庭の石の裏に「小太郎・彦九郎」と刻まれていることから、河原者（庭師技能集団）の手による作庭と推測されています。",
-          trivia: "茶室「蔵六庵」の前にある蹲踞（つくばい）は、中央の四角い水溜めを漢字の部首「口」に見立て、周りの文字と合わせて「吾・唯・知・足（われただたるをしる）」と読みます。足ることを知る者は心安らかであるという禅の教えを表します。",
-          tip: "「細川勝元 ＋ 15の石庭 ＋ 吾唯知足の蹲踞 ＋ 鏡容池 ＝ 龍安寺」は京都検定の最重要・超鉄板キーワードです。"
-        }
-      },
-      {
-        id: 5,
-        category: "美術・工芸",
-        question: "江戸時代初期に本阿弥光悦とともに琳派の端緒を開き、建仁寺所蔵の国宝『風神雷神図屏風』や養源院の『白象図』杉戸絵などを手掛けた絵師は誰か？",
-        options: ["俵屋宗達", "尾形光琳", "酒井抱一", "狩野探幽"],
-        answer: 0, // 俵屋宗達
-        explanation: {
-          reason: "正解は「俵屋宗達（たわらやそうたつ）」です。金箔地に躍動感あふれる神仏の姿を描いた国宝『風神雷神図屏風』（建仁寺蔵）の生みの親です。",
-          history: "宗達は京都の町衆文化の中で絵屋「俵屋」を率い、本阿弥光悦の書と共作した料紙装飾や、絵具をにじませて濃淡を出す「たらし込み」技法を確立しました。この様式を約100年後に尾形光琳・乾山兄弟が、さらに江戸で酒井抱一が私淑・継承し「琳派」が形成されました。",
-          trivia: "東山区の養源院（血天井で有名）には、浅井長政の菩提を弔うため俵屋宗達が描いた『白象図』『唐獅子図』『麒麟図』などの杉戸絵（重要文化財）が現存しています。",
-          tip: "琳派の時系列：俵屋宗達（祖・風神雷神図初作） → 尾形光琳（模写・紅白梅図・燕子花図） → 酒井抱一（江戸琳派）。風神雷神図は宗達→光琳→抱一と模写が受け継がれた名作です。"
-        }
-      },
-      {
-        id: 6,
-        category: "京料理・菓子",
-        question: "毎年6月30日に京都の各神社で行われる「夏越の祓（なごしのはらえ）」に合わせ、氷をかたどった三角形の白いういろうに小豆を散らし、半年の穢れを祓い無病息災を祈って食される代表的な京菓子は何か？",
-        options: ["水無月", "柏餅", "葛きり", "走井餅"],
-        answer: 0, // 水無月
-        explanation: {
-          reason: "正解は「水無月（みなづき）」です。6月30日の「夏越の祓（なごしのはらえ）」に合わせて京都中で一斉に食される伝統和菓子です。",
-          history: "平安時代の宮中では、旧暦6月1日に氷室から氷を取り寄せて暑気払いをする「氷室の節句」がありました。当時、貴重な天然氷を手に入れられなかった庶民が、氷のかけらを模して三角形に切ったういろうに、魔除け・厄除けの意味を持つ赤い小豆を散らした菓子を考案したのが起源とされます。",
-          trivia: "6月30日には京都の各神社で、無病息災を祈って茅（かや）で編んだ大きな輪を「水無月の 夏越の祓する人は 千歳の命 のぶといふなり」と唱えながら八の字にくぐる「茅の輪（ちのわ）くぐり」が行われます。",
-          tip: "「6月30日 ＋ 夏越の祓 ＋ 茅の輪くぐり ＋ 三角形（氷）と小豆（魔除け）＝ 水無月」。年中行事と和菓子の対応問題は2級必出です。"
-        }
-      },
-      {
-        id: 7,
-        category: "年中行事・信仰",
-        question: "毎年8月16日の夜、お盆に迎えた精霊（先祖の霊）を送るために京都盆地を囲む山々に点火される「京都五山送り火」。その点火順序として正しいものはどれか？",
-        options: [
-          "「大文字」→「妙・法」→「船形」→「左大文字」→「鳥居形」",
-          "「鳥居形」→「左大文字」→「船形」→「妙・法」→「大文字」",
-          "「大文字」→「船形」→「妙・法」→「左大文字」→「鳥居形」",
-          "「妙・法」→「大文字」→「船形」→「左大文字」→「鳥居形」"
-        ],
-        answer: 0,
-        explanation: {
-          reason: "正解は「大文字」→「妙・法」→「船形」→「左大文字」→「鳥居形」です。東の東山から始まり、北、そして西へと5分間隔で点火されます。",
-          history: "点火時刻：20:00 東山如意ヶ嶽「大文字」 → 20:05 松ヶ崎「妙・法」 → 20:10 西賀茂「船形」 → 20:15 大北山「左大文字」 → 20:20 嵯峨「鳥居形」。お盆に迎えた先祖の霊（お精霊さん）を再び冥府へ送る仏教行事です。",
-          trivia: "「妙法」の妙は日蓮宗湧泉寺の日像、法は日良の筆。「船形」は西方寺の開祖・円仁が唐からの帰途に嵐を乗り切った故事に由来。「鳥居形」だけは松明を持って走って火床に点火する「突き松明」の方式がとられます。",
-          tip: "「東から西へ流れる」と地図上で覚えるのが確実です。東山（大）→ 松ヶ崎（妙法）→ 西賀茂（船）→ 金閣寺北（左大）→ 嵯峨（鳥居）。"
-        }
-      },
-      {
-        id: 8,
-        category: "神社・寺院・仏像",
-        question: "後白河上皇の院政庁「法住寺殿」に平清盛が造営寄進し、本堂内陣に湛慶作の本尊・千手観音坐像（国宝）を中心に1001体の木造千手観音立像が並ぶ寺院はどこか？",
-        options: ["三十三間堂（蓮華王院）", "六波羅蜜寺", "東福寺", "泉涌寺"],
-        answer: 0, // 三十三間堂
-        explanation: {
-          reason: "正解は「三十三間堂（さんじゅうさんげんどう）」（正式名：蓮華王院本堂）です。平清盛が後白河上皇のために長寛2年（1164）に造営・寄進しました。",
-          history: "建長元年（1249）の火災で焼失後、文永3年（1266）に再建された現存の本堂は日本最長の木造建築（南北約120m・国宝）です。「三十三」は観音菩薩が人々を救うために変化する33の姿にちなみます。",
-          trivia: "中央の本尊・木造千手観音坐像は、運慶の長男である仏師「湛慶（たんけい）」が82歳の最晩年に完成させた鎌倉彫刻の国宝です。本堂両端の「風神・雷神像」や「二十八部衆立像」も国宝。毎年1月には新成人が弓の腕を競う「通し矢（大的全国大会）」で知られます。",
-          tip: "「後白河上皇 ＋ 平清盛寄進 ＋ 1001体千手観音 ＋ 湛慶作本尊 ＋ 通し矢 ＝ 三十三間堂（蓮華王院）」は歴史・建築・美術の総合頻出事項です。"
-        }
-      },
-      {
-        id: 9,
-        category: "歴史・幕末",
-        question: "文久3年（1863）に結成された新選組が最初に屯所（本拠地）を置き、八木邸や前川邸などの旧家や、近藤勇の胸像・隊士の墓所「壬生塚」がある地域はどこか？",
-        options: ["伏見", "壬生", "祇園", "岡崎"],
-        answer: 1, // 壬生
-        explanation: {
-          reason: "正解は「壬生（みぶ）」です（現在の京都市下京区壬生）。新選組が結成された発祥の地です。",
-          history: "将軍・徳川家茂の上洛警護のため結成された浪士組のうち、近藤勇・土方歳三・芹沢鴨らが京都に残り、京都守護職・松平容保（会津藩主）の庇護下で「壬生浪士組（のちの新選組）」を結成しました。八木邸は局長・芹沢鴨暗殺の現場で、現在も鴨居に刀傷が残ります。",
-          trivia: "律宗大本山「壬生寺」は、隊士たちが境内で剣術や大砲の訓練を行った場所です。現在は「壬生塚」に近藤勇の胸像や隊士の合葬墓があり、多くのファンが参拝します。また、無言劇「壬生狂言」（重要無形民俗文化財）でも名高い古刹です。",
-          tip: "新選組屯所の3段階変遷は試験の超王道：「壬生（八木・前川邸） → 西本願寺 → 不動堂村」。この順序は必ず暗記してください。"
-        }
-      },
-      {
-        id: 10,
-        category: "文学・名所",
-        question: "嵯峨野の小倉山中腹に位置し、鎌倉時代の歌人・藤原定家が『小倉百人一首』を撰集した山荘「小倉山荘（時雨亭）」跡と伝わる石碑が立ち、重要文化財の多宝塔や美しい紅葉で知られる名刹はどこか？",
-        options: ["常寂光寺", "祇王寺", "宝厳院", "清涼寺"],
-        answer: 0, // 常寂光寺
-        explanation: {
-          reason: "正解は「常寂光寺（じょうじゃっこうじ）」です。小倉山の急斜面に佇み、境内には藤原定家の「時雨亭跡」と刻まれた石碑が建っています。",
-          history: "慶長元年（1596）、日蓮宗本圀寺16世の日禎（にっしん）上人が隠棲の地として開山しました。豪商・角倉了以一族の援助を受けて整備され、秋には小倉山全体が深紅に染まる嵯峨野屈指の紅葉の名所です。",
-          trivia: "境内高台にそびえる桧皮葺の「多宝塔」（重要文化財）は、辻子の商人・辻玄六が寄進した桃山〜江戸初期の名建築で、ここからは嵯峨野の町並みや遠く比叡山まで一望できます。また仁王門の仁王像は運慶作と伝わります。",
-          tip: "「小倉山 ＋ 藤原定家 ＋ 時雨亭跡（百人一首） ＋ 多宝塔 ＋ 日禎上人 ＝ 常寂光寺」と結びつけて記憶しましょう。"
+        localStorage.setItem(STORAGE_KEY_BOOKMARKS, JSON.stringify(ids));
+        updateBookmarkCountBadges();
+        return added;
+      } catch(e) {
+        console.warn('Bookmark storage error:', e);
+        return false;
+      }
+    }
+
+    function toggleCurrentBookmark() {
+      if (!activeQuestions || activeQuestions.length === 0) return;
+      const q = activeQuestions[currentQuestionIndex];
+      if (!q) return;
+
+      const added = toggleBookmark(q.id);
+      updateCurrentBookmarkButton(q.id);
+      showToast(added ? '⭐ 付箋（ブックマーク）に追加しました' : '付箋を解除しました');
+    }
+
+    function updateCurrentBookmarkButton(qId) {
+      const btn = document.getElementById('bookmark-toggle-btn');
+      const icon = document.getElementById('bookmark-icon');
+      const label = document.getElementById('bookmark-label');
+      if (!btn || !icon) return;
+
+      const bookmarked = isQuestionBookmarked(qId);
+      if (bookmarked) {
+        btn.className = "flex-shrink-0 px-3 py-1.5 rounded-xl border border-amber-400 bg-amber-100 text-amber-900 text-xs font-bold transition-all flex items-center gap-1.5 shadow-sm hover:bg-amber-200/80 cursor-pointer";
+        btn.title = "付箋中（クリックで付箋を外す）";
+        icon.textContent = '★';
+        if (label) label.textContent = '付箋中 (解除)';
+      } else {
+        btn.className = "flex-shrink-0 px-3 py-1.5 rounded-xl border border-kyoto-border bg-kyoto-washi hover:bg-amber-100/80 text-slate-700 hover:text-amber-800 text-xs font-bold transition-all flex items-center gap-1.5 shadow-2xs group cursor-pointer";
+        btn.title = "この問題に付箋をつける（ブックマーク）";
+        icon.textContent = '☆';
+        if (label) label.textContent = '付箋';
+      }
+    }
+
+    function updateBookmarkCountBadges() {
+      const count = getBookmarkedIds().length;
+      const topCountEl = document.getElementById('top-bookmark-count');
+      if (topCountEl) topCountEl.textContent = count;
+
+      const mypageBadge = document.getElementById('bookmark-count-badge');
+      if (mypageBadge) mypageBadge.textContent = `${count}問`;
+
+      const mypageDesc = document.getElementById('bookmark-quiz-desc');
+      if (mypageDesc) {
+        mypageDesc.textContent = count > 0 
+          ? `演習中に気になって保存した問題（${count}問）だけを集中的に復習します。` 
+          : `まだ付箋問題はありません。問題解答中に「☆付箋」ボタンを押すと保存されます。`;
+      }
+
+      const mypageBtn = document.getElementById('bookmark-quiz-btn');
+      if (mypageBtn) {
+        mypageBtn.disabled = (count === 0);
+        mypageBtn.textContent = count > 0 ? `付箋問題（${count}問）を解く` : '付箋問題がありません';
+      }
+
+      const clearAllBtn = document.getElementById('bookmark-clear-all-btn');
+      if (clearAllBtn) {
+        clearAllBtn.disabled = (count === 0);
+      }
+    }
+
+    /**
+     * 結果一覧アコーディオン内での付箋切り替え
+     */
+    function handleReviewBookmarkToggle(qId, btnElement) {
+      const added = toggleBookmark(qId);
+      if (btnElement) {
+        if (added) {
+          btnElement.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-2xs border-amber-400 bg-amber-100 text-amber-900";
+          btnElement.innerHTML = `<span>★</span> <span>付箋中（タップで解除）</span>`;
+        } else {
+          btnElement.className = "inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-2xs border-slate-300 bg-white text-slate-700 hover:bg-amber-50";
+          btnElement.innerHTML = `<span>☆</span> <span>付箋に追加</span>`;
         }
       }
-    ];
+      showToast(added ? '⭐ 付箋（ブックマーク）に追加しました' : '付箋を解除しました');
+    }
+
+    /**
+     * マイページからすべての付箋を一括解除
+     */
+    function confirmClearAllBookmarks() {
+      const count = getBookmarkedIds().length;
+      if (count === 0) return;
+      if (confirm(`保存されている付箋（${count}問）をすべて解除しますか？`)) {
+        try {
+          localStorage.removeItem(STORAGE_KEY_BOOKMARKS);
+          updateBookmarkCountBadges();
+          renderMyPage();
+          showToast('すべての付箋を解除しました。');
+        } catch(e) {
+          console.warn('Clear bookmarks error:', e);
+        }
+      }
+    }
+
+    /**
+     * 指定ジャンルに合致する問題配列を取得
+     */
+    function getQuestionsForGenre(genreId) {
+      const pool = getQuestionPool();
+      if (!genreId || genreId === 'all') return pool;
+
+      const def = GENRE_DEFINITIONS.find(g => g.id === genreId);
+      if (!def) return pool;
+
+      const filtered = pool.filter(q => def.match(q.category || ''));
+      return (filtered.length > 0) ? filtered : pool;
+    }
+
+    /**
+     * Fisher-Yates (Knuth) 配列シャッフルアルゴリズム
+     */
+    function shuffleArray(array) {
+      const arr = [...array];
+      for (let i = arr.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [arr[i], arr[j]] = [arr[j], arr[i]];
+      }
+      return arr;
+    }
+
+    /**
+     * 出題用の問題オブジェクト生成
+     */
+    function prepareQuestionForQuiz(rawQuestion, shuffleChoices = true) {
+      if (!shuffleChoices || !Array.isArray(rawQuestion.options) || rawQuestion.options.length <= 1) {
+        return {
+          ...rawQuestion,
+          displayOptions: [...rawQuestion.options],
+          displayAnswer: rawQuestion.answer,
+          displayChoiceExplanations: rawQuestion.choiceExplanations ? [...rawQuestion.choiceExplanations] : null
+        };
+      }
+
+      const originalIndices = rawQuestion.options.map((_, i) => i);
+      const shuffledIndices = shuffleArray(originalIndices);
+
+      const displayOptions = shuffledIndices.map(i => rawQuestion.options[i]);
+      const displayAnswer = shuffledIndices.indexOf(rawQuestion.answer);
+
+      let displayChoiceExplanations = null;
+      if (Array.isArray(rawQuestion.choiceExplanations)) {
+        displayChoiceExplanations = shuffledIndices.map(i => rawQuestion.choiceExplanations[i]);
+      }
+
+      return {
+        ...rawQuestion,
+        displayOptions,
+        displayAnswer,
+        displayChoiceExplanations
+      };
+    }
+
+    /**
+     * ジャンル選択処理
+     */
+    function setGenreMode(genreId) {
+      selectedGenreMode = genreId;
+      updateSettingsUI();
+    }
+
+    /**
+     * 出題順序選択処理
+     */
+    function setOrderMode(mode) {
+      selectedOrderMode = mode;
+      updateSettingsUI();
+    }
+
+    /**
+     * 出題問題数選択処理
+     */
+    function setQuestionCount(count) {
+      selectedCountMode = count;
+      updateSettingsUI();
+    }
+
+    /**
+     * タイマー設定トグル
+     */
+    function toggleTimerSetting(enabled) {
+      timerEnabled = enabled;
+      try {
+        localStorage.setItem(STORAGE_KEY_TIMER, timerEnabled.toString());
+      } catch(e) {}
+      showToast(timerEnabled ? '⏱️ 制限時間タイマー（1問60秒）をONにしました' : '制限時間タイマーをOFFにしました');
+    }
+
+    function toggleDataGuideModal() {
+      const modal = document.getElementById('data-guide-modal');
+      if (modal) modal.classList.toggle('hidden');
+    }
+
+    /**
+     * 出題設定UIの更新処理
+     */
+    function updateSettingsUI() {
+      const fullPool = getQuestionPool();
+      const genreQuestions = getQuestionsForGenre(selectedGenreMode);
+      const currentGenreCount = genreQuestions.length;
+
+      // プール問題数バッジ更新
+      const poolBadge = document.getElementById('registered-questions-badge');
+      if (poolBadge) {
+        poolBadge.textContent = `問題プール: 計 ${fullPool.length} 問収録`;
+      }
+
+      // 各ジャンルボタンのバッジ件数とアクティブ状態更新
+      GENRE_DEFINITIONS.forEach(g => {
+        const btn = document.getElementById(`genre-${g.id}-btn`);
+        const badge = document.getElementById(`genre-badge-${g.id}`);
+        const count = getQuestionsForGenre(g.id).length;
+
+        if (badge) badge.textContent = `${count}問`;
+
+        if (btn) {
+          if (selectedGenreMode === g.id) {
+            btn.className = "p-2 sm:p-2.5 rounded-xl font-bold border-2 transition-all flex items-center justify-between bg-kyoto-crimson text-white border-kyoto-crimson shadow-xs";
+            if (badge) badge.className = "text-[10px] bg-white/25 text-white px-1.5 py-0.5 rounded font-bold";
+          } else {
+            btn.className = "p-2 sm:p-2.5 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50";
+            if (badge) badge.className = "text-[10px] bg-slate-100 text-slate-600 px-1.5 py-0.5 rounded";
+          }
+        }
+      });
+
+      // 選択中ジャンルラベル
+      const genreLabelEl = document.getElementById('selected-genre-label');
+      const currentGenreDef = GENRE_DEFINITIONS.find(g => g.id === selectedGenreMode) || GENRE_DEFINITIONS[0];
+      if (genreLabelEl) {
+        genreLabelEl.textContent = `${currentGenreDef.icon} ${currentGenreDef.label}`;
+      }
+
+      // 出題順ボタンのアクティブ状態
+      const randomBtn = document.getElementById('mode-random-btn');
+      const seqBtn = document.getElementById('mode-sequential-btn');
+      if (randomBtn && seqBtn) {
+        if (selectedOrderMode === 'random') {
+          randomBtn.className = "py-2.5 px-3 rounded-lg font-bold border-2 transition-all flex items-center justify-center gap-1.5 bg-kyoto-crimson text-white border-kyoto-crimson shadow-xs whitespace-nowrap";
+          seqBtn.className = "py-2.5 px-3 rounded-lg font-medium border-2 transition-all flex items-center justify-center gap-1.5 bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap";
+        } else {
+          seqBtn.className = "py-2.5 px-3 rounded-lg font-bold border-2 transition-all flex items-center justify-center gap-1.5 bg-kyoto-crimson text-white border-kyoto-crimson shadow-xs whitespace-nowrap";
+          randomBtn.className = "py-2.5 px-3 rounded-lg font-medium border-2 transition-all flex items-center justify-center gap-1.5 bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap";
+        }
+      }
+
+      // 出題数ボタンのアクティブ状態
+      const btn5 = document.getElementById('count-5-btn');
+      const btnAll = document.getElementById('count-all-btn');
+      const badgeAll = document.getElementById('all-count-badge');
+      const count5Sublabel = document.getElementById('count-5-sublabel');
+
+      const is5Mode = (String(selectedCountMode) === '5');
+      const target5Count = Math.min(5, currentGenreCount);
+
+      if (count5Sublabel) {
+        count5Sublabel.textContent = (currentGenreCount < 5) ? `全${currentGenreCount}問中 ${target5Count}問` : 'すきま時間の5問';
+      }
+
+      if (btn5 && btnAll) {
+        if (is5Mode) {
+          btn5.className = "py-2.5 px-3 rounded-xl font-bold border-2 transition-all flex items-center justify-between bg-kyoto-purple text-white border-kyoto-purple shadow-xs whitespace-nowrap";
+          btnAll.className = "py-2.5 px-3 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap";
+          if (badgeAll) {
+            badgeAll.className = "text-xs font-bold bg-slate-100 text-slate-700 px-2 py-0.5 rounded-md flex-shrink-0";
+          }
+        } else {
+          btnAll.className = "py-2.5 px-3 rounded-xl font-bold border-2 transition-all flex items-center justify-between bg-kyoto-purple text-white border-kyoto-purple shadow-xs whitespace-nowrap";
+          btn5.className = "py-2.5 px-3 rounded-xl font-medium border-2 transition-all flex items-center justify-between bg-white text-slate-700 border-kyoto-border hover:bg-slate-50 whitespace-nowrap";
+          if (badgeAll) {
+            badgeAll.className = "text-xs font-black bg-white/20 text-white px-2 py-0.5 rounded-md flex-shrink-0";
+          }
+        }
+      }
+
+      // サブラベルの更新
+      const allCountSublabel = document.getElementById('all-count-sublabel');
+      if (allCountSublabel) allCountSublabel.textContent = `対象の全${currentGenreCount}問`;
+      if (badgeAll) badgeAll.textContent = `${currentGenreCount}問`;
+
+      // 実際に出題される問題数を計算
+      let effectiveCount = currentGenreCount;
+      if (selectedCountMode !== 'all') {
+        effectiveCount = Math.min(Number(selectedCountMode), currentGenreCount);
+      }
+
+      const effectiveLabel = document.getElementById('effective-count-label');
+      if (effectiveLabel) {
+        effectiveLabel.textContent = is5Mode ? `ミニテスト（${effectiveCount}問）` : `全問演習（${effectiveCount}問）`;
+      }
+
+      const countDesc = document.getElementById('count-mode-desc');
+      if (countDesc) {
+        const orderText = (selectedOrderMode === 'random') ? 'ランダム' : '登録順';
+        countDesc.textContent = `${currentGenreDef.shortLabel}：${currentGenreCount}問から${orderText}${effectiveCount}問抽出`;
+      }
+
+      // スタートボタンのテキスト更新（見栄えの良い2段構成）
+      const startBtnTitle = document.getElementById('start-btn-title');
+      const startBtnSubtitle = document.getElementById('start-btn-subtitle');
+
+      const isRandom = (selectedOrderMode === 'random');
+      const genrePrefix = (selectedGenreMode === 'all') ? '' : `${currentGenreDef.shortLabel}・`;
+
+      if (startBtnTitle && startBtnSubtitle) {
+        if (is5Mode) {
+          startBtnTitle.textContent = (selectedGenreMode === 'all') ? 'ミニテストを始める' : `${currentGenreDef.shortLabel}を演習する`;
+          startBtnSubtitle.textContent = isRandom ? `（${genrePrefix}ランダム${effectiveCount}問）` : `（${genrePrefix}順番通り・${effectiveCount}問）`;
+        } else {
+          startBtnTitle.textContent = (selectedGenreMode === 'all') ? '全問演習を始める' : `${currentGenreDef.shortLabel}全問を解く`;
+          startBtnSubtitle.textContent = isRandom ? `（${genrePrefix}ランダム全${effectiveCount}問）` : `（${genrePrefix}全${effectiveCount}問・登録順）`;
+        }
+      }
+
+      // タイマーチェックボックスの同期
+      const timerChk = document.getElementById('timer-mode-checkbox');
+      if (timerChk) timerChk.checked = timerEnabled;
+
+      // ブックマークバッジ更新
+      updateBookmarkCountBadges();
+    }
 
     /**
      * アプリケーション状態管理
      * 【要件2】復習モードで正解した場合、全体の正解数（例: 8/10 -> 10/10）へ加算し
      * ランク判定・正答率もリアルタイム更新
      */
-    const TOTAL_QUESTIONS_COUNT = 10;
     let currentQuestionIndex = 0;
     let isReviewMode = false;
     let activeQuestions = [];
     
-    // ユーザーの全問解答履歴: Map(questionId => { isCorrect: boolean, selectedIndex: number })
+    // ユーザーの全問解答履歴: Map(questionId => { isCorrect: boolean, selectedIndex: number, userSelectedText: string })
     let questionResults = new Map();
     // 復習対象の問題ID一覧（間違えた問題）
     let incorrectQuestionIds = new Set();
@@ -966,14 +1816,15 @@
      */
     function calculateStats() {
       let correctCount = 0;
-      quizData.forEach(q => {
+      activeQuestions.forEach(q => {
         const res = questionResults.get(q.id);
         if (res && res.isCorrect) {
           correctCount++;
         }
       });
 
-      const percentage = Math.round((correctCount / TOTAL_QUESTIONS_COUNT) * 100);
+      const total = activeQuestions.length || 1;
+      const percentage = Math.round((correctCount / total) * 100);
       let rank = 'C';
       let rankName = 'Cランク（要復習）';
       let isPassed = false;
@@ -998,7 +1849,7 @@
 
       return {
         correctCount,
-        total: TOTAL_QUESTIONS_COUNT,
+        total,
         percentage,
         rank,
         rankName,
@@ -1007,217 +1858,124 @@
     }
 
     /**
-     * 画面切り替え関数
+     * タイマー制御関数群（制限時間1問60秒）
      */
-    function showTopView() {
-      document.getElementById('top-view').classList.remove('hidden');
-      document.getElementById('quiz-view').classList.add('hidden');
-      document.getElementById('result-view').classList.add('hidden');
-      document.getElementById('review-complete-view').classList.add('hidden');
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
+    function startQuestionTimer() {
+      stopQuestionTimer();
+      const timerBarContainer = document.getElementById('quiz-timer-container');
+      const timerFill = document.getElementById('quiz-timer-bar');
+      const timerText = document.getElementById('quiz-timer-text');
 
-    /**
-     * クイズ開始（通常モード）
-     */
-    function startQuiz(resetScores = true) {
-      if (resetScores) {
-        questionResults.clear();
-        incorrectQuestionIds.clear();
-      }
-      isReviewMode = false;
-      activeQuestions = [...quizData];
-      currentQuestionIndex = 0;
-
-      document.getElementById('top-view').classList.add('hidden');
-      document.getElementById('result-view').classList.add('hidden');
-      document.getElementById('review-complete-view').classList.add('hidden');
-      document.getElementById('quiz-view').classList.remove('hidden');
-      document.getElementById('review-mode-badge').classList.add('hidden');
-
-      renderQuestion();
-    }
-
-    /**
-     * 復習モードの開始
-     * 間違えた問題だけを抽出して出題
-     */
-    function startReviewMode() {
-      // 間違えた問題を抽出
-      const reviewQuestions = quizData.filter(q => incorrectQuestionIds.has(q.id));
-      if (reviewQuestions.length === 0) {
-        showToast('復習する間違えた問題はありません！');
+      if (!timerEnabled) {
+        if (timerBarContainer) timerBarContainer.classList.add('hidden');
         return;
       }
 
-      isReviewMode = true;
-      activeQuestions = reviewQuestions;
-      currentQuestionIndex = 0;
+      if (timerBarContainer) timerBarContainer.classList.remove('hidden');
+      quizRemainingSeconds = QUIZ_TIME_LIMIT;
 
-      document.getElementById('top-view').classList.add('hidden');
-      document.getElementById('result-view').classList.add('hidden');
-      document.getElementById('review-complete-view').classList.add('hidden');
-      document.getElementById('quiz-view').classList.remove('hidden');
-      document.getElementById('review-mode-badge').classList.remove('hidden');
+      if (timerFill) {
+        timerFill.style.width = '100%';
+        timerFill.className = "bg-gradient-to-r from-kyoto-crimson via-kyoto-gold to-kyoto-purple h-full rounded-full transition-all duration-1000";
+      }
+      if (timerText) {
+        timerText.textContent = `${quizRemainingSeconds}`;
+        timerText.className = "font-mono text-sm sm:text-base font-black text-kyoto-crimson";
+      }
 
-      renderQuestion();
+      quizTimerInterval = setInterval(() => {
+        quizRemainingSeconds--;
+
+        if (timerText) {
+          timerText.textContent = `${quizRemainingSeconds}`;
+          if (quizRemainingSeconds <= 10) {
+            timerText.className = "font-mono text-sm sm:text-base font-black text-rose-600 animate-pulse";
+            if (timerFill) {
+              timerFill.className = "bg-rose-600 h-full rounded-full transition-all duration-1000";
+            }
+          }
+        }
+
+        if (timerFill) {
+          const pct = Math.max(0, (quizRemainingSeconds / QUIZ_TIME_LIMIT) * 100);
+          timerFill.style.width = `${pct}%`;
+        }
+
+        if (quizRemainingSeconds <= 0) {
+          stopQuestionTimer();
+          handleQuizTimeUp();
+        }
+      }, 1000);
+    }
+
+    function stopQuestionTimer() {
+      if (quizTimerInterval) {
+        clearInterval(quizTimerInterval);
+        quizTimerInterval = null;
+      }
     }
 
     /**
-     * 1問のレンダリング
+     * タイムアップ（時間切れ）処理
      */
-    function renderQuestion() {
+    function handleQuizTimeUp() {
       const q = activeQuestions[currentQuestionIndex];
-      const totalInRound = activeQuestions.length;
+      if (!q) return;
 
-      // 現在の全体正答数を取得してヘッダーに反映
-      const stats = calculateStats();
-      document.getElementById('current-correct-count').textContent = `全体正解: ${stats.correctCount} / 10`;
+      const correctIndex = (q.displayAnswer !== undefined) ? q.displayAnswer : q.answer;
+      const optionsList = q.displayOptions || q.options;
 
-      // プログレス
+      // 効果音（不正解）
+      playSound('incorrect');
+      showToast('⏰ タイムアップ！制限時間（60秒）が経過しました');
+
+      // 不正解として記録
       if (isReviewMode) {
-        document.getElementById('progress-text').textContent = `復習 第 ${currentQuestionIndex + 1} 問 / 残り ${totalInRound} 問`;
-        document.getElementById('question-badge').textContent = `復習`;
+        questionResults.set(q.id, { isCorrect: false, selectedIndex: -1, userSelectedText: '時間切れ' });
+        incorrectQuestionIds.add(q.id);
       } else {
-        document.getElementById('progress-text').textContent = `第 ${currentQuestionIndex + 1} 問 / 全 ${totalInRound} 問`;
-        document.getElementById('question-badge').textContent = `Q${q.id}`;
+        questionResults.set(q.id, { isCorrect: false, selectedIndex: -1, userSelectedText: '時間切れ' });
+        incorrectQuestionIds.add(q.id);
       }
 
-      document.getElementById('question-category').textContent = q.category || '京都の文化';
-
-      const progressPercent = Math.round(((currentQuestionIndex) / totalInRound) * 100);
-      document.getElementById('progress-bar').style.width = `${progressPercent}%`;
-
-      // 問題文
-      document.getElementById('question-text').textContent = q.question;
-
-      // 解説ボックス非表示
-      const expBox = document.getElementById('explanation-box');
-      expBox.classList.add('hidden');
-
-      // 選択肢ボタン生成
-      const optionsContainer = document.getElementById('options-container');
-      optionsContainer.innerHTML = '';
-
-      const numberIcons = ['①', '②', '③', '④'];
-
-      q.options.forEach((optText, idx) => {
-        const btn = document.createElement('button');
-        btn.id = `option-btn-${idx}`;
-        btn.className = `option-card w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-kyoto-border bg-white hover:bg-amber-50/60 hover:border-kyoto-gold/70 active:scale-[0.99] text-left font-sans text-slate-800 transition-all duration-150 shadow-xs flex items-center justify-between group focus:outline-none`;
-        
-        btn.innerHTML = `
-          <div class="flex items-center gap-3 sm:gap-3.5 flex-1 pr-2">
-            <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-kyoto-washi group-hover:bg-amber-100 text-kyoto-crimson font-serif font-bold text-xs sm:text-sm flex items-center justify-center flex-shrink-0 transition-colors border border-kyoto-border">
-              ${numberIcons[idx]}
-            </span>
-            <span class="text-[15px] sm:text-base font-medium leading-relaxed">${optText}</span>
-          </div>
-          <div class="status-icon w-6 h-6 flex items-center justify-center text-base flex-shrink-0"></div>
-        `;
-
-        btn.onclick = () => selectAnswer(idx);
-        optionsContainer.appendChild(btn);
-      });
-
-      // 次へ進むボタンのラベル
-      const nextBtnText = document.getElementById('next-btn-text');
-      if (currentQuestionIndex === totalInRound - 1) {
-        nextBtnText.textContent = isReviewMode ? '復習結果を確認する' : '結果発表を見る';
-      } else {
-        nextBtnText.textContent = '次の問題へ進む';
-      }
-
-      window.scrollTo({ top: 0, behavior: 'smooth' });
-    }
-
-    /**
-     * 解答選択
-     * 【要件2】復習モードで正解した場合、全体の正解数へ加算してスコア更新。
-     * 再び間違えた場合はスコア加算せず、復習対象に残す。
-     */
-    function selectAnswer(selectedIndex) {
-      const q = activeQuestions[currentQuestionIndex];
-      const isCorrect = (selectedIndex === q.answer);
-
-      // 効果音
-      playSound(isCorrect ? 'correct' : 'incorrect');
-
-      if (isReviewMode) {
-        if (isCorrect) {
-          // 復習で正解！スコア加算＆復習対象から除外
-          questionResults.set(q.id, { isCorrect: true, selectedIndex });
-          incorrectQuestionIds.delete(q.id);
-          showToast(`【スコア加算！】正解により全体スコアが更新されました！ (計 ${calculateStats().correctCount}/10問)`);
-        } else {
-          // 復習でも不正解：スコア加算せず復習対象に残る
-          questionResults.set(q.id, { isCorrect: false, selectedIndex });
-          incorrectQuestionIds.add(q.id);
-          showToast('不正解です。復習リストに保持されます。');
-        }
-      } else {
-        // 通常モードの記録
-        questionResults.set(q.id, { isCorrect, selectedIndex });
-        if (!isCorrect) {
-          incorrectQuestionIds.add(q.id);
-        } else {
-          incorrectQuestionIds.delete(q.id);
-        }
-      }
-
-      // ヘッダーの正解数をリアルタイム更新
+      // ヘッダーの正解数を更新
       const updatedStats = calculateStats();
-      document.getElementById('current-correct-count').textContent = `全体正解: ${updatedStats.correctCount} / 10`;
+      document.getElementById('current-correct-count').textContent = `全体正解: ${updatedStats.correctCount} / ${updatedStats.total}`;
 
-      // ボタンのロック＆ハイライト
-      q.options.forEach((_, idx) => {
+      // ボタンをロック
+      optionsList.forEach((_, idx) => {
         const btn = document.getElementById(`option-btn-${idx}`);
+        if (!btn) return;
         btn.disabled = true;
         btn.onclick = null;
-        btn.classList.remove('hover:bg-amber-50/60', 'hover:border-kyoto-gold/70');
-
         const iconContainer = btn.querySelector('.status-icon');
 
-        if (idx === q.answer) {
+        if (idx === correctIndex) {
           btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 text-left font-sans font-semibold transition-all shadow-sm flex items-center justify-between";
-          iconContainer.innerHTML = `<span class="text-emerald-700 font-bold text-xs sm:text-sm">✓ 正解</span>`;
-        } else if (idx === selectedIndex && !isCorrect) {
-          btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-950 text-left font-sans transition-all shadow-sm flex items-center justify-between";
-          iconContainer.innerHTML = `<span class="text-rose-600 font-bold text-xs sm:text-sm">✕ 不正解</span>`;
+          if (iconContainer) iconContainer.innerHTML = `<span class="text-emerald-700 font-bold text-xs sm:text-sm">✓ 正解</span>`;
         } else {
           btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 text-left font-sans opacity-60 cursor-not-allowed flex items-center justify-between";
         }
       });
 
-      // 判定バナー
+      // 判定バナー（タイムアップ表示）
       const banner = document.getElementById('judgment-banner');
-      if (isCorrect) {
-        banner.className = "flex items-center gap-3 p-3.5 sm:p-4 rounded-xl mb-4 text-base font-bold shadow-sm bg-emerald-100/90 text-emerald-900 border border-emerald-300";
-        banner.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">〇</div>
-          <div>
-            <div class="text-sm sm:text-base font-black">${isReviewMode ? '復習成功！見事に正解です' : '正解です！見事な知識です'}</div>
-            <div class="text-xs sm:text-[13px] font-normal text-emerald-800">京都検定2級合格に直結する重要ポイントです。</div>
-          </div>
-        `;
-      } else {
-        banner.className = "flex items-center gap-3 p-3.5 sm:p-4 rounded-xl mb-4 text-base font-bold shadow-sm bg-rose-100/90 text-rose-950 border border-rose-300";
-        banner.innerHTML = `
-          <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">✕</div>
-          <div>
-            <div class="text-sm sm:text-base font-black">惜しい！不正解です。</div>
-            <div class="text-xs sm:text-[13px] font-normal text-rose-800">正解は「${q.options[q.answer]}」でした。下の深掘り解説で復習しましょう。</div>
-          </div>
-        `;
-      }
+      banner.className = "flex items-center gap-3 p-3.5 sm:p-4 rounded-xl mb-4 text-base font-bold shadow-sm bg-amber-100/90 text-amber-950 border border-amber-300";
+      banner.innerHTML = `
+        <div class="w-8 h-8 rounded-full bg-amber-500 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">⏰</div>
+        <div>
+          <div class="text-sm sm:text-base font-black">時間切れ（タイムアップ）です！</div>
+          <div class="text-xs sm:text-[13px] font-normal text-amber-900">正解は「${optionsList[correctIndex]}」でした。本番は1問約54秒が目安です。</div>
+        </div>
+      `;
 
-      // 深掘り解説の注入
+      // 解説を展開
       document.getElementById('exp-reason').textContent = q.explanation.reason;
+      renderChoiceExplanations(q, correctIndex, optionsList);
       document.getElementById('exp-history').textContent = q.explanation.history;
       document.getElementById('exp-trivia').textContent = q.explanation.trivia;
       document.getElementById('exp-tip').textContent = q.explanation.tip;
 
-      // 解説ボックスを表示し、スムーズに視界へスクロール
       const expBox = document.getElementById('explanation-box');
       expBox.classList.remove('hidden');
 
@@ -1230,6 +1988,417 @@
     }
 
     /**
+     * 画面切り替え関数
+     */
+    function showTopView() {
+      stopQuestionTimer();
+      updateSettingsUI();
+      updateExamCountdown();
+      document.getElementById('top-view').classList.remove('hidden');
+      document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * クイズ開始（通常モード・ジャンル別出題対応）
+     */
+    function startQuiz(resetScores = true) {
+      stopQuestionTimer();
+
+      // 選択ジャンルに基づく問題プール取得
+      const pool = getQuestionsForGenre(selectedGenreMode);
+      if (!pool || pool.length === 0) {
+        showToast('選択した分野の問題データが見つかりませんでした。');
+        return;
+      }
+
+      if (resetScores) {
+        questionResults.clear();
+        incorrectQuestionIds.clear();
+      }
+      isReviewMode = false;
+
+      // 選択肢シャッフル設定
+      const shuffleChk = document.getElementById('shuffle-options-checkbox');
+      shuffleOptionsEnabled = shuffleChk ? shuffleChk.checked : true;
+
+      // 1. 問題の並び順（ランダム or 登録順）
+      let candidatePool = [...pool];
+      if (selectedOrderMode === 'random') {
+        candidatePool = shuffleArray(candidatePool);
+      }
+
+      // 2. 出題数の切り出し
+      let targetCount = candidatePool.length;
+      if (selectedCountMode !== 'all') {
+        targetCount = Math.min(Number(selectedCountMode), candidatePool.length);
+      }
+      const selectedQuestions = candidatePool.slice(0, targetCount);
+
+      // 3. 各問題の選択肢シャッフル処理
+      activeQuestions = selectedQuestions.map(q => prepareQuestionForQuiz(q, shuffleOptionsEnabled));
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      document.getElementById('review-mode-badge').classList.add('hidden');
+
+      renderQuestion();
+    }
+
+    /**
+     * 付箋・ブックマーク問題のみを出題するモード
+     */
+    function startBookmarkQuiz() {
+      stopQuestionTimer();
+      const bookmarkedIds = getBookmarkedIds();
+      if (!bookmarkedIds || bookmarkedIds.length === 0) {
+        showToast('付箋（ブックマーク）された問題がまだありません。');
+        return;
+      }
+
+      const pool = getQuestionPool();
+      const targetQuestions = pool.filter(q => bookmarkedIds.includes(q.id));
+      if (targetQuestions.length === 0) {
+        showToast('付箋問題データが見つかりませんでした。');
+        return;
+      }
+
+      questionResults.clear();
+      incorrectQuestionIds.clear();
+      isReviewMode = false;
+
+      const shuffleChk = document.getElementById('shuffle-options-checkbox');
+      shuffleOptionsEnabled = shuffleChk ? shuffleChk.checked : true;
+
+      activeQuestions = targetQuestions.map(q => prepareQuestionForQuiz(q, shuffleOptionsEnabled));
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      
+      const badge = document.getElementById('review-mode-badge');
+      badge.textContent = '⭐ 付箋問題特訓';
+      badge.classList.remove('hidden');
+
+      renderQuestion();
+      showToast(`⭐ 付箋問題 ${activeQuestions.length}問の特訓を開始します！`);
+    }
+
+    /**
+     * 復習モードの開始
+     */
+    function startReviewMode() {
+      stopQuestionTimer();
+      const reviewQuestions = activeQuestions.filter(q => incorrectQuestionIds.has(q.id));
+      if (reviewQuestions.length === 0) {
+        showToast('復習する間違えた問題はありません！');
+        return;
+      }
+
+      isReviewMode = true;
+      activeQuestions = reviewQuestions.map(q => prepareQuestionForQuiz(q, shuffleOptionsEnabled));
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      
+      const badge = document.getElementById('review-mode-badge');
+      badge.textContent = '復習モード';
+      badge.classList.remove('hidden');
+
+      renderQuestion();
+    }
+
+    /**
+     * 1問のレンダリング（一問一答画面の更新）
+     */
+    function renderQuestion() {
+      if (!activeQuestions || activeQuestions.length === 0) {
+        showToast('出題データがありません。');
+        showTopView();
+        return;
+      }
+
+      const q = activeQuestions[currentQuestionIndex];
+      if (!q) {
+        showResult(true);
+        return;
+      }
+
+      const totalInRound = activeQuestions.length;
+
+      // 現在の全体正答数をヘッダーにリアルタイム反映
+      const stats = calculateStats();
+      const currentCorrectEl = document.getElementById('current-correct-count');
+      if (currentCorrectEl) {
+        currentCorrectEl.textContent = `正解: ${stats.correctCount} / ${totalInRound}`;
+      }
+
+      // 進捗テキスト & バッジ
+      const progressTextEl = document.getElementById('progress-text');
+      const questionBadgeEl = document.getElementById('question-badge');
+      if (isReviewMode) {
+        if (progressTextEl) progressTextEl.textContent = `復習 第 ${currentQuestionIndex + 1} 問 / 残り ${totalInRound} 問`;
+        if (questionBadgeEl) questionBadgeEl.textContent = `復習`;
+      } else {
+        if (progressTextEl) progressTextEl.textContent = `第 ${currentQuestionIndex + 1} 問 / 全 ${totalInRound} 問`;
+        if (questionBadgeEl) questionBadgeEl.textContent = `Q${currentQuestionIndex + 1}`;
+      }
+
+      // 分野カテゴリ
+      const catEl = document.getElementById('question-category');
+      if (catEl) {
+        catEl.textContent = q.category || '京都の文化';
+      }
+
+      // プログレスバー
+      const progressPercent = Math.round(((currentQuestionIndex + 1) / totalInRound) * 100);
+      const progressBarEl = document.getElementById('progress-bar');
+      if (progressBarEl) {
+        progressBarEl.style.width = `${progressPercent}%`;
+      }
+
+      // 問題文
+      const qTextEl = document.getElementById('question-text');
+      if (qTextEl) {
+        qTextEl.textContent = q.question;
+      }
+
+      // 付箋（ブックマーク）ボタン状態
+      updateCurrentBookmarkButton(q.id);
+
+      // 解説ボックスを隠す
+      const expBox = document.getElementById('explanation-box');
+      if (expBox) {
+        expBox.classList.add('hidden');
+      }
+
+      // 4択ボタンの描画
+      const optionsContainer = document.getElementById('options-container');
+      if (optionsContainer) {
+        optionsContainer.innerHTML = '';
+        const numberIcons = ['①', '②', '③', '④'];
+        const optionsToRender = q.displayOptions || q.options;
+
+        optionsToRender.forEach((optText, idx) => {
+          const btn = document.createElement('button');
+          btn.id = `option-btn-${idx}`;
+          btn.type = 'button';
+          btn.className = `option-card w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-kyoto-border bg-white hover:bg-amber-50/60 hover:border-kyoto-gold/70 active:scale-[0.99] text-left font-sans text-slate-800 transition-all duration-150 shadow-xs flex items-center justify-between group focus:outline-none cursor-pointer`;
+          
+          btn.innerHTML = `
+            <div class="flex items-center gap-3 sm:gap-3.5 flex-1 pr-2">
+              <span class="w-7 h-7 sm:w-8 sm:h-8 rounded-full bg-kyoto-washi group-hover:bg-amber-100 text-kyoto-crimson font-serif font-bold text-xs sm:text-sm flex items-center justify-center flex-shrink-0 transition-colors border border-kyoto-border">
+                ${numberIcons[idx] || (idx + 1)}
+              </span>
+              <span class="text-[15px] sm:text-base font-medium leading-relaxed">${optText}</span>
+            </div>
+            <div class="status-icon w-6 h-6 flex items-center justify-center text-base flex-shrink-0"></div>
+          `;
+
+          btn.onclick = () => selectAnswer(idx);
+          optionsContainer.appendChild(btn);
+        });
+      }
+
+      // 「次へ」ボタンのラベル設定
+      const nextBtnText = document.getElementById('next-btn-text');
+      if (nextBtnText) {
+        if (currentQuestionIndex === totalInRound - 1) {
+          nextBtnText.textContent = isReviewMode ? '復習結果を確認する' : '結果発表を見る';
+        } else {
+          nextBtnText.textContent = '次の問題へ進む';
+        }
+      }
+
+      // タイマースタート（設定時のみ）
+      startQuestionTimer();
+
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * 解答選択（一問一答＆即時判定＋全選択肢の徹底解説表示）
+     */
+    function selectAnswer(selectedIndex) {
+      stopQuestionTimer();
+
+      const q = activeQuestions[currentQuestionIndex];
+      if (!q) return;
+
+      const correctIndex = (q.displayAnswer !== undefined) ? q.displayAnswer : q.answer;
+      const optionsList = q.displayOptions || q.options;
+      const isCorrect = (selectedIndex === correctIndex);
+
+      // 効果音再生
+      playSound(isCorrect ? 'correct' : 'incorrect');
+
+      const userSelectedText = optionsList[selectedIndex];
+
+      // 成績・弱点記録
+      if (isReviewMode) {
+        if (isCorrect) {
+          questionResults.set(q.id, { isCorrect: true, selectedIndex, userSelectedText });
+          incorrectQuestionIds.delete(q.id);
+          // 弱点ストックから除去
+          const weakIds = getWeakQuestionIds().filter(id => id !== q.id);
+          try { localStorage.setItem(STORAGE_KEY_WEAK, JSON.stringify(weakIds)); } catch(e){}
+          const currentStats = calculateStats();
+          showToast(`【正解！】復習達成！ (計 ${currentStats.correctCount}/${activeQuestions.length}問)`);
+        } else {
+          questionResults.set(q.id, { isCorrect: false, selectedIndex, userSelectedText });
+          incorrectQuestionIds.add(q.id);
+          showToast('不正解です。復習リストに保持されます。');
+        }
+      } else {
+        questionResults.set(q.id, { isCorrect, selectedIndex, userSelectedText });
+        if (!isCorrect) {
+          incorrectQuestionIds.add(q.id);
+        } else {
+          incorrectQuestionIds.delete(q.id);
+        }
+      }
+
+      // ヘッダーの正解数を更新
+      const updatedStats = calculateStats();
+      const currentCorrectEl = document.getElementById('current-correct-count');
+      if (currentCorrectEl) {
+        currentCorrectEl.textContent = `正解: ${updatedStats.correctCount} / ${activeQuestions.length}`;
+      }
+
+      // 選択肢ボタンのロック＆正誤スタイル適用
+      optionsList.forEach((_, idx) => {
+        const btn = document.getElementById(`option-btn-${idx}`);
+        if (!btn) return;
+        btn.disabled = true;
+        btn.onclick = null;
+        btn.classList.remove('hover:bg-amber-50/60', 'hover:border-kyoto-gold/70', 'cursor-pointer');
+
+        const iconContainer = btn.querySelector('.status-icon');
+
+        if (idx === correctIndex) {
+          btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-emerald-500 bg-emerald-50 text-emerald-950 text-left font-sans font-semibold transition-all shadow-sm flex items-center justify-between";
+          if (iconContainer) iconContainer.innerHTML = `<span class="text-emerald-700 font-bold text-xs sm:text-sm">✓ 正解</span>`;
+        } else if (idx === selectedIndex && !isCorrect) {
+          btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border-2 border-rose-400 bg-rose-50 text-rose-950 text-left font-sans transition-all shadow-sm flex items-center justify-between";
+          if (iconContainer) iconContainer.innerHTML = `<span class="text-rose-600 font-bold text-xs sm:text-sm">✕ 不正解</span>`;
+        } else {
+          btn.className = "w-full min-h-[52px] sm:min-h-[58px] p-3.5 sm:p-4 rounded-xl border border-slate-200 bg-slate-50 text-slate-400 text-left font-sans opacity-60 cursor-not-allowed flex items-center justify-between";
+        }
+      });
+
+      // 判定バナーの表示
+      const banner = document.getElementById('judgment-banner');
+      if (banner) {
+        if (isCorrect) {
+          banner.className = "flex items-center gap-3 p-3.5 sm:p-4 rounded-xl mb-4 text-base font-bold shadow-sm bg-emerald-100/90 text-emerald-900 border border-emerald-300";
+          banner.innerHTML = `
+            <div class="w-8 h-8 rounded-full bg-emerald-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">〇</div>
+            <div>
+              <div class="text-sm sm:text-base font-black">${isReviewMode ? '復習成功！見事に正解です' : '正解です！見事な知識です'}</div>
+              <div class="text-xs sm:text-[13px] font-normal text-emerald-800">京都検定2級合格に直結する重要ポイントです。</div>
+            </div>
+          `;
+        } else {
+          banner.className = "flex items-center gap-3 p-3.5 sm:p-4 rounded-xl mb-4 text-base font-bold shadow-sm bg-rose-100/90 text-rose-950 border border-rose-300";
+          banner.innerHTML = `
+            <div class="w-8 h-8 rounded-full bg-rose-600 text-white flex items-center justify-center text-lg font-bold shadow-sm flex-shrink-0">✕</div>
+            <div>
+              <div class="text-sm sm:text-base font-black">惜しい！不正解です。</div>
+              <div class="text-xs sm:text-[13px] font-normal text-rose-800">正解は「${optionsList[correctIndex]}」でした。下の深掘り解説で全選択肢を確認しましょう。</div>
+            </div>
+          `;
+        }
+      }
+
+      // 解説の展開
+      if (q.explanation) {
+        const expReasonEl = document.getElementById('exp-reason');
+        if (expReasonEl) expReasonEl.textContent = q.explanation.reason;
+
+        renderChoiceExplanations(q, correctIndex, optionsList);
+
+        const expHistoryEl = document.getElementById('exp-history');
+        if (expHistoryEl) expHistoryEl.textContent = q.explanation.history;
+
+        const expTriviaEl = document.getElementById('exp-trivia');
+        if (expTriviaEl) expTriviaEl.textContent = q.explanation.trivia;
+
+        const expTipEl = document.getElementById('exp-tip');
+        if (expTipEl) expTipEl.textContent = q.explanation.tip;
+      }
+
+      // 解説ボックスを表示
+      const expBox = document.getElementById('explanation-box');
+      if (expBox) {
+        expBox.classList.remove('hidden');
+        setTimeout(() => {
+          const yOffset = -24;
+          const rect = expBox.getBoundingClientRect();
+          const y = rect.top + window.pageYOffset + yOffset;
+          window.scrollTo({ top: y, behavior: 'smooth' });
+        }, 100);
+      }
+    }
+
+    /**
+     * 各選択肢解説のレンダリング共通ヘルパー
+     */
+    function renderChoiceExplanations(q, correctIndex, optionsList) {
+      const choicesContainer = document.getElementById('exp-choices-list');
+      if (!choicesContainer) return;
+      choicesContainer.innerHTML = '';
+      const choiceExps = q.displayChoiceExplanations || q.choiceExplanations;
+
+      if (Array.isArray(choiceExps) && choiceExps.length > 0) {
+        choiceExps.forEach((item, cIdx) => {
+          const isThisCorrect = (cIdx === correctIndex);
+          const card = document.createElement('div');
+          
+          if (isThisCorrect) {
+            card.className = "p-3 sm:p-3.5 rounded-xl bg-emerald-50/90 border border-emerald-300 text-xs sm:text-sm text-emerald-950 space-y-1";
+            card.innerHTML = `
+              <div class="flex items-center gap-2 font-bold text-emerald-900">
+                <span class="px-2 py-0.5 rounded-md bg-emerald-600 text-white text-[11px]">✓ 正解</span>
+                <span class="text-sm sm:text-base text-emerald-900 font-serif">${item.option}</span>
+              </div>
+              <p class="text-slate-700 leading-relaxed pl-1 pt-0.5">${item.explanation}</p>
+            `;
+          } else {
+            card.className = "p-3 sm:p-3.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm text-slate-800 space-y-1";
+            card.innerHTML = `
+              <div class="flex items-center gap-2 font-bold text-slate-700">
+                <span class="px-2 py-0.5 rounded-md bg-slate-200 text-slate-700 text-[11px]">✕ 誤答</span>
+                <span class="text-sm sm:text-base text-slate-900 font-serif">${item.option}</span>
+              </div>
+              <p class="text-slate-600 leading-relaxed pl-1 pt-0.5">${item.explanation}</p>
+            `;
+          }
+          choicesContainer.appendChild(card);
+        });
+      } else {
+        choicesContainer.innerHTML = `
+          <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 text-xs text-slate-600">
+            正解は「<strong>${optionsList[correctIndex]}</strong>」です。
+          </div>
+        `;
+      }
+    }
+
+    /**
      * 次の問題へ進む
      */
     function nextQuestion() {
@@ -1239,7 +2408,6 @@
       } else {
         // ラウンド終了
         if (isReviewMode && incorrectQuestionIds.size === 0) {
-          // 【要件1-③】復習で全問正解達成！
           showReviewCompleteView();
         } else {
           showResult(true);
@@ -1254,42 +2422,74 @@
       document.getElementById('quiz-view').classList.add('hidden');
       document.getElementById('top-view').classList.add('hidden');
       document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
       document.getElementById('result-view').classList.remove('hidden');
 
       const stats = calculateStats();
 
+      // 成績履歴の自動保存（マイページへ反映）
+      const modeLabel = isReviewMode 
+        ? '復習演習' 
+        : (selectedCountMode === 'all' ? '全問演習' : `ミニテスト（${selectedCountMode}問）`);
+      saveQuizResultToHistory(stats, modeLabel);
+
+      // スコアおよび分母（総出題数）の動的反映
       document.getElementById('result-score').textContent = stats.correctCount;
+      const resultTotalEl = document.getElementById('result-total');
+      if (resultTotalEl) {
+        resultTotalEl.textContent = stats.total;
+      }
       document.getElementById('result-percentage').textContent = `${stats.percentage}%`;
 
+      // 合否判定バッジの更新（京都検定2級合格基準: 70%以上）
+      const passBadge = document.getElementById('result-pass-badge');
       const rankBadge = document.getElementById('result-rank-badge');
       const emoji = document.getElementById('result-emoji');
       const evalTitle = document.getElementById('result-eval-title');
       const evalDesc = document.getElementById('result-eval-desc');
+
+      // 合格に必要な正解数（70%切り上げ）
+      const passingScore = Math.ceil(stats.total * 0.7);
+
+      if (stats.isPassed) {
+        // 合格（70%以上）
+        if (passBadge) {
+          passBadge.className = 'px-4 py-2 rounded-full text-xs sm:text-sm font-black border shadow-xs bg-emerald-600 text-white border-emerald-500 inline-flex flex-wrap items-center justify-center gap-1.5 leading-snug text-center';
+          passBadge.innerHTML = `<span class="inline-block">💮 判定：【合格】</span><span class="inline-block">基準クリア（70%以上達成）</span>`;
+        }
+      } else {
+        // 不合格（70%未満）
+        const shortfall = passingScore - stats.correctCount;
+        if (passBadge) {
+          passBadge.className = 'px-4 py-2 rounded-full text-xs sm:text-sm font-black border shadow-xs bg-rose-600 text-white border-rose-500 inline-flex flex-wrap items-center justify-center gap-1.5 leading-snug text-center';
+          passBadge.innerHTML = `<span class="inline-block">⛩️ 判定：【不合格】</span><span class="inline-block">合格ラインまであと${shortfall}問</span>`;
+        }
+      }
 
       if (stats.percentage >= 90) {
         emoji.textContent = '🏆';
         rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-amber-100 text-amber-900 border-amber-400';
         rankBadge.textContent = 'Sランク（合格確実・極意到達）';
         evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【極意到達】</span> 京都の歴史・文化を深く愛する本物の京都通です！`;
-        evalDesc.textContent = '京都検定2級の難問・頻出問を完璧にマスターしています。単なる暗記を超え、歴史的背景や文化財の由緒まで高い解像度で理解されています。自信を持って本試験に臨んでください！';
+        evalDesc.textContent = `全${stats.total}問中${stats.correctCount}問正解！京都検定2級の難問・頻出問を完璧にマスターしています。単なる暗記を超え、歴史的背景や文化財の由緒まで高い解像度で理解されています。自信を持って本試験に臨んでください！`;
       } else if (stats.percentage >= 70) {
         emoji.textContent = '🌸';
         rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-emerald-100 text-emerald-900 border-emerald-400';
         rankBadge.textContent = 'Aランク（合格基準70%クリア）';
         evalTitle.innerHTML = `<span class="text-emerald-700 font-bold">【合格ライン突破】</span> 京都検定2級合格レベルに到達しています！`;
-        evalDesc.textContent = '2級合格基準の正答率70%を見事にクリアしました。間違えた問題の解説と「覚え方のコツ」を復習しておけば、盤石の態勢で本番を迎えられます。';
+        evalDesc.textContent = `全${stats.total}問中${stats.correctCount}問正解！2級合格基準の正答率70%を見事にクリアしました。間違えた問題の解説と「覚え方のコツ」を復習しておけば、盤石の態勢で本番を迎えられます。`;
       } else if (stats.percentage >= 50) {
         emoji.textContent = '⛩️';
         rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-amber-50 text-amber-800 border-amber-300';
         rankBadge.textContent = 'Bランク（合格まであと少し）';
         evalTitle.innerHTML = `<span class="text-amber-700 font-bold">【あと一歩で合格圏内】</span> 確固たる基礎知識が身についています！`;
-        evalDesc.textContent = '合格ライン（70%）まであと少しです。寺社と開基・塔頭の関係や年中行事の順序などを整理しておけば、合格点がぐっと近づきます。下の解説と復習機能を活用してください。';
+        evalDesc.textContent = `全${stats.total}問中${stats.correctCount}問正解。合格ライン（70%以上・${passingScore}問正解）まであと少しです。寺社と開基・塔頭の関係や年中行事の順序などを整理しておけば、合格点がぐっと近づきます。下の解説と復習機能を活用してください。`;
       } else {
         emoji.textContent = '📚';
         rankBadge.className = 'px-3.5 py-1 rounded-full text-xs sm:text-sm font-bold border shadow-sm bg-slate-100 text-slate-700 border-slate-300';
         rankBadge.textContent = 'Cランク（基礎から復習）';
         evalTitle.innerHTML = `<span class="text-slate-700 font-bold">【伸び代たっぷり】</span> 知識の種まきから始めましょう！`;
-        evalDesc.textContent = '京都検定2級は範囲が広く深い知識が問われます。まずは各問題の「深掘り解説」を丁寧に読み込み、歴史の大きな流れや文化財の豆知識を楽しみながらインプットしていきましょう。';
+        evalDesc.textContent = `全${stats.total}問中${stats.correctCount}問正解。京都検定2級は範囲が広く深い知識が問われます。まずは各問題の「深掘り解説」を丁寧に読み込み、歴史の大きな流れや文化財の豆知識を楽しみながらインプットしていきましょう。`;
       }
 
       // 【要件3】合格ライン（70%以上 / A・Sランク）到達時に和風紙吹雪を発生
@@ -1310,6 +2510,12 @@
         reviewBtnText.textContent = `全問正解達成済み！`;
       }
 
+      // レビュー一覧タイトル更新
+      const reviewListTitle = document.getElementById('review-list-title');
+      if (reviewListTitle) {
+        reviewListTitle.textContent = `全${stats.total}問の正誤・解説一覧`;
+      }
+
       // 全問振り返りリスト描画
       renderReviewList();
 
@@ -1323,7 +2529,19 @@
       document.getElementById('quiz-view').classList.add('hidden');
       document.getElementById('top-view').classList.add('hidden');
       document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
       document.getElementById('review-complete-view').classList.remove('hidden');
+
+      const stats = calculateStats();
+      const reviewTitle = document.getElementById('review-complete-title');
+      if (reviewTitle) {
+        reviewTitle.textContent = `全${stats.total}問 復習達成！満点到達`;
+      }
+
+      const reviewScoreText = document.getElementById('review-complete-score');
+      if (reviewScoreText) {
+        reviewScoreText.textContent = `${stats.total} / ${stats.total}問 正解`;
+      }
 
       // 紙吹雪発動
       launchJapaneseConfetti();
@@ -1337,11 +2555,14 @@
       const reviewList = document.getElementById('review-list');
       reviewList.innerHTML = '';
 
-      quizData.forEach((q, idx) => {
+      activeQuestions.forEach((q, idx) => {
         const res = questionResults.get(q.id);
         const isAnswered = !!res;
         const isCorrect = isAnswered ? res.isCorrect : false;
-        const userSelected = isAnswered ? res.selectedIndex : -1;
+        const userSelectedText = isAnswered ? res.userSelectedText : '未回答';
+        const correctIndex = (q.displayAnswer !== undefined) ? q.displayAnswer : q.answer;
+        const optionsList = q.displayOptions || q.options;
+        const correctText = optionsList[correctIndex];
 
         const item = document.createElement('div');
         item.className = 'border border-kyoto-border rounded-xl overflow-hidden bg-white shadow-sm';
@@ -1352,11 +2573,34 @@
             ? '<span class="text-xs px-2.5 py-0.5 rounded-full bg-emerald-100 text-emerald-800 font-bold border border-emerald-300">〇 正解</span>'
             : '<span class="text-xs px-2.5 py-0.5 rounded-full bg-rose-100 text-rose-800 font-bold border border-rose-300">✕ 不正解</span>';
 
+        // 各選択肢の解説HTML
+        const choiceExps = q.displayChoiceExplanations || q.choiceExplanations;
+        let choicesHtml = '';
+        if (Array.isArray(choiceExps) && choiceExps.length > 0) {
+          choicesHtml = `
+            <div class="pt-2 border-t border-kyoto-border/60 space-y-1.5">
+              <div class="font-bold text-xs text-slate-800 flex items-center gap-1.5">
+                <span>🔍</span> 選択肢ごとの解説：
+              </div>
+              <div class="space-y-1 pl-1">
+                ${choiceExps.map((c) => `
+                  <div class="text-xs p-2 rounded-lg ${c.isCorrect ? 'bg-emerald-50 text-emerald-950 border border-emerald-200' : 'bg-slate-50 text-slate-700 border border-slate-200'}">
+                    <span class="font-bold ${c.isCorrect ? 'text-emerald-800' : 'text-slate-600'}">
+                      ${c.isCorrect ? '【正解】' : '【誤り】'}${c.option}：
+                    </span>
+                    <span>${c.explanation}</span>
+                  </div>
+                `).join('')}
+              </div>
+            </div>
+          `;
+        }
+
         item.innerHTML = `
           <button class="w-full min-h-[48px] p-3.5 sm:p-4 text-left flex items-center justify-between hover:bg-slate-50/80 active:bg-slate-100 transition-colors focus:outline-none" onclick="toggleAccordion('review-body-${idx}', 'review-arrow-${idx}')">
             <div class="flex items-center gap-3 pr-2">
               <span class="w-6 h-6 rounded-md bg-kyoto-washi text-kyoto-crimson text-xs font-bold flex items-center justify-center border border-kyoto-border flex-shrink-0">
-                Q${q.id}
+                Q${idx + 1}
               </span>
               <span class="text-xs sm:text-sm font-medium text-slate-800 line-clamp-1">${q.question}</span>
             </div>
@@ -1375,19 +2619,30 @@
               <div class="p-2.5 rounded-lg ${isCorrect ? 'bg-emerald-50 border border-emerald-200' : 'bg-rose-50 border border-rose-200'}">
                 <span class="font-bold text-slate-600">あなたの回答：</span>
                 <span class="font-bold ${isCorrect ? 'text-emerald-700' : 'text-rose-700'}">
-                  ${userSelected >= 0 ? q.options[userSelected] : '未回答'}
+                  ${userSelectedText}
                 </span>
               </div>
               <div class="p-2.5 rounded-lg bg-emerald-50 border border-emerald-200">
                 <span class="font-bold text-slate-600">正解：</span>
-                <span class="font-bold text-emerald-800">${q.options[q.answer]}</span>
+                <span class="font-bold text-emerald-800">${correctText}</span>
               </div>
             </div>
+
+            ${choicesHtml}
 
             <div class="bg-white p-3.5 sm:p-4 rounded-xl border border-kyoto-border space-y-2.5 text-xs sm:text-[13.5px] text-slate-700 leading-relaxed">
               <p><strong class="text-slate-900">【解説】</strong> ${q.explanation.reason}</p>
               <p><strong class="text-slate-900">【背景】</strong> ${q.explanation.history}</p>
               <p><strong class="text-amber-950">【覚え方のコツ】</strong> ${q.explanation.tip}</p>
+            </div>
+            <div class="flex items-center justify-between gap-2 pt-1 border-t border-kyoto-border/60">
+              <button type="button" onclick="handleReviewBookmarkToggle('${q.id}', this)" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border text-xs font-bold transition-all shadow-2xs ${isQuestionBookmarked(q.id) ? 'border-amber-400 bg-amber-100 text-amber-900' : 'border-slate-300 bg-white text-slate-700 hover:bg-amber-50'}">
+                <span>${isQuestionBookmarked(q.id) ? '★' : '☆'}</span>
+                <span>${isQuestionBookmarked(q.id) ? '付箋中（タップで解除）' : '付箋に追加'}</span>
+              </button>
+              <span class="text-[11px] text-slate-500 font-sans">
+                ジャンル：${q.category || '一般'}
+              </span>
             </div>
           </div>
         `;
@@ -1413,14 +2668,584 @@
      */
     function shareOnX() {
       const stats = calculateStats();
-      const text = `京都検定2級お試しクイズで【${stats.correctCount}/10問正解（${stats.rank}ランク）】でした！あなたも挑戦してみよう！ #京都検定 #京都検定2級 https://kyotocertificationgrade2freetrial.netlify.app`;
+      const text = `京都検定2級お試しクイズで【${stats.correctCount}/${stats.total}問正解（${stats.rank}ランク）】でした！あなたも挑戦してみよう！ #京都検定 #京都検定2級 https://kyotocertificationgrade2freetrial.netlify.app`;
       const url = `https://twitter.com/intent/tweet?text=${encodeURIComponent(text)}`;
       window.open(url, '_blank', 'noopener,noreferrer');
     }
 
+    // =========================================================
+    // マイページ機能・学習成績分析・SVG推移グラフ・弱点特訓
+    // =========================================================
+
+    // 音声設定の復元
+    try {
+      const savedSound = localStorage.getItem(STORAGE_KEY_SOUND);
+      if (savedSound !== null) {
+        soundEnabled = (savedSound === 'true');
+        const sIcon = document.getElementById('sound-icon');
+        const sLabel = document.getElementById('sound-label');
+        if (sIcon) sIcon.textContent = soundEnabled ? '🔊' : '🔇';
+        if (sLabel) sLabel.textContent = soundEnabled ? '効果音 ON' : '効果音 OFF';
+      }
+    } catch(e) {
+      console.warn('localStorage access failed:', e);
+    }
+
     /**
-     * トースト通知
+     * 履歴データの取得
      */
+    function getQuizHistory() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_HISTORY);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    /**
+     * 弱点問題IDリストの取得
+     */
+    function getWeakQuestionIds() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY_WEAK);
+        return raw ? JSON.parse(raw) : [];
+      } catch (e) {
+        return [];
+      }
+    }
+
+    /**
+     * 演習結果を履歴と弱点ストックに保存
+     */
+    function saveQuizResultToHistory(stats, modeLabel) {
+      try {
+        const now = new Date();
+        const dateStr = `${now.getMonth() + 1}/${now.getDate()} ${String(now.getHours()).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`;
+        
+        const historyItem = {
+          id: Date.now().toString(),
+          timestamp: Date.now(),
+          dateStr: dateStr,
+          mode: modeLabel,
+          correctCount: stats.correctCount,
+          total: stats.total,
+          percentage: stats.percentage,
+          isPassed: stats.isPassed,
+          rank: stats.rank,
+          rankName: stats.rankName
+        };
+
+        const history = getQuizHistory();
+        history.unshift(historyItem);
+        // 最大50件保持
+        if (history.length > 50) history.pop();
+        localStorage.setItem(STORAGE_KEY_HISTORY, JSON.stringify(history));
+
+        // 弱点問題IDの更新
+        let weakIds = new Set(getWeakQuestionIds());
+        
+        // 今回間違えた問題を追加
+        incorrectQuestionIds.forEach(id => weakIds.add(id));
+
+        // 今回正解した問題は弱点ストックから克服解除
+        questionResults.forEach((res, qId) => {
+          if (res.isCorrect && weakIds.has(qId)) {
+            weakIds.delete(qId);
+          }
+        });
+
+        localStorage.setItem(STORAGE_KEY_WEAK, JSON.stringify(Array.from(weakIds)));
+      } catch (e) {
+        console.warn('Failed to save quiz history to localStorage:', e);
+      }
+    }
+
+    /**
+     * マイページ画面を表示
+     */
+    function showMyPageView() {
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.remove('hidden');
+
+      renderMyPage();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    /**
+     * マイページ全体の描画
+     */
+    function renderMyPage() {
+      const history = getQuizHistory();
+      const weakIds = getWeakQuestionIds();
+
+      renderMyPageStats(history, weakIds);
+      renderScoreTrendChart(history);
+      renderCategoryAnalysis(weakIds);
+      updateBookmarkQuizBanner();
+      updateWeakQuizBanner(weakIds);
+      renderHistoryTable(history);
+      updateExamCountdown();
+    }
+
+    /**
+     * 分野・ジャンル別 得意・不得意分析カードの描画
+     */
+    function renderCategoryAnalysis(weakIds) {
+      const container = document.getElementById('category-analysis-container');
+      if (!container) return;
+      container.innerHTML = '';
+
+      const pool = getQuestionPool();
+      const weakSet = new Set(weakIds || []);
+
+      // 全体以外の個別ジャンル一覧
+      const genresToAnalyze = GENRE_DEFINITIONS.filter(g => g.id !== 'all');
+
+      genresToAnalyze.forEach(genre => {
+        const questionsInGenre = pool.filter(q => genre.match(q.category));
+        const totalInGenre = questionsInGenre.length;
+
+        if (totalInGenre === 0) return;
+
+        // このジャンルで現在弱点に残っている問題数
+        const weakCountInGenre = questionsInGenre.filter(q => weakSet.has(q.id)).length;
+        const masteredCount = totalInGenre - weakCountInGenre;
+        const masteredRate = Math.round((masteredCount / totalInGenre) * 100);
+
+        // 状態バッジ判定
+        let statusBadge = '';
+        let barColor = 'bg-emerald-500';
+        if (weakCountInGenre === 0) {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10.5px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">完全習得 💮</span>`;
+          barColor = 'bg-emerald-500';
+        } else if (masteredRate >= 70) {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10.5px] font-bold bg-amber-100 text-amber-900 border border-amber-300">合格圏内 🌸</span>`;
+          barColor = 'bg-amber-500';
+        } else {
+          statusBadge = `<span class="px-2 py-0.5 rounded-full text-[10.5px] font-bold bg-rose-100 text-rose-800 border border-rose-300">要特訓 ⛩️</span>`;
+          barColor = 'bg-rose-500';
+        }
+
+        const row = document.createElement('div');
+        row.className = "p-3 sm:p-3.5 rounded-xl bg-kyoto-washi border border-kyoto-border flex flex-col sm:flex-row sm:items-center justify-between gap-2.5 transition-all hover:border-kyoto-gold/70";
+
+        row.innerHTML = `
+          <div class="flex-1">
+            <div class="flex items-center justify-between gap-2 mb-1.5">
+              <div class="flex items-center gap-1.5 font-bold text-slate-900 text-xs sm:text-sm">
+                <span>${genre.icon}</span>
+                <span>${genre.label}</span>
+              </div>
+              <div class="flex items-center gap-2">
+                ${statusBadge}
+                <span class="text-xs font-mono font-bold text-slate-700">${masteredCount}/${totalInGenre}問クリア (${masteredRate}%)</span>
+              </div>
+            </div>
+            
+            <div class="w-full bg-slate-200/80 rounded-full h-2 overflow-hidden">
+              <div class="${barColor} h-full rounded-full transition-all duration-500" style="width: ${masteredRate}%;"></div>
+            </div>
+          </div>
+
+          <div class="flex items-center justify-end sm:pl-3 flex-shrink-0">
+            <button onclick="startSpecificGenreQuiz('${genre.id}')" class="px-3 py-1.5 rounded-lg bg-white hover:bg-amber-50 border border-kyoto-border hover:border-kyoto-gold text-slate-800 hover:text-amber-900 text-xs font-bold transition-all shadow-2xs flex items-center gap-1">
+              <span>🎯</span>
+              <span>この分野を特訓</span>
+            </button>
+          </div>
+        `;
+
+        container.appendChild(row);
+      });
+    }
+
+    /**
+     * マイページから特定のジャンルを指定してクイズを開始
+     */
+    function startSpecificGenreQuiz(genreId) {
+      setGenreMode(genreId);
+      setQuestionCount('all');
+      startQuiz(true);
+      showToast(`「${getGenreShortLabel(genreId)}」の演習を開始します！`);
+    }
+
+    /**
+     * 付箋・ブックマーク演習バナーの更新
+     */
+    function updateBookmarkQuizBanner() {
+      const btn = document.getElementById('bookmark-quiz-btn');
+      const desc = document.getElementById('bookmark-quiz-desc');
+      const badge = document.getElementById('bookmark-count-badge');
+      if (!btn || !desc) return;
+
+      const bookmarkedIds = getBookmarkedIds();
+      const count = bookmarkedIds.length;
+
+      if (badge) {
+        badge.textContent = `${count}問`;
+      }
+
+      if (count > 0) {
+        btn.disabled = false;
+        btn.textContent = `付箋問題（${count}問）を演習する`;
+        desc.textContent = `気になる問題として付箋（ブックマーク）した問題が現在 ${count} 問保存されています。`;
+      } else {
+        btn.disabled = true;
+        btn.textContent = `現在付箋問題はありません`;
+        desc.textContent = `クイズ回答中に右上の「付箋」ボタンを押すと、ここに保存されて集中復習できます。`;
+      }
+    }
+
+    /**
+     * マイページ統計カードの反映
+     */
+    function renderMyPageStats(history, weakIds) {
+      const totalAttemptsEl = document.getElementById('stat-total-attempts');
+      const totalAnsweredEl = document.getElementById('stat-total-answered');
+      const passRateEl = document.getElementById('stat-pass-rate');
+      const passCountEl = document.getElementById('stat-pass-count');
+      const bestScoreEl = document.getElementById('stat-best-score');
+      const bestRankEl = document.getElementById('stat-best-rank');
+      const weakCountEl = document.getElementById('stat-weak-count');
+
+      const totalAttempts = history.length;
+      totalAttemptsEl.innerHTML = `${totalAttempts} <span class="text-xs font-normal text-slate-600">回</span>`;
+
+      const totalQuestionsAnswered = history.reduce((sum, h) => sum + (h.total || 0), 0);
+      totalAnsweredEl.textContent = `計 ${totalQuestionsAnswered} 問解答`;
+
+      if (totalAttempts === 0) {
+        passRateEl.textContent = '0%';
+        passCountEl.textContent = '0回合格（基準70%超）';
+        bestScoreEl.textContent = '0%';
+        bestRankEl.textContent = '最高ランク: -';
+      } else {
+        const passCount = history.filter(h => h.isPassed).length;
+        const passRate = Math.round((passCount / totalAttempts) * 100);
+        passRateEl.textContent = `${passRate}%`;
+        passCountEl.textContent = `${passCount}回合格 / ${totalAttempts}回中`;
+
+        const bestScore = Math.max(...history.map(h => h.percentage));
+        bestScoreEl.textContent = `${bestScore}%`;
+
+        // ベストランク
+        let bestRank = 'C';
+        if (bestScore >= 90) bestRank = 'S';
+        else if (bestScore >= 70) bestRank = 'A';
+        else if (bestScore >= 50) bestRank = 'B';
+        bestRankEl.textContent = `最高判定: ${bestRank}ランク`;
+      }
+
+      weakCountEl.innerHTML = `${weakIds.length} <span class="text-xs font-normal text-rose-900">問</span>`;
+    }
+
+    /**
+     * 成績推移SVG折れ線＆エリアグラフの描画
+     * 合格ライン70%を明確に対比表示
+     */
+    function renderScoreTrendChart(history) {
+      const emptyState = document.getElementById('chart-empty-state');
+      const svg = document.getElementById('score-trend-svg');
+
+      if (!history || history.length === 0) {
+        emptyState.classList.remove('hidden');
+        svg.classList.add('hidden');
+        return;
+      }
+
+      emptyState.classList.add('hidden');
+      svg.classList.remove('hidden');
+
+      // 直近最大10回を時系列順（古い順）に整列
+      const chartData = [...history].slice(0, 10).reverse();
+      
+      const width = 600;
+      const height = 220;
+      const padLeft = 45;
+      const padRight = 35;
+      const padTop = 30;
+      const padBottom = 35;
+      const chartWidth = width - padLeft - padRight;
+      const chartHeight = height - padTop - padBottom;
+
+      // Y座標計算（0%〜100%）
+      const getY = (pct) => padTop + chartHeight * (1 - (pct / 100));
+
+      // X座標計算
+      const count = chartData.length;
+      const getX = (idx) => {
+        if (count === 1) return padLeft + chartWidth / 2;
+        return padLeft + (idx / (count - 1)) * chartWidth;
+      };
+
+      // 70%合格ラインのY座標
+      const y70 = getY(70);
+
+      // SVG内要素の構築
+      let svgHtml = `
+        <defs>
+          <linearGradient id="chartAreaGrad" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0%" stop-color="#f59e0b" stop-opacity="0.32" />
+            <stop offset="100%" stop-color="#f59e0b" stop-opacity="0.02" />
+          </linearGradient>
+          <filter id="pointGlow" x="-20%" y="-20%" width="140%" height="140%">
+            <feDropShadow dx="0" dy="1" stdDeviation="1.5" flood-color="#000000" flood-opacity="0.15" />
+          </filter>
+        </defs>
+      `;
+
+      // 背景グリッド（0%, 25%, 50%, 75%, 100%）
+      const gridLevels = [0, 25, 50, 75, 100];
+      gridLevels.forEach(lvl => {
+        const y = getY(lvl);
+        svgHtml += `
+          <line x1="${padLeft}" y1="${y}" x2="${width - padRight}" y2="${y}" stroke="#f1f5f9" stroke-width="1" />
+          <text x="${padLeft - 8}" y="${y + 3.5}" fill="#94a3b8" font-size="10" font-family="sans-serif" text-anchor="end">${lvl}%</text>
+        `;
+      });
+
+      // 合格ライン（70%）水平破線
+      svgHtml += `
+        <line x1="${padLeft}" y1="${y70}" x2="${width - padRight}" y2="${y70}" stroke="#e11d48" stroke-width="1.8" stroke-dasharray="5,4" />
+        <text x="${width - padRight + 4}" y="${y70 + 3.5}" fill="#e11d48" font-size="10" font-weight="bold" font-family="sans-serif" text-anchor="start">70% 合格ライン</text>
+      `;
+
+      // エリア面パス＆折れ線パスの座標配列
+      const points = chartData.map((d, i) => ({ x: getX(i), y: getY(d.percentage), data: d }));
+      const pointsStr = points.map(p => `${p.x},${p.y}`).join(' ');
+
+      // 面グラデーション塗りつぶし
+      if (points.length > 1) {
+        const areaPath = `M ${points[0].x},${getY(0)} ` + points.map(p => `L ${p.x},${p.y}`).join(' ') + ` L ${points[points.length - 1].x},${getY(0)} Z`;
+        svgHtml += `<path d="${areaPath}" fill="url(#chartAreaGrad)" />`;
+        // 折れ線
+        svgHtml += `<polyline points="${pointsStr}" fill="none" stroke="#d97706" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" />`;
+      } else if (points.length === 1) {
+        // 1回だけの場合は垂直目安線
+        svgHtml += `<line x1="${points[0].x}" y1="${getY(0)}" x2="${points[0].x}" y2="${points[0].y}" stroke="#d97706" stroke-width="2" stroke-dasharray="3,3" opacity="0.5" />`;
+      }
+
+      // プロット点とラベル
+      points.forEach((p, i) => {
+        const isPassed = p.data.percentage >= 70;
+        const fillColor = isPassed ? '#059669' : '#e11d48';
+        const ringColor = isPassed ? '#a7f3d0' : '#fecdd3';
+
+        // X軸ラベル（日時または第○回）
+        svgHtml += `
+          <text x="${p.x}" y="${height - 12}" fill="#64748b" font-size="10" font-family="sans-serif" text-anchor="middle">
+            第${i + 1}回
+          </text>
+        `;
+
+        // 数値ラベル（プロット点の上）
+        const labelY = p.y - 10 < padTop ? p.y + 16 : p.y - 9;
+        svgHtml += `
+          <text x="${p.x}" y="${labelY}" fill="${fillColor}" font-size="11" font-weight="bold" font-family="sans-serif" text-anchor="middle">
+            ${p.data.percentage}%
+          </text>
+        `;
+
+        // 円マーカー（外枠と中心）
+        svgHtml += `
+          <circle cx="${p.x}" cy="${p.y}" r="6.5" fill="${ringColor}" />
+          <circle cx="${p.x}" cy="${p.y}" r="4" fill="${fillColor}" filter="url(#pointGlow)" />
+        `;
+      });
+
+      svg.innerHTML = svgHtml;
+    }
+
+    /**
+     * 履歴一覧テーブルの描画
+     */
+    function renderHistoryTable(history) {
+      const tbody = document.getElementById('history-table-body');
+      if (!tbody) return;
+
+      if (!history || history.length === 0) {
+        tbody.innerHTML = `
+          <tr>
+            <td colspan="5" class="p-6 text-center text-slate-400">
+              まだ演習履歴がありません。テストを解くとここに記録されます。
+            </td>
+          </tr>
+        `;
+        return;
+      }
+
+      tbody.innerHTML = history.map((item, idx) => {
+        const passBadge = item.isPassed
+          ? `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-emerald-100 text-emerald-800 border border-emerald-300">💮 合格</span>`
+          : `<span class="inline-flex items-center px-2 py-0.5 rounded-full text-[11px] font-bold bg-rose-100 text-rose-800 border border-rose-300">⛩️ 不合格</span>`;
+
+        const rowBg = (idx % 2 === 0) ? 'bg-white' : 'bg-slate-50/60';
+
+        return `
+          <tr class="${rowBg} hover:bg-amber-50/40 transition-colors">
+            <td class="p-2.5 sm:p-3 text-slate-600 font-mono whitespace-nowrap">${item.dateStr}</td>
+            <td class="p-2.5 sm:p-3 text-slate-800 font-medium whitespace-nowrap">${item.mode || '通常演習'}</td>
+            <td class="p-2.5 sm:p-3 text-center text-slate-800 font-bold whitespace-nowrap">${item.correctCount} / ${item.total}問</td>
+            <td class="p-2.5 sm:p-3 text-center font-bold font-mono whitespace-nowrap ${item.isPassed ? 'text-emerald-700' : 'text-rose-700'}">${item.percentage}%</td>
+            <td class="p-2.5 sm:p-3 text-center whitespace-nowrap">${passBadge}</td>
+          </tr>
+        `;
+      }).join('');
+    }
+
+    /**
+     * 弱点集中特訓バナーの更新
+     */
+    function updateWeakQuizBanner(weakIds) {
+      const btn = document.getElementById('weak-quiz-btn');
+      const desc = document.getElementById('weak-quiz-desc');
+      if (!btn || !desc) return;
+
+      const count = weakIds.length;
+      if (count > 0) {
+        btn.disabled = false;
+        btn.textContent = `弱点問題（${count}問）を演習する`;
+        desc.textContent = `過去に間違えた問題が現在 ${count} 問ストックされています。弱点克服テストで完璧にマスターしましょう！`;
+      } else {
+        btn.disabled = true;
+        btn.textContent = `現在弱点問題はありません`;
+        desc.textContent = `素晴らしい！過去に間違えた問題はすべて克服済みです。`;
+      }
+    }
+
+    /**
+     * 弱点・間違えた問題の集中演習を開始
+     */
+    function startWeakQuestionsQuiz() {
+      const weakIds = getWeakQuestionIds();
+      if (!weakIds || weakIds.length === 0) {
+        showToast('現在、復習すべき弱点問題はありません！');
+        return;
+      }
+
+      const pool = getQuestionPool();
+      const targetQuestions = pool.filter(q => weakIds.includes(q.id));
+
+      if (targetQuestions.length === 0) {
+        showToast('弱点問題データが見つかりませんでした。');
+        return;
+      }
+
+      questionResults.clear();
+      incorrectQuestionIds.clear();
+      isReviewMode = true;
+
+      // 選択肢シャッフル
+      const shuffleChk = document.getElementById('shuffle-options-checkbox');
+      shuffleOptionsEnabled = shuffleChk ? shuffleChk.checked : true;
+
+      activeQuestions = targetQuestions.map(q => prepareQuestionForQuiz(q, shuffleOptionsEnabled));
+      currentQuestionIndex = 0;
+
+      document.getElementById('top-view').classList.add('hidden');
+      document.getElementById('result-view').classList.add('hidden');
+      document.getElementById('review-complete-view').classList.add('hidden');
+      document.getElementById('mypage-view').classList.add('hidden');
+      document.getElementById('quiz-view').classList.remove('hidden');
+      document.getElementById('review-mode-badge').classList.remove('hidden');
+
+      renderQuestion();
+      showToast(`弱点問題 ${activeQuestions.length}問の集中特訓を開始します！`);
+    }
+
+    /**
+     * 履歴リセット確認
+     */
+    function confirmClearHistory() {
+      if (confirm('これまでの演習履歴と弱点問題ストックをすべてリセットしますか？この操作は取り消せません。')) {
+        try {
+          localStorage.removeItem(STORAGE_KEY_HISTORY);
+          localStorage.removeItem(STORAGE_KEY_WEAK);
+          renderMyPage();
+          showToast('学習履歴と弱点ストックをリセットしました。');
+        } catch(e) {
+          console.error(e);
+        }
+      }
+    }
+
+    /**
+     * 【改善提案1】京都検定本試験カウントダウン計算
+     * 毎年12月第2日曜日の本番までの残り日数を算出
+     */
+    function updateExamCountdown() {
+      const now = new Date();
+      let year = now.getFullYear();
+
+      // 12月第2日曜日を計算
+      function getExamDate(y) {
+        // 12月1日の曜日 (0:日, 1:月, ... 6:土)
+        const firstDay = new Date(y, 11, 1).getDay();
+        const firstSundayDate = (firstDay === 0) ? 1 : (8 - firstDay);
+        const secondSundayDate = firstSundayDate + 7;
+        return new Date(y, 11, secondSundayDate, 10, 0, 0); // 10:00開始想定
+      }
+
+      let targetDate = getExamDate(year);
+      if (now.getTime() > targetDate.getTime()) {
+        targetDate = getExamDate(year + 1);
+      }
+
+      const diffMs = targetDate.getTime() - now.getTime();
+      const days = Math.max(0, Math.ceil(diffMs / (1000 * 60 * 60 * 24)));
+
+      const topCountdown = document.getElementById('top-countdown-text');
+      if (topCountdown) {
+        topCountdown.textContent = `第27回京都検定（12月）まで あと ${days} 日`;
+      }
+
+      const mypageCountdown = document.getElementById('mypage-countdown-days');
+      if (mypageCountdown) {
+        mypageCountdown.textContent = days;
+      }
+    }
+
+    /**
+     * 【改善提案3】PCキーボードショートカット対応
+     * [1]〜[4] で選択肢を即回答、[Space] または [Enter] で次の問題へ進む
+     */
+    window.addEventListener('keydown', (e) => {
+      // 入力フォームやモーダル中は何もしない
+      if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+
+      const quizView = document.getElementById('quiz-view');
+      if (!quizView || quizView.classList.contains('hidden')) return;
+
+      const expBox = document.getElementById('explanation-box');
+      const isExpVisible = expBox && !expBox.classList.contains('hidden');
+
+      // 1. 解説表示中の場合: [Space] または [Enter] で次へ進む
+      if (isExpVisible) {
+        if (e.code === 'Space' || e.key === 'Enter') {
+          e.preventDefault();
+          const nextBtn = document.getElementById('next-question-btn') || document.getElementById('next-btn');
+          if (nextBtn) nextBtn.click();
+        }
+        return;
+      }
+
+      // 2. 問題解答中の場合: [1][2][3][4] で選択肢をクリック
+      const key = e.key;
+      if (['1', '2', '3', '4'].includes(key)) {
+        const optionIndex = parseInt(key, 10) - 1;
+        const optBtn = document.getElementById(`option-btn-${optionIndex}`);
+        if (optBtn && !optBtn.disabled) {
+          e.preventDefault();
+          optBtn.click();
+        }
+      }
+    });
+
+    // トースト通知
     function showToast(msg) {
       const toast = document.getElementById('toast');
       const toastMsg = document.getElementById('toast-message');
@@ -1436,12 +3261,16 @@
       soundEnabled = !soundEnabled;
       document.getElementById('sound-icon').textContent = soundEnabled ? '🔊' : '🔇';
       document.getElementById('sound-label').textContent = soundEnabled ? '効果音 ON' : '効果音 OFF';
+      try {
+        localStorage.setItem(STORAGE_KEY_SOUND, soundEnabled.toString());
+      } catch(e) {}
       showToast(soundEnabled ? '効果音をONにしました' : '効果音をOFFにしました');
     };
 
-    // 初期表示：トップ画面を表示
+    // 初期表示：トップ画面を表示＆試験カウントダウンを計算
     window.addEventListener('DOMContentLoaded', () => {
       showTopView();
+      updateExamCountdown();
     });
   </script>
 </body>
